@@ -182,7 +182,7 @@ footer p{color:var(--blue5);font-size:14px;font-family:'Silkscreen'}
 
 /* DAD LOVE FEATURES v3.0 */
 .dad-section{background:linear-gradient(135deg,#1a1a3e 0%,#2d1b69 100%);border:2px solid #4a9eff;border-radius:20px;padding:25px;margin:20px auto;max-width:500px;text-align:center;position:relative;overflow:hidden}
-.dad-section::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(74,158,255,0.1) 0%,transparent 60%);animation:dadGlow 4s ease-in-out infinite}
+.dad-section::before{pointer-events:none;content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(74,158,255,0.1) 0%,transparent 60%);animation:dadGlow 4s ease-in-out infinite}
 @keyframes dadGlow{0%,100%{transform:scale(1);opacity:0.5}50%{transform:scale(1.1);opacity:1}}
 .dad-section h2{color:#4a9eff;font-size:1.5em;margin-bottom:15px;text-shadow:0 0 10px rgba(74,158,255,0.5)}
 .secret-msg-box{background:rgba(74,158,255,0.1);border:2px dashed #4a9eff;border-radius:15px;padding:20px;cursor:pointer;transition:all 0.3s;min-height:60px;display:flex;align-items:center;justify-content:center}
@@ -1867,3 +1867,4 @@ window.addEventListener('DOMContentLoaded', initAllEnhanced);
 </script>
 </body>
 </html>
+
