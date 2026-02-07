@@ -180,45 +180,32 @@ footer p{color:var(--blue5);font-size:14px;font-family:'Silkscreen'}
 /* RESPONSIVE */
 @media(max-width:600px){.grid{grid-template-columns:1fr;padding:10px}.card{padding:16px}header{padding:15px}.profile-banner{flex-direction:column;text-align:center;align-items:center}.stat-row{justify-content:center}}
 
-
-/* DAD'S LOVE LETTER */
-.love-letter-wrap{background:linear-gradient(135deg,#1a0a28,#0d1f3a);border:2px solid var(--pink);border-radius:20px;margin:20px;padding:30px;text-align:center;position:relative;overflow:hidden}
-.love-letter-wrap::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,110,199,0.05),transparent);animation:loveGlow 8s ease-in-out infinite}
-@keyframes loveGlow{0%,100%{transform:scale(1);opacity:0.3}50%{transform:scale(1.2);opacity:0.6}}
-.love-letter h3{font-family:'Bangers';font-size:clamp(22px,5vw,32px);color:var(--pink);margin-bottom:15px}
-.letter-text{font-family:'Fredoka';font-size:clamp(15px,3vw,19px);color:var(--blue6);line-height:1.8;max-width:600px;margin:0 auto;text-align:left;white-space:pre-line}
-.letter-signature{font-family:'Bangers';font-size:22px;color:var(--gold);margin-top:15px;text-align:right}
-.heart-float{position:absolute;font-size:20px;opacity:0.4;animation:heartRise 6s linear infinite;pointer-events:none}
-@keyframes heartRise{0%{transform:translateY(100px) scale(0.5);opacity:0}20%{opacity:0.6}100%{transform:translateY(-200px) scale(1.2);opacity:0}}
-
-/* SECRET MESSAGE BANNER */
-.secret-msg{background:linear-gradient(135deg,rgba(255,110,199,0.1),rgba(33,150,243,0.1));border:2px dashed var(--pink);border-radius:15px;padding:15px 20px;margin:15px 20px;text-align:center;cursor:pointer;transition:0.3s;position:relative;overflow:hidden}
-.secret-msg:hover{border-color:var(--gold);transform:scale(1.02);box-shadow:0 5px 20px rgba(255,110,199,0.2)}
-.secret-msg .msg-label{font-family:'Silkscreen';font-size:11px;color:var(--pink);letter-spacing:2px;margin-bottom:5px}
-.secret-msg .msg-text{font-family:'Fredoka';font-size:clamp(16px,3vw,20px);color:var(--gold);line-height:1.5}
-.secret-msg .msg-heart{position:absolute;right:15px;top:50%;transform:translateY(-50%);font-size:28px;animation:heartPulse 1.5s ease-in-out infinite}
-@keyframes heartPulse{0%,100%{transform:translateY(-50%) scale(1)}50%{transform:translateY(-50%) scale(1.3)}}
-
-/* DAILY SURPRISE CAPSULE */
-.capsule-wrap{text-align:center;margin:15px 20px}
-.capsule-btn{background:linear-gradient(135deg,var(--purple),var(--pink));border:3px solid var(--gold);border-radius:50%;width:100px;height:100px;display:inline-flex;align-items:center;justify-content:center;font-size:50px;cursor:pointer;transition:0.3s;animation:capsuleBob 3s ease-in-out infinite;box-shadow:0 5px 25px rgba(179,136,255,0.4)}
-.capsule-btn:hover{transform:scale(1.15);box-shadow:0 8px 35px rgba(179,136,255,0.6)}
-.capsule-btn.opened{animation:none;opacity:0.5;cursor:default}
-@keyframes capsuleBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.capsule-result{margin-top:12px;font-family:'Fredoka';font-size:18px;color:var(--cyan);min-height:30px}
-
-/* REASONS YOU'RE AWESOME */
-.awesome-wall{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:10px 20px}
-.awesome-tag{background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(33,150,243,0.1));border:1px solid rgba(255,215,0,0.3);border-radius:20px;padding:8px 16px;font-family:'Fredoka';font-size:14px;color:var(--gold);transition:0.3s;cursor:default;animation:tagAppear 0.5s ease-out both}
-.awesome-tag:hover{transform:scale(1.1);border-color:var(--gold);box-shadow:0 3px 12px rgba(255,215,0,0.2)}
-@keyframes tagAppear{from{transform:scale(0) rotate(-10deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
-
-/* MILESTONE HEARTS */
-.heart-burst{position:fixed;pointer-events:none;z-index:9999;font-size:24px;animation:heartBurst 2s ease-out forwards}
-@keyframes heartBurst{0%{transform:scale(0) translateY(0);opacity:1}50%{transform:scale(1.5) translateY(-60px);opacity:0.8}100%{transform:scale(0.5) translateY(-120px);opacity:0}}
-
-/* DAD MODE INDICATOR */
-.dad-mode-badge{position:fixed;bottom:15px;left:15px;background:rgba(255,110,199,0.15);border:1px solid var(--pink);border-radius:12px;padding:6px 12px;font-family:'Silkscreen';font-size:10px;color:var(--pink);z-index:50;display:none;cursor:pointer}
+/* DAD LOVE FEATURES v3.0 */
+.dad-section{background:linear-gradient(135deg,#1a1a3e 0%,#2d1b69 100%);border:2px solid #4a9eff;border-radius:20px;padding:25px;margin:20px auto;max-width:500px;text-align:center;position:relative;overflow:hidden}
+.dad-section::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(74,158,255,0.1) 0%,transparent 60%);animation:dadGlow 4s ease-in-out infinite}
+@keyframes dadGlow{0%,100%{transform:scale(1);opacity:0.5}50%{transform:scale(1.1);opacity:1}}
+.dad-section h2{color:#4a9eff;font-size:1.5em;margin-bottom:15px;text-shadow:0 0 10px rgba(74,158,255,0.5)}
+.secret-msg-box{background:rgba(74,158,255,0.1);border:2px dashed #4a9eff;border-radius:15px;padding:20px;cursor:pointer;transition:all 0.3s;min-height:60px;display:flex;align-items:center;justify-content:center}
+.secret-msg-box:hover{background:rgba(74,158,255,0.2);transform:scale(1.02)}
+.secret-msg-box.revealed{border-style:solid;background:rgba(74,158,255,0.15)}
+.secret-msg-text{font-size:1.2em;color:#fff;line-height:1.6}
+.capsule-btn{background:linear-gradient(135deg,#ff6b35,#ff9a3c);border:none;padding:15px 30px;border-radius:50px;font-size:1.2em;color:#fff;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 15px rgba(255,107,53,0.4);display:inline-block;font-weight:bold}
+.capsule-btn:hover{transform:scale(1.1) rotate(2deg);box-shadow:0 6px 25px rgba(255,107,53,0.6)}
+.capsule-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.capsule-result{margin-top:15px;padding:15px;background:rgba(255,255,255,0.1);border-radius:15px;display:none}
+.capsule-result.show{display:block;animation:popIn 0.5s ease}
+@keyframes popIn{0%{transform:scale(0);opacity:0}50%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+.love-letter-btn{background:linear-gradient(135deg,#e91e63,#f06292);border:none;padding:15px 30px;border-radius:50px;font-size:1.2em;color:#fff;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 15px rgba(233,30,99,0.4);font-weight:bold}
+.love-letter-btn:hover{transform:scale(1.1);box-shadow:0 6px 25px rgba(233,30,99,0.6)}
+.love-letter-content{margin-top:15px;padding:20px;background:rgba(233,30,99,0.1);border:1px solid rgba(233,30,99,0.3);border-radius:15px;display:none;text-align:left;line-height:1.8;color:#fff;font-size:1.1em}
+.love-letter-content.show{display:block;animation:popIn 0.5s ease}
+.awesome-wall{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:15px}
+.awesome-tag{background:linear-gradient(135deg,#00bcd4,#4a9eff);color:#fff;padding:8px 16px;border-radius:20px;font-size:0.95em;font-weight:bold;animation:floatTag 3s ease-in-out infinite;cursor:default;transition:transform 0.3s}
+.awesome-tag:hover{transform:scale(1.15) rotate(5deg)}
+@keyframes floatTag{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.heart-particle{position:fixed;pointer-events:none;font-size:20px;z-index:10000;animation:heartFloat 2s ease-out forwards}
+@keyframes heartFloat{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-100px) scale(0.5)}}
+.dad-divider{text-align:center;margin:30px 0;font-size:1.5em;letter-spacing:10px;color:#4a9eff;text-shadow:0 0 10px rgba(74,158,255,0.3)}
 </style>
 </head>
 <body>
@@ -513,40 +500,6 @@ footer p{color:var(--blue5);font-size:14px;font-family:'Silkscreen'}
   </div>
 </div>
 
-
-
-<!-- DAD'S SECRET MESSAGE (changes daily) -->
-<div class="secret-msg" id="secret-msg" onclick="revealSecret()">
-  <div class="msg-label">💌 SECRET MESSAGE FROM DAD 💌</div>
-  <div class="msg-text" id="secret-text">Tap to reveal today's message...</div>
-  <div class="msg-heart">💙</div>
-</div>
-
-<!-- DAILY SURPRISE CAPSULE -->
-<div class="section-title">🎁 <span>DAILY SURPRISE</span> 🎁</div>
-<div class="capsule-wrap">
-  <div class="capsule-btn" id="capsule-btn" onclick="openCapsule()">🎁</div>
-  <div class="capsule-result" id="capsule-result"></div>
-  <div style="font-family:Silkscreen;font-size:11px;color:var(--blue4);margin-top:8px">A new surprise every day!</div>
-</div>
-
-<!-- DAD'S LOVE LETTER -->
-<div class="section-title">💙 <span>A LETTER FOR HAYES</span> 💙</div>
-<div class="love-letter-wrap">
-  <div class="love-letter">
-    <h3>📜 FROM DAD'S HEART 📜</h3>
-    <div class="letter-text" id="love-letter-text"></div>
-    <div class="letter-signature">— Love, Dad 💙</div>
-  </div>
-</div>
-
-<!-- REASONS YOU'RE AWESOME -->
-<div class="section-title">⭐ <span>REASONS HAYES IS AWESOME</span> ⭐</div>
-<div class="awesome-wall" id="awesome-wall"></div>
-<div style="text-align:center;margin:10px 0">
-  <button class="calm-btn" onclick="addAwesomeReason()" style="border-color:var(--gold)">⭐ Show Me More!</button>
-</div>
-
 <footer>
   <p>🍟 MADE WITH 💙 JUST FOR HAYES 🍟</p>
   <p style="margin-top:8px;font-size:11px;color:var(--blue4)">HAYES' EPIC ZONE v2.0 — YOUR LEGENDARY SPACE</p>
@@ -563,1152 +516,41 @@ footer p{color:var(--blue5);font-size:14px;font-family:'Silkscreen'}
 <!-- TOAST -->
 <div class="toast" id="toast"><span class="toast-icon" id="toast-icon"></span><span id="toast-text"></span></div>
 
-<script>
-// ═══════════════════════════════════════
-// HAYES' EPIC ZONE v2.0 — CORE SYSTEMS
-// ═══════════════════════════════════════
 
-// ═══ SAVE/LOAD SYSTEM ═══
-const SAVE_KEY = 'hayesEpicZone';
-let gameData = loadData();
-
-function loadData() {
-  try {
-    const d = JSON.parse(localStorage.getItem(SAVE_KEY));
-    if (d && d.version === 2) return d;
-  } catch(e) {}
-  return {
-    version: 2,
-    fries: parseInt(localStorage.getItem('epiczone_fries') || '0'),
-    xp: 0, level: 1,
-    avatar: '🎮',
-    pet: '🐶', petHappy: 100, petFed: 100, petLevel: 1, petXP: 0,
-    gamesPlayed: 0, totalClicks: 0,
-    streak: 0, lastVisit: '',
-    mood: '', moodTime: '',
-    achievements: {},
-    challengeDone: '',
-    clickBest: parseInt(localStorage.getItem('epiczone_clickbest') || '0'),
-    stars: 0,
-    factoryFries: 0, factoryRate: 1, factoryUpgrades: 0
-  };
-}
-
-function saveData() {
-  localStorage.setItem(SAVE_KEY, JSON.stringify(gameData));
-  localStorage.setItem('epiczone_fries', gameData.fries);
-}
-
-// ═══ INIT ═══
-function initAll() {
-  updateStreak();
-  updateUI();
-  initStars();
-  initFryRain();
-  initBreathing();
-  initDailyQuote();
-  initDailyChallenge();
-  initAchievements();
-  initPet();
-  // Restore mood
-  const today = new Date().toDateString();
-  if (gameData.moodTime === today && gameData.mood) {
-    document.querySelectorAll('.mood-btn').forEach(b => {
-      if (b.textContent === gameData.mood) b.classList.add('selected');
-    });
-  }
-  // Pet decay over time
-  setInterval(() => {
-    gameData.petHappy = Math.max(0, gameData.petHappy - 1);
-    gameData.petFed = Math.max(0, gameData.petFed - 1);
-    updatePetUI();
-    saveData();
-  }, 60000);
-  // Auto fry rain
-  setInterval(spawnPageFry, 5000);
-}
-
-// ═══ STREAK SYSTEM ═══
-function updateStreak() {
-  const today = new Date().toDateString();
-  if (gameData.lastVisit === today) {
-    // Already visited today
-  } else {
-    const yesterday = new Date(Date.now() - 86400000).toDateString();
-    if (gameData.lastVisit === yesterday) {
-      gameData.streak++;
-      showToast('🔥', 'Day ' + gameData.streak + ' streak! Keep it up, Hayes!');
-      addXP(gameData.streak * 5);
-      gameData.stars += gameData.streak;
-    } else if (gameData.lastVisit) {
-      gameData.streak = 1;
-      showToast('🔥', 'New streak started! Come back tomorrow!');
-    } else {
-      gameData.streak = 1;
-    }
-    gameData.lastVisit = today;
-    saveData();
-  }
-  document.getElementById('streak-count').textContent = gameData.streak;
-}
-
-// ═══ XP & LEVEL SYSTEM ═══
-function addXP(amount) {
-  gameData.xp += amount;
-  const needed = gameData.level * 100;
-  while (gameData.xp >= needed) {
-    gameData.xp -= needed;
-    gameData.level++;
-    showToast('⭐', 'LEVEL UP! You are now Level ' + gameData.level + '!');
-    spawnConfetti();
-    gameData.fries += gameData.level * 10;
-    gameData.stars += 5;
-  }
-  saveData();
-  updateUI();
-}
-
-function addFries(n) {
-  gameData.fries += n;
-  saveData();
-  updateUI();
-}
-
-// ═══ UPDATE ALL UI ═══
-function updateUI() {
-  document.getElementById('fry-count').textContent = gameData.fries;
-  document.getElementById('stat-fries').textContent = gameData.fries;
-  document.getElementById('stat-games').textContent = gameData.gamesPlayed;
-  document.getElementById('stat-stars').textContent = gameData.stars;
-  document.getElementById('level-badge').textContent = 'LVL ' + gameData.level;
-  const needed = gameData.level * 100;
-  const pct = Math.min(100, Math.floor((gameData.xp / needed) * 100));
-  document.getElementById('xp-bar').style.width = pct + '%';
-  document.getElementById('xp-text').textContent = gameData.xp + ' / ' + needed + ' XP';
-  document.getElementById('avatar-display').textContent = gameData.avatar;
-  // Count unlocked achievements
-  const unlocked = Object.values(gameData.achievements).filter(v => v).length;
-  document.getElementById('stat-badges').textContent = unlocked;
-}
-
-// ═══ MOOD SYSTEM ═══
-const MOOD_MSGS = {
-  happy: ["That's amazing, Hayes! 😄 Your happiness makes the world brighter!", "YESSS! Happy Hayes = Best Hayes! Let's have an awesome time!"],
-  excited: ["LET'S GOOO! 🤩 Hayes is PUMPED! Time for some epic gaming!", "That energy is LEGENDARY! Channel it into some games!"],
-  chill: ["Vibing mode activated 😎 Hayes is just being cool today!", "Nice and relaxed! Perfect time to play some chill games!"],
-  tired: ["It's okay to be tired, Hayes 😴 Maybe try the Chill Zone? You can rest AND earn fries!", "Hey champ, even legends need rest! The breathing circle might help!"],
-  sad: ["Hey Hayes, it's okay to feel sad sometimes 💙 You are SO loved and SO important! Try the Motivation Boost!", "Sending you a big virtual hug, Hayes! 🤗 Remember: tough times don't last, but tough kids DO!"],
-  angry: ["Take a deep breath, Hayes 💙 Your feelings are valid! Try the breathing circle — it really helps!", "It's okay to feel frustrated! Maybe smash some clicks in Click Battle to let it out? 💪"]
-};
-
-function setMood(mood, emoji) {
-  gameData.mood = emoji;
-  gameData.moodTime = new Date().toDateString();
-  saveData();
-  document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
-  event.target.classList.add('selected');
-  const msgs = MOOD_MSGS[mood];
-  document.getElementById('mood-msg').textContent = msgs[Math.floor(Math.random() * msgs.length)];
-  addXP(5);
-  addFries(2);
-  checkAchievement('mood_master');
-}
-
-// ═══ TOAST NOTIFICATIONS ═══
-let toastTimeout;
-function showToast(icon, text) {
-  const t = document.getElementById('toast');
-  document.getElementById('toast-icon').textContent = icon;
-  document.getElementById('toast-text').textContent = text;
-  t.classList.add('show');
-  clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => t.classList.remove('show'), 3500);
-}
-
-// ═══ CONFETTI ═══
-function spawnConfetti() {
-  const colors = ['#FFD700','#2196F3','#39FF14','#FF6EC7','#00F0FF','#FF9100','#B388FF'];
-  for (let i = 0; i < 40; i++) {
-    const c = document.createElement('div');
-    c.className = 'confetti-piece';
-    c.style.left = Math.random() * 100 + '%';
-    c.style.top = '-10px';
-    c.style.background = colors[Math.floor(Math.random() * colors.length)];
-    c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-    c.style.width = (5 + Math.random() * 8) + 'px';
-    c.style.height = (5 + Math.random() * 8) + 'px';
-    c.style.animationDuration = (2 + Math.random() * 2) + 's';
-    c.style.animationDelay = Math.random() * 0.5 + 's';
-    document.body.appendChild(c);
-    setTimeout(() => c.remove(), 4000);
-  }
-}
-
-// ═══ FRY COUNTER ═══
-function collectFry() {
-  addFries(1);
-  addXP(1);
-  const btn = document.getElementById('fry-counter');
-  btn.style.transform = 'scale(1.2)'; setTimeout(() => btn.style.transform = '', 200);
-  if (gameData.fries % 50 === 0) {
-    showPopup('🍟🍟🍟<br><span style="font-family:Bangers;font-size:32px;color:var(--gold)">' + gameData.fries + ' FRIES!</span><br>Hayes is a fry collecting LEGEND!');
-    spawnConfetti();
-    checkAchievement('fry_100');
-    checkAchievement('fry_500');
-  }
-}
-
-// ═══ STARS BACKGROUND ═══
-function initStars() {
-  const c = document.getElementById('stars');
-  for (let i = 0; i < 80; i++) {
-    const s = document.createElement('div');
-    s.className = 'star';
-    s.style.width = s.style.height = (1 + Math.random() * 3) + 'px';
-    s.style.left = Math.random() * 100 + '%';
-    s.style.top = Math.random() * 100 + '%';
-    s.style.animationDelay = Math.random() * 2 + 's';
-    s.style.animationDuration = (1 + Math.random() * 3) + 's';
-    c.appendChild(s);
-  }
-}
-
-// ═══ FRY RAIN ═══
-function initFryRain() {
-  const h = document.getElementById('header');
-  const emojis = ['🍟','🍟','🍟','🎮','⚡','💙','🏆'];
-  for (let i = 0; i < 12; i++) {
-    const f = document.createElement('div');
-    f.className = 'fry-rain';
-    f.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    f.style.left = Math.random() * 100 + '%';
-    f.style.animationDuration = (4 + Math.random() * 6) + 's';
-    f.style.animationDelay = Math.random() * 8 + 's';
-    f.style.fontSize = (16 + Math.random() * 16) + 'px';
-    h.appendChild(f);
-  }
-}
-
-function spawnPageFry() {
-  const f = document.createElement('div');
-  f.className = 'fry-rain';
-  f.textContent = '🍟';
-  f.style.position = 'fixed'; f.style.left = Math.random() * 100 + '%';
-  f.style.top = '-30px'; f.style.fontSize = '20px'; f.style.zIndex = '0';
-  f.style.opacity = '0.25';
-  f.style.animation = 'fryFall ' + (3 + Math.random() * 4) + 's linear forwards';
-  f.style.pointerEvents = 'none';
-  document.body.appendChild(f);
-  setTimeout(() => { if (f.parentNode) f.remove(); }, 8000);
-}
-
-// ═══ NAVIGATION ═══
-function scrollToSection(id) {
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// ═══ AVATAR PICKER ═══
-const AVATARS = ['🎮','🍟','🚀','⚡','🔥','💎','🦸','🐶','🎯','🏆','👾','🤖','🦊','🐉','🌟','🎨','🧊','💙','🎪','🥊'];
-function openAvatarPicker() {
-  let html = '<span style="font-family:Bangers;font-size:28px;color:var(--gold)">CHOOSE YOUR AVATAR</span><br><br>';
-  html += '<div class="avatar-picker">';
-  AVATARS.forEach(a => {
-    const sel = a === gameData.avatar ? ' selected' : '';
-    html += '<div class="avatar-option' + sel + '" onclick="pickAvatar(\'' + a + '\')">' + a + '</div>';
-  });
-  html += '</div>';
-  showPopup(html);
-}
-function pickAvatar(a) {
-  gameData.avatar = a;
-  saveData();
-  updateUI();
-  closePopup();
-  showToast('✨', 'New avatar: ' + a + '! Looking legendary, Hayes!');
-  }
-
-// ═══ PET SYSTEM ═══
-const PETS = ['🐶','🐱','🐰','🐼','🦊','🐸','🐲','🦄','🐧','🐵'];
-const PET_MSGS_PAT = ['Woof! Hayes is the best!','*happy noises*','Your pet loves you!','*tail wagging*','SO much love!','Best friends forever!'];
-const PET_MSGS_PLAY = ['WHEEE! That was fun!','Again again!','Your pet had a BLAST!','*zooming around*','Best playtime EVER!'];
-const PET_MSGS_FEED = ['NOM NOM NOM! Yummy fries!','*happy munching*','Those fries were DELICIOUS!','More fries please!','Your pet is well fed!'];
-
-function initPet() {
-  document.getElementById('pet-display').textContent = gameData.pet;
-  updatePetUI();
-}
-
-function updatePetUI() {
-  document.getElementById('pet-happy').textContent = Math.round(gameData.petHappy);
-  document.getElementById('pet-fed').textContent = Math.round(gameData.petFed);
-  document.getElementById('pet-level').textContent = gameData.petLevel;
-}
-
-function petPat() {
-  gameData.petHappy = Math.min(100, gameData.petHappy + 5);
-  gameData.petXP += 2;
-  checkPetLevelUp();
-  const msg = PET_MSGS_PAT[Math.floor(Math.random() * PET_MSGS_PAT.length)];
-  document.getElementById('pet-msg').textContent = msg;
-  const el = document.getElementById('pet-display');
-  el.style.transform = 'scale(1.3)'; setTimeout(() => el.style.transform = '', 300);
-  addXP(1);
-  saveData();
-  updatePetUI();
-  checkAchievement('pet_lover');
-}
-
-function petFeed() {
-  if (gameData.fries < 5) { showToast('🍟', 'Need 5 fries to feed your pet!'); return; }
-  gameData.fries -= 5;
-  gameData.petFed = Math.min(100, gameData.petFed + 25);
-  gameData.petHappy = Math.min(100, gameData.petHappy + 10);
-  gameData.petXP += 5;
-  checkPetLevelUp();
-  const msg = PET_MSGS_FEED[Math.floor(Math.random() * PET_MSGS_FEED.length)];
-  document.getElementById('pet-msg').textContent = msg;
-  addXP(3);
-  saveData();
-  updatePetUI();
-  updateUI();
-}
-
-function petPlay() {
-  gameData.petHappy = Math.min(100, gameData.petHappy + 15);
-  gameData.petXP += 3;
-  checkPetLevelUp();
-  const msg = PET_MSGS_PLAY[Math.floor(Math.random() * PET_MSGS_PLAY.length)];
-  document.getElementById('pet-msg').textContent = msg;
-  addXP(2);
-  addFries(1);
-  saveData();
-  updatePetUI();
-}
-
-function checkPetLevelUp() {
-  const needed = gameData.petLevel * 20;
-  if (gameData.petXP >= needed) {
-    gameData.petXP -= needed;
-    gameData.petLevel++;
-    showToast('🐾', 'Pet leveled up to ' + gameData.petLevel + '! Amazing!');
-    spawnConfetti();
-    checkAchievement('pet_lvl5');
-  }
-}
-
-function openPetPicker() {
-  let html = '<span style="font-family:Bangers;font-size:28px;color:var(--purple)">CHOOSE YOUR PET</span><br><br>';
-  html += '<div class="avatar-picker">';
-  PETS.forEach(p => {
-    const sel = p === gameData.pet ? ' selected' : '';
-    html += '<div class="avatar-option' + sel + '" onclick="pickPet(\'' + p + '\')">' + p + '</div>';
-  });
-  html += '</div>';
-  showPopup(html);
-}
-
-function pickPet(p) {
-  gameData.pet = p;
-  document.getElementById('pet-display').textContent = p;
-  saveData();
-  closePopup();
-  showToast('🐾', 'New pet: ' + p + '! Say hi!');
-}
-
-// ═══ ACHIEVEMENT SYSTEM ═══
-const ACHIEVEMENTS = [
-  {id:'first_visit', name:'First Visit', icon:'🌟', desc:'Visit Hayes\' Epic Zone'},
-  {id:'fry_100', name:'Fry Fan', icon:'🍟', desc:'Collect 100 fries'},
-  {id:'fry_500', name:'Fry Lord', icon:'👑', desc:'Collect 500 fries'},
-  {id:'mood_master', name:'Mood Check', icon:'😄', desc:'Set your mood'},
-  {id:'play_3', name:'Gamer', icon:'🎮', desc:'Play 3 games'},
-  {id:'play_10', name:'Pro Gamer', icon:'🏆', desc:'Play 10 games'},
-  {id:'pet_lover', name:'Pet Lover', icon:'🐾', desc:'Pat your pet'},
-  {id:'pet_lvl5', name:'Pet Master', icon:'⭐', desc:'Pet reaches level 5'},
-  {id:'streak_3', name:'On Fire', icon:'🔥', desc:'3 day streak'},
-  {id:'streak_7', name:'Unstoppable', icon:'💎', desc:'7 day streak'},
-  {id:'click_50', name:'Speed Demon', icon:'👆', desc:'50 clicks in 10 seconds'},
-  {id:'lvl_5', name:'Rising Star', icon:'🌟', desc:'Reach level 5'},
-  {id:'challenger', name:'Challenger', icon:'🎯', desc:'Complete a daily challenge'},
-  {id:'builder', name:'Architect', icon:'🏗️', desc:'Score 20 in Build Battle'},
-  {id:'runner', name:'Speedster', icon:'🏃', desc:'Score 500 in Obby Runner'},
-  {id:'tycoon', name:'Fry Tycoon', icon:'🏭', desc:'Own 5 factory upgrades'},
-];
-
-function initAchievements() {
-  if (!gameData.achievements.first_visit) {
-    gameData.achievements.first_visit = true;
-    saveData();
-  }
-  if (gameData.streak >= 3) checkAchievement('streak_3');
-  if (gameData.streak >= 7) checkAchievement('streak_7');
-  if (gameData.fries >= 100) checkAchievement('fry_100');
-  if (gameData.fries >= 500) checkAchievement('fry_500');
-  if (gameData.gamesPlayed >= 3) checkAchievement('play_3');
-  if (gameData.gamesPlayed >= 10) checkAchievement('play_10');
-  if (gameData.level >= 5) checkAchievement('lvl_5');
-  renderAchievements();
-}
-
-function checkAchievement(id) {
-  if (gameData.achievements[id]) return;
-  const ach = ACHIEVEMENTS.find(a => a.id === id);
-  if (!ach) return;
-  // Check conditions
-  if (id === 'fry_100' && gameData.fries < 100) return;
-  if (id === 'fry_500' && gameData.fries < 500) return;
-  if (id === 'play_3' && gameData.gamesPlayed < 3) return;
-  if (id === 'play_10' && gameData.gamesPlayed < 10) return;
-  if (id === 'streak_3' && gameData.streak < 3) return;
-  if (id === 'streak_7' && gameData.streak < 7) return;
-  if (id === 'lvl_5' && gameData.level < 5) return;
-  gameData.achievements[id] = true;
-  gameData.stars += 10;
-  saveData();
-  showToast('🏆', 'Badge unlocked: ' + ach.name + '!');
-  spawnConfetti();
-  renderAchievements();
-  updateUI();
-}
-
-function renderAchievements() {
-  const wrap = document.getElementById('ach-wrap');
-  wrap.innerHTML = '';
-  ACHIEVEMENTS.forEach(a => {
-    const unlocked = gameData.achievements[a.id];
-    const div = document.createElement('div');
-    div.className = 'ach-badge ' + (unlocked ? 'unlocked' : 'locked');
-    div.innerHTML = '<span class="ach-icon">' + (unlocked ? a.icon : '🔒') + '</span><span class="ach-name">' + a.name + '</span>';
-    div.title = a.desc;
-    div.onclick = () => showPopup('<span style="font-size:50px">' + (unlocked ? a.icon : '🔒') + '</span><br><span style="font-family:Bangers;font-size:24px;color:' + (unlocked ? 'var(--gold)' : 'var(--blue5)') + '">' + a.name + '</span><br><span style="color:var(--blue6)">' + a.desc + '</span><br><span style="color:' + (unlocked ? 'var(--green)' : 'var(--blue4)') + ';font-family:Silkscreen;font-size:12px">' + (unlocked ? '✅ UNLOCKED!' : '🔒 Keep going, Hayes!') + '</span>');
-    wrap.appendChild(div);
-  });
-  }
-
-// ═══ DAILY CHALLENGE ═══
-const CHALLENGES = [
-  {text:'Click the fry counter 20 times!', goal:20, type:'fryclick'},
-  {text:'Play 2 different games!', goal:2, type:'playgames'},
-  {text:'Pat your pet 5 times!', goal:5, type:'petpat'},
-  {text:'Collect 30 fries from any game!', goal:30, type:'earnfries'},
-  {text:'Set your mood and get a motivation boost!', goal:2, type:'mood_motiv'},
-  {text:'Score 15+ in Click Battle!', goal:15, type:'clickscore'},
-  {text:'Feed your pet twice!', goal:2, type:'petfeed'},
-  {text:'Spin the wheel 3 times!', goal:3, type:'spins'},
-];
-let challengeProgress = 0;
-let todayChallenge;
-
-function initDailyChallenge() {
-  const today = new Date().toDateString();
-  const seed = today.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-  todayChallenge = CHALLENGES[seed % CHALLENGES.length];
-  document.getElementById('challenge-text').textContent = todayChallenge.text;
-  if (gameData.challengeDone === today) {
-    document.getElementById('challenge-fill').style.width = '100%';
-    document.getElementById('challenge-btn').disabled = true;
-    document.getElementById('challenge-btn').textContent = 'COMPLETED! ✅';
-  }
-}
-
-function completeChallenge() {
-  const today = new Date().toDateString();
-  if (gameData.challengeDone === today) return;
-  gameData.challengeDone = today;
-  document.getElementById('challenge-fill').style.width = '100%';
-  document.getElementById('challenge-btn').disabled = true;
-  document.getElementById('challenge-btn').textContent = 'COMPLETED! ✅';
-  addFries(25);
-  addXP(30);
-  gameData.stars += 5;
-  saveData();
-  showToast('🎯', 'Daily challenge complete! +25 fries, +30 XP!');
-  spawnConfetti();
-  checkAchievement('challenger');
-}
-
-// ═══ GAME MANAGEMENT ═══
-function openGame(id) {
-  document.querySelectorAll('.game-frame-wrap,.mini-game-area').forEach(el => el.classList.remove('active'));
-  gameData.gamesPlayed++;
-  saveData();
-  updateUI();
-  checkAchievement('play_3');
-  checkAchievement('play_10');
-  addXP(5);
-
-  if (id === 'brainrot') { document.getElementById('brainrot-frame').classList.add('active'); }
-  else if (id === 'frycatch') { document.getElementById('frycatch-area').classList.add('active'); startFryCatch(); }
-  else if (id === 'fortnitebuild') { document.getElementById('fortnitebuild-area').classList.add('active'); startBuildBattle(); }
-  else if (id === 'obbyrunner') { document.getElementById('obbyrunner-area').classList.add('active'); startObbyRunner(); }
-  else if (id === 'fryfactory') { document.getElementById('fryfactory-area').classList.add('active'); startFryFactory(); }
-  else if (id === 'clickbattle') { document.getElementById('clickbattle-area').classList.add('active'); resetClickBattle(); }
-  else if (id === 'emojimatch') { document.getElementById('emojimatch-area').classList.add('active'); startEmojiMatch(); }
-  else if (id === 'colorsmash') { document.getElementById('colorsmash-area').classList.add('active'); startColorSmash(); }
-
-  const frameId = id === 'brainrot' ? 'brainrot-frame' : id + '-area';
-  document.getElementById(frameId).scrollIntoView({ behavior: 'smooth' });
-}
-
-function closeGame(id) {
-  if (id === 'brainrot') document.getElementById('brainrot-frame').classList.remove('active');
-  else document.getElementById(id + '-area').classList.remove('active');
-}
-
-// ═══ FRY CATCHER ═══
-let fryGame = { active: false };
-function startFryCatch() {
-  const c = document.getElementById('frycatch-canvas'); const ctx = c.getContext('2d');
-  fryGame = { active: true, score: 0, basket: 175, fries: [], speed: 2, missed: 0 };
-  document.addEventListener('keydown', fryKeyHandler);
-  c.onclick = e => { const r = c.getBoundingClientRect(); const x = e.clientX - r.left; fryGame.basket = x < c.width / 2 ? Math.max(25, fryGame.basket - 40) : Math.min(c.width - 25, fryGame.basket + 40); };
-  clearInterval(fryGame.interval);
-  fryGame.interval = setInterval(() => { if (!fryGame.active) return;
-    fryGame.fries.push({ x: 20 + Math.random() * (c.width - 40), y: -20, emoji: Math.random() > 0.15 ? '🍟' : '💎', speed: 1.5 + Math.random() * fryGame.speed });
-  }, 600);
-  function draw() {
-    if (!fryGame.active) return;
-    ctx.clearRect(0, 0, c.width, c.height);
-    ctx.fillStyle = '#0d2137'; ctx.fillRect(0, 0, c.width, c.height);
-    ctx.font = '40px serif'; ctx.fillText('🧺', fryGame.basket - 20, c.height - 20);
-    for (let i = fryGame.fries.length - 1; i >= 0; i--) {
-      const f = fryGame.fries[i]; f.y += f.speed;
-      ctx.font = '28px serif'; ctx.fillText(f.emoji, f.x - 14, f.y);
-      if (Math.abs(f.x - fryGame.basket) < 35 && f.y > c.height - 50) {
-        fryGame.fries.splice(i, 1); fryGame.score += f.emoji === '💎' ? 5 : 1;
-        fryGame.speed = 2 + fryGame.score * 0.04;
-        addFries(f.emoji === '💎' ? 3 : 1); addXP(1);
-      } else if (f.y > c.height + 20) { fryGame.fries.splice(i, 1); fryGame.missed++; if (fryGame.missed >= 10) fryGame.active = false; }
-    }
-    ctx.fillStyle = '#FFD700'; ctx.font = 'bold 20px Bangers'; ctx.fillText('🍟 ' + fryGame.score, 10, 30);
-    ctx.fillStyle = '#FF6666'; ctx.fillText('❌ ' + fryGame.missed + '/10', c.width - 90, 30);
-    if (!fryGame.active) {
-      ctx.fillStyle = 'rgba(0,0,0,0.7)'; ctx.fillRect(0, 0, c.width, c.height);
-      ctx.fillStyle = '#FFD700'; ctx.font = 'bold 32px Bangers'; ctx.fillText('GAME OVER!', c.width / 2 - 80, c.height / 2 - 20);
-      ctx.fillStyle = '#64B5F6'; ctx.font = '24px Bangers'; ctx.fillText('Score: ' + fryGame.score + ' 🍟', c.width / 2 - 60, c.height / 2 + 20);
-      ctx.fillText('Tap to retry!', c.width / 2 - 55, c.height / 2 + 55);
-      c.onclick = () => { c.onclick = null; startFryCatch(); }; return;
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
-}
-function fryKeyHandler(e) {
-  if (!fryGame.active) return;
-  if (e.key === 'ArrowLeft') fryGame.basket = Math.max(25, fryGame.basket - 30);
-  if (e.key === 'ArrowRight') fryGame.basket = Math.min(375, fryGame.basket + 30);
-  }
-
-// ═══ BUILD BATTLE (Fortnite-inspired) ═══
-let buildGame = { active: false };
-function startBuildBattle() {
-  const c = document.getElementById('build-canvas'); const ctx = c.getContext('2d');
-  buildGame = { active: true, blocks: [], score: 0, time: 30, swingX: 0, swingDir: 1, speed: 2, baseY: c.height - 40 };
-  // First block
-  buildGame.blocks.push({ x: c.width / 2 - 40, y: buildGame.baseY, w: 80, h: 30 });
-  
-  const timer = setInterval(() => {
-    if (!buildGame.active) { clearInterval(timer); return; }
-    buildGame.time--;
-    if (buildGame.time <= 0) {
-      buildGame.active = false;
-      clearInterval(timer);
-      addFries(buildGame.score * 2); addXP(buildGame.score * 3);
-      if (buildGame.score >= 20) checkAchievement('builder');
-    }
-  }, 1000);
-
-  c.onclick = () => {
-    if (!buildGame.active) { startBuildBattle(); return; }
-    const top = buildGame.blocks[buildGame.blocks.length - 1];
-    const newX = buildGame.swingX;
-    const newY = top.y - 30;
-    // Check overlap with top block
-    const overlap = Math.min(newX + 70, top.x + top.w) - Math.max(newX, top.x);
-    if (overlap > 5) {
-      buildGame.blocks.push({ x: Math.max(newX, top.x), y: newY, w: Math.max(overlap, 20), h: 30 });
-      buildGame.score++;
-      buildGame.speed = Math.min(6, 2 + buildGame.score * 0.15);
-      addFries(1); addXP(2);
-      // Scroll view up
-      if (newY < 150) {
-        buildGame.blocks.forEach(b => b.y += 30);
-        buildGame.baseY += 30;
-      }
-    } else {
-      // Missed! Block falls
-      buildGame.active = false;
-      addFries(buildGame.score); addXP(buildGame.score * 2);
-      if (buildGame.score >= 20) checkAchievement('builder');
-    }
-  };
-
-  function draw() {
-    ctx.clearRect(0, 0, c.width, c.height);
-    // Sky gradient
-    const grad = ctx.createLinearGradient(0, 0, 0, c.height);
-    grad.addColorStop(0, '#0a1628'); grad.addColorStop(1, '#1a3a5c');
-    ctx.fillStyle = grad; ctx.fillRect(0, 0, c.width, c.height);
-    // Ground
-    ctx.fillStyle = '#2d5a27'; ctx.fillRect(0, c.height - 40, c.width, 40);
-    // Blocks
-    const colors = ['#2196F3', '#1976D2', '#1565C0', '#0D47A1', '#64B5F6'];
-    buildGame.blocks.forEach((b, i) => {
-      ctx.fillStyle = colors[i % colors.length];
-      ctx.fillRect(b.x, b.y, b.w, b.h);
-      ctx.strokeStyle = '#0a1628'; ctx.lineWidth = 2; ctx.strokeRect(b.x, b.y, b.w, b.h);
-    });
-    // Swinging block
-    if (buildGame.active) {
-      buildGame.swingX += buildGame.swingDir * buildGame.speed;
-      if (buildGame.swingX > c.width - 70) buildGame.swingDir = -1;
-      if (buildGame.swingX < 0) buildGame.swingDir = 1;
-      const top = buildGame.blocks[buildGame.blocks.length - 1];
-      ctx.fillStyle = 'rgba(255,145,0,0.8)';
-      ctx.fillRect(buildGame.swingX, top.y - 30, 70, 30);
-      ctx.strokeStyle = '#FF9100'; ctx.lineWidth = 2;
-      ctx.strokeRect(buildGame.swingX, top.y - 30, 70, 30);
-    }
-    // HUD
-    ctx.fillStyle = '#FFD700'; ctx.font = 'bold 20px Bangers';
-    ctx.fillText('🏗️ ' + buildGame.score, 10, 30);
-    ctx.fillStyle = '#64B5F6';
-    ctx.fillText('⏱️ ' + buildGame.time + 's', c.width - 90, 30);
-    if (!buildGame.active) {
-      ctx.fillStyle = 'rgba(0,0,0,0.7)'; ctx.fillRect(0, 0, c.width, c.height);
-      ctx.fillStyle = '#FFD700'; ctx.font = 'bold 28px Bangers';
-      ctx.fillText('HEIGHT: ' + buildGame.score + ' BLOCKS!', c.width / 2 - 110, c.height / 2 - 10);
-      ctx.fillStyle = '#64B5F6'; ctx.font = '20px Bangers';
-      ctx.fillText('+' + (buildGame.score * 2) + ' fries earned!', c.width / 2 - 70, c.height / 2 + 25);
-      ctx.fillText('Tap to play again!', c.width / 2 - 70, c.height / 2 + 55);
-      return;
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
-}
-
-// ═══ OBBY RUNNER (Roblox-inspired) ═══
-let obbyGame = { active: false };
-function startObbyRunner() {
-  const c = document.getElementById('obby-canvas'); const ctx = c.getContext('2d');
-  obbyGame = { active: true, x: 60, y: 220, vy: 0, score: 0, obstacles: [], frame: 0, speed: 3, jump: false, grounded: true };
-  
-  document.addEventListener('keydown', obbyKeyHandler);
-  c.onclick = () => { if (obbyGame.active && obbyGame.grounded) { obbyGame.vy = -10; obbyGame.grounded = false; } else if (!obbyGame.active) { startObbyRunner(); } };
-
-  function draw() {
-    ctx.clearRect(0, 0, c.width, c.height);
-    // Background
-    const grad = ctx.createLinearGradient(0, 0, 0, c.height);
-    grad.addColorStop(0, '#1a0a28'); grad.addColorStop(1, '#0d2137');
-    ctx.fillStyle = grad; ctx.fillRect(0, 0, c.width, c.height);
-    // Ground
-    ctx.fillStyle = '#39FF14'; ctx.fillRect(0, 260, c.width, 40);
-    ctx.fillStyle = '#2d8a10'; ctx.fillRect(0, 265, c.width, 35);
-
-    if (obbyGame.active) {
-      obbyGame.frame++;
-      obbyGame.score = Math.floor(obbyGame.frame / 5);
-      obbyGame.speed = 3 + obbyGame.score * 0.005;
-
-      // Spawn obstacles
-      if (obbyGame.frame % Math.max(30, 60 - obbyGame.score) === 0) {
-        const type = Math.random();
-        if (type < 0.5) obbyGame.obstacles.push({ x: c.width, y: 230, w: 25 + Math.random() * 20, h: 30, color: '#FF6EC7' });
-        else obbyGame.obstacles.push({ x: c.width, y: 200 + Math.random() * 30, w: 30, h: 20 + Math.random() * 20, color: '#B388FF' });
-      }
-
-      // Physics
-      obbyGame.vy += 0.6; // gravity
-      obbyGame.y += obbyGame.vy;
-      if (obbyGame.y >= 220) { obbyGame.y = 220; obbyGame.vy = 0; obbyGame.grounded = true; }
-
-      // Obstacles
-      for (let i = obbyGame.obstacles.length - 1; i >= 0; i--) {
-        const o = obbyGame.obstacles[i];
-        o.x -= obbyGame.speed;
-        // Draw obstacle
-        ctx.fillStyle = o.color;
-        ctx.fillRect(o.x, o.y, o.w, o.h);
-        ctx.strokeStyle = '#fff'; ctx.lineWidth = 1; ctx.strokeRect(o.x, o.y, o.w, o.h);
-        // Collision
-        if (obbyGame.x + 25 > o.x && obbyGame.x < o.x + o.w && obbyGame.y + 35 > o.y && obbyGame.y < o.y + o.h) {
-          obbyGame.active = false;
-          addFries(Math.floor(obbyGame.score / 10)); addXP(Math.floor(obbyGame.score / 5));
-          if (obbyGame.score >= 500) checkAchievement('runner');
-        }
-        if (o.x + o.w < 0) obbyGame.obstacles.splice(i, 1);
-      }
-    }
-
-    // Player (Roblox-style character)
-    ctx.fillStyle = '#2196F3'; ctx.fillRect(obbyGame.x, obbyGame.y, 25, 35); // body
-    ctx.fillStyle = '#FFD700'; ctx.fillRect(obbyGame.x + 2, obbyGame.y - 12, 21, 15); // head
-    ctx.fillStyle = '#000'; ctx.fillRect(obbyGame.x + 6, obbyGame.y - 7, 4, 4); ctx.fillRect(obbyGame.x + 15, obbyGame.y - 7, 4, 4); // eyes
-    ctx.fillStyle = '#FF6EC7'; ctx.fillRect(obbyGame.x + 8, obbyGame.y - 2, 9, 2); // smile
-
-    // HUD
-    ctx.fillStyle = '#FFD700'; ctx.font = 'bold 18px Bangers';
-    ctx.fillText('🏃 ' + obbyGame.score + 'm', 10, 25);
-
-    if (!obbyGame.active) {
-      ctx.fillStyle = 'rgba(0,0,0,0.7)'; ctx.fillRect(0, 0, c.width, c.height);
-      ctx.fillStyle = '#FFD700'; ctx.font = 'bold 26px Bangers';
-      ctx.fillText('RAN ' + obbyGame.score + ' METERS!', c.width / 2 - 100, c.height / 2 - 10);
-      ctx.fillStyle = '#64B5F6'; ctx.font = '18px Bangers';
-      ctx.fillText('Tap to run again!', c.width / 2 - 65, c.height / 2 + 25);
-      return;
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
-}
-function obbyKeyHandler(e) {
-  if (e.code === 'Space' && obbyGame.active && obbyGame.grounded) { obbyGame.vy = -10; obbyGame.grounded = false; e.preventDefault(); }
-  }
-
-// ═══ FRY FACTORY (Idle Tycoon) ═══
-function startFryFactory() {
-  const ui = document.getElementById('fry-factory-ui');
-  renderFactory(ui);
-}
-
-function renderFactory(ui) {
-  const rate = gameData.factoryRate;
-  const upgCost = (gameData.factoryUpgrades + 1) * 25;
-  ui.innerHTML = '<div style="font-size:80px;cursor:pointer;user-select:none;transition:0.1s" id="factory-clicker" onclick="factoryClick()">🍟</div>' +
-    '<div style="font-family:Bangers;font-size:36px;color:var(--gold);margin:10px 0">🍟 ' + gameData.factoryFries + '</div>' +
-    '<div style="font-family:Silkscreen;font-size:12px;color:var(--blue5);margin-bottom:10px">+' + rate + ' fries per click | Upgrades: ' + gameData.factoryUpgrades + '</div>' +
-    '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">' +
-    '<button class="calm-btn" onclick="factoryUpgrade()" style="border-color:var(--orange)">⬆️ Upgrade (+1/click) — ' + upgCost + ' factory fries</button>' +
-    '<button class="calm-btn" onclick="factoryCashOut()" style="border-color:var(--gold)">💰 Cash Out (' + Math.floor(gameData.factoryFries / 2) + ' real fries)</button>' +
-    '</div>' +
-    '<div style="font-family:Silkscreen;font-size:10px;color:var(--blue4);margin-top:10px">Click the fry to cook! Upgrade to cook faster!</div>';
-}
-
-function factoryClick() {
-  gameData.factoryFries += gameData.factoryRate;
-  saveData();
-  const el = document.getElementById('factory-clicker');
-  if (el) { el.style.transform = 'scale(1.3) rotate(10deg)'; setTimeout(() => { if (el) el.style.transform = ''; }, 100); }
-  renderFactory(document.getElementById('fry-factory-ui'));
-  addXP(1);
-}
-
-function factoryUpgrade() {
-  const cost = (gameData.factoryUpgrades + 1) * 25;
-  if (gameData.factoryFries < cost) { showToast('🏭', 'Need ' + cost + ' factory fries for upgrade!'); return; }
-  gameData.factoryFries -= cost;
-  gameData.factoryUpgrades++;
-  gameData.factoryRate++;
-  saveData();
-  renderFactory(document.getElementById('fry-factory-ui'));
-  showToast('⬆️', 'Factory upgraded! +' + gameData.factoryRate + ' per click!');
-  if (gameData.factoryUpgrades >= 5) checkAchievement('tycoon');
-}
-
-function factoryCashOut() {
-  const cashout = Math.floor(gameData.factoryFries / 2);
-  if (cashout < 1) { showToast('🏭', 'Cook more fries first!'); return; }
-  addFries(cashout);
-  gameData.factoryFries = 0;
-  saveData();
-  renderFactory(document.getElementById('fry-factory-ui'));
-  showToast('💰', 'Cashed out ' + cashout + ' fries! Ka-ching!');
-}
-
-// ═══ CLICK BATTLE ═══
-let clickState = { count: 0, active: false, timer: null, best: 0, timeLeft: 10 };
-function resetClickBattle() {
-  clickState = { count: 0, active: false, timer: null, best: gameData.clickBest, timeLeft: 10 };
-  document.getElementById('click-count').textContent = '0';
-  document.getElementById('click-timer').textContent = 'TAP THE TARGET TO START!';
-  document.getElementById('click-best').textContent = 'BEST: ' + clickState.best;
-}
-
-function clickBattleHit() {
-  if (!clickState.active) {
-    clickState.active = true; clickState.count = 0; clickState.timeLeft = 10;
-    document.getElementById('click-timer').textContent = '⏱️ 10s LEFT!';
-    clickState.timer = setInterval(() => {
-      clickState.timeLeft--;
-      document.getElementById('click-timer').textContent = '⏱️ ' + clickState.timeLeft + 's LEFT!';
-      if (clickState.timeLeft <= 0) {
-        clearInterval(clickState.timer); clickState.active = false;
-        if (clickState.count > clickState.best) {
-          clickState.best = clickState.count; gameData.clickBest = clickState.count; saveData();
-          document.getElementById('click-best').textContent = 'BEST: ' + clickState.best;
-        }
-        document.getElementById('click-timer').textContent = 'DONE! ' + clickState.count + ' CLICKS! TAP TO RETRY';
-        addFries(Math.floor(clickState.count / 5)); addXP(Math.floor(clickState.count / 3));
-        if (clickState.count >= 50) checkAchievement('click_50');
-      }
-    }, 1000);
-  }
-  if (!clickState.active) return;
-  clickState.count++;
-  document.getElementById('click-count').textContent = clickState.count;
-  const t = document.getElementById('click-target');
-  t.style.transform = 'scale(0.8)'; setTimeout(() => t.style.transform = 'scale(1)', 80);
-  const emojis = ['🎯', '💥', '⚡', '🔥', '💎', '🍟'];
-  t.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-  setTimeout(() => t.textContent = '🎯', 200);
-}
-
-// ═══ EMOJI MATCH ═══
-let matchState = { cards: [], flipped: [], matched: 0, busy: false };
-function startEmojiMatch() {
-  const emojis = ['🍟', '🎮', '🎯', '⚡', '💎', '🔥', '🌟', '💙'];
-  let deck = [...emojis, ...emojis];
-  deck.sort(() => Math.random() - 0.5);
-  matchState = { cards: deck, flipped: [], matched: 0, busy: false };
-  const grid = document.getElementById('emoji-grid'); grid.innerHTML = '';
-  document.getElementById('match-score').textContent = 'PAIRS: 0/8';
-  deck.forEach((emoji, i) => {
-    const card = document.createElement('div');
-    card.style.cssText = 'width:70px;height:70px;background:var(--blue3);border:2px solid var(--blue4);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;transition:0.3s;user-select:none';
-    card.textContent = '❓'; card.dataset.idx = i; card.dataset.emoji = emoji; card.dataset.state = 'hidden';
-    card.onclick = () => flipCard(card, i);
-    grid.appendChild(card);
-  });
-}
-
-function flipCard(card, idx) {
-  if (matchState.busy || card.dataset.state !== 'hidden') return;
-  card.textContent = card.dataset.emoji; card.dataset.state = 'shown'; card.style.background = 'var(--blue4)';
-  matchState.flipped.push({ card, idx, emoji: card.dataset.emoji });
-  if (matchState.flipped.length === 2) {
-    matchState.busy = true;
-    const [a, b] = matchState.flipped;
-    if (a.emoji === b.emoji) {
-      matchState.matched++;
-      document.getElementById('match-score').textContent = 'PAIRS: ' + matchState.matched + '/8';
-      a.card.dataset.state = 'matched'; b.card.dataset.state = 'matched';
-      a.card.style.borderColor = 'var(--gold)'; b.card.style.borderColor = 'var(--gold)';
-      matchState.flipped = []; matchState.busy = false;
-      addFries(1); addXP(2);
-      if (matchState.matched === 8) setTimeout(() => { showPopup('🎉🎉🎉<br><span style="font-family:Bangers;font-size:32px;color:var(--gold)">YOU WON!</span><br>Hayes is a MEMORY MASTER!<br>+8 🍟'); addFries(7); addXP(15); spawnConfetti(); }, 500);
-    } else {
-      setTimeout(() => {
-        a.card.textContent = '❓'; a.card.dataset.state = 'hidden'; a.card.style.background = 'var(--blue3)';
-        b.card.textContent = '❓'; b.card.dataset.state = 'hidden'; b.card.style.background = 'var(--blue3)';
-        matchState.flipped = []; matchState.busy = false;
-      }, 800);
-    }
-  }
-  }
-
-// ═══ COLOR SMASH (Stroop Game) ═══
-let colorGame = { score: 0, active: false, timer: null, timeLeft: 20 };
-const COLOR_LIST = [
-  { name: 'RED', hex: '#FF4444' },
-  { name: 'BLUE', hex: '#2196F3' },
-  { name: 'GREEN', hex: '#39FF14' },
-  { name: 'YELLOW', hex: '#FFD700' },
-  { name: 'PINK', hex: '#FF6EC7' },
-  { name: 'CYAN', hex: '#00F0FF' },
-];
-
-function startColorSmash() {
-  colorGame = { score: 0, active: true, timeLeft: 20 };
-  document.getElementById('color-score').textContent = 'SCORE: 0';
-  clearInterval(colorGame.timer);
-  colorGame.timer = setInterval(() => {
-    colorGame.timeLeft--;
-    if (colorGame.timeLeft <= 0) {
-      clearInterval(colorGame.timer);
-      colorGame.active = false;
-      addFries(colorGame.score * 2); addXP(colorGame.score * 3);
-      renderColorRound();
-    }
-  }, 1000);
-  renderColorRound();
-}
-
-function renderColorRound() {
-  const ui = document.getElementById('color-game-ui');
-  if (!colorGame.active) {
-    ui.innerHTML = '<div style="font-family:Bangers;font-size:36px;color:var(--gold);margin:20px 0">SCORE: ' + colorGame.score + '</div>' +
-      '<div style="font-family:Fredoka;color:var(--blue5)">+' + (colorGame.score * 2) + ' fries earned!</div>' +
-      '<button class="calm-btn" onclick="startColorSmash()" style="margin-top:15px">PLAY AGAIN!</button>';
-    return;
-  }
-  // Pick a random word and a random display color (different from word)
-  const wordColor = COLOR_LIST[Math.floor(Math.random() * COLOR_LIST.length)];
-  let displayColor;
-  do { displayColor = COLOR_LIST[Math.floor(Math.random() * COLOR_LIST.length)]; } while (displayColor.name === wordColor.name);
-  const correct = displayColor; // Player must tap the color the text IS displayed in
-
-  // Create answer buttons (3 options including correct)
-  let options = [correct];
-  while (options.length < 3) {
-    const opt = COLOR_LIST[Math.floor(Math.random() * COLOR_LIST.length)];
-    if (!options.find(o => o.name === opt.name)) options.push(opt);
-  }
-  options.sort(() => Math.random() - 0.5);
-
-  ui.innerHTML = '<div style="font-family:Silkscreen;font-size:12px;color:var(--blue5);margin-bottom:5px">⏱️ ' + colorGame.timeLeft + 's | Tap the COLOR of the text (not the word!)</div>' +
-    '<div style="font-family:Bangers;font-size:clamp(40px,10vw,60px);color:' + displayColor.hex + ';margin:15px 0">' + wordColor.name + '</div>' +
-    '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">' +
-    options.map(o => '<button style="background:' + o.hex + ';color:#000;font-family:Bangers;font-size:20px;border:3px solid transparent;border-radius:15px;padding:12px 24px;cursor:pointer;min-width:90px;transition:0.2s" onmouseover="this.style.transform=\'scale(1.1)\'" onmouseout="this.style.transform=\'\'" onclick="colorSmashAnswer(\'' + o.name + '\',\'' + correct.name + '\')">' + o.name + '</button>').join('') +
-    '</div>';
-}
-
-function colorSmashAnswer(picked, correct) {
-  if (!colorGame.active) return;
-  if (picked === correct) {
-    colorGame.score++;
-    document.getElementById('color-score').textContent = 'SCORE: ' + colorGame.score;
-    addXP(1);
-  } else {
-    // Wrong! Flash red
-    document.getElementById('color-game-ui').style.background = 'rgba(255,0,0,0.1)';
-    setTimeout(() => document.getElementById('color-game-ui').style.background = '', 300);
-  }
-  renderColorRound();
-}
-
-// ═══ POPUP SYSTEM ═══
-function showPopup(html) { document.getElementById('popup-content').innerHTML = html; document.getElementById('popup').style.display = 'flex'; }
-function closePopup() { document.getElementById('popup').style.display = 'none'; }
-
-// ═══ BREATHING ═══
-function initBreathing() {
-  let breathIn = true;
-  setInterval(() => {
-    document.getElementById('breath-circle').textContent = breathIn ? 'Breathe in...' : 'Breathe out...';
-    breathIn = !breathIn;
-  }, 3000);
-}
-
-// ═══ DAILY QUOTE ═══
-function initDailyQuote() {
-  const quotes = [
-    { t: "Hayes, you are braver than you believe, stronger than you seem, and smarter than you think.", a: "🐻 Winnie the Pooh" },
-    { t: "Every expert was once a beginner. Keep going, Hayes!", a: "⚡ Power-Up" },
-    { t: "Your brain is like a muscle — the more you use it, the stronger it gets!", a: "🧠 Brain Fact" },
-    { t: "It is okay to take breaks. Even superheroes need to rest!", a: "🦸 Hero Tip" },
-    { t: "Mistakes are proof that Hayes is trying. Keep being awesome!", a: "🌟 Daily Wisdom" },
-    { t: "You do not have to be perfect. Just be YOU — and that is already amazing!", a: "💙 Truth" },
-    { t: "French fries are proof that good things take time. Be patient with yourself!", a: "🍟 Fry Wisdom" },
-    { t: "In Fortnite AND in life — keep building, keep moving forward!", a: "🎮 Gamer Tip" },
-    { t: "Hayes, your uniqueness is your superpower. Never forget that!", a: "⚡ Power-Up" },
-    { t: "Even on tough days, you are still doing great. One step at a time, champ!", a: "🌈 Encouragement" },
-    { t: "The more you practice, the luckier you get. Just like in Roblox!", a: "🎮 Roblox Wisdom" },
-    { t: "Hayes, you make the world better just by being in it!", a: "💙 Fact" },
-  ];
-  const q = quotes[Math.floor(Math.random() * quotes.length)];
-  document.getElementById('daily-quote').innerHTML = '"' + q.t + '"<span>— ' + q.a + '</span>';
-  }
-
-// ═══ MOTIVATION ═══
-function showMotivation() {
-  const msgs = [
-    '💪🔥<br><span style="font-family:Bangers;font-size:36px;color:var(--gold)">HAYES IS UNSTOPPABLE!</span><br>Nothing can hold you back today!',
-    '⚡🌟<br><span style="font-family:Bangers;font-size:36px;color:var(--cyan)">BELIEVE IN YOURSELF!</span><br>You have already done so many amazing things, Hayes!',
-    '🏆💙<br><span style="font-family:Bangers;font-size:36px;color:var(--gold)">CHAMPION ENERGY!</span><br>Hayes is one of a kind and the world is lucky to have you!',
-    '🚀🍟<br><span style="font-family:Bangers;font-size:36px;color:var(--green)">SKY IS THE LIMIT!</span><br>Just like french fries, Hayes makes everything BETTER!',
-    '🎮💥<br><span style="font-family:Bangers;font-size:36px;color:var(--pink)">LEGENDARY PLAYER!</span><br>Hayes brings joy everywhere he goes. That is a real superpower!',
-    '🔥💎<br><span style="font-family:Bangers;font-size:36px;color:var(--purple)">SIGMA ENERGY!</span><br>Hayes is built different! Absolute LEGEND!',
-    '🏗️⚡<br><span style="font-family:Bangers;font-size:36px;color:var(--cyan)">CRANKING 90s IN LIFE!</span><br>Hayes is building his future and it is EPIC!',
-  ];
-  showPopup(msgs[Math.floor(Math.random() * msgs.length)]);
-  addFries(3); addXP(5);
-}
-
-// ═══ JOKES ═══
-function showJoke() {
-  const jokes = [
-    { q: 'Why did the french fry go to the doctor?', a: 'Because it was feeling a little CRISPY! 🍟😂' },
-    { q: 'What do you call a Roblox player who never loses?', a: 'An OBBY-ous winner! 🎮😂' },
-    { q: 'Why do Fortnite players never get cold?', a: 'Because they are always building WALLS! 🧱😂' },
-    { q: 'What did the gamer say to the french fry?', a: 'You are GOLDEN! 🍟✨' },
-    { q: 'Why was the computer cold?', a: 'It left its WINDOWS open! 💻❄️' },
-    { q: 'What is a potato\'s favorite game?', a: 'Mash Bros! 🥔😂' },
-    { q: 'Why did the Skibidi toilet go to school?', a: 'To get a little FLUSHED with knowledge! 🚽📚' },
-    { q: 'What do you call a sleeping dinosaur?', a: 'A dino-SNORE! 🦕😴' },
-    { q: 'Why did Hayes bring a ladder to the game?', a: 'Because he wanted to reach the NEXT LEVEL! 🪜🎮' },
-    { q: 'What is Fortnite\'s favorite snack?', a: 'Victory ROYALE with cheese fries! 🍟👑' },
-    { q: 'Why did the french fry win the race?', a: 'Because it was on a ROLL! 🍟🏃' },
-    { q: 'What do you call a noob in the kitchen?', a: 'A FRIER! 🍟🔥' },
-  ];
-  const j = jokes[Math.floor(Math.random() * jokes.length)];
-  showPopup('😂<br><span style="font-family:Bangers;font-size:24px;color:var(--cyan)">' + j.q + '</span><br><br><span style="font-size:22px;color:var(--gold)">' + j.a + '</span>');
-  addFries(1); addXP(2);
-}
-
-// ═══ SPIN THE WHEEL ═══
-function spinWheel() {
-  const options = [
-    '🍟 +15 FRIES! Hayes hit the JACKPOT!',
-    '💪 Do 5 jumping jacks right now! GO!',
-    '😂 Tell someone a joke from the Joke section!',
-    '🎮 Play a round of Build Battle!',
-    '🌟 Say 3 nice things about yourself, Hayes!',
-    '💙 Give someone a high-five!',
-    '🍟 +8 FRIES! Nice spin, Hayes!',
-    '🧘 Take 3 deep breaths. You earned it!',
-    '🏃 Do a silly dance for 10 seconds!',
-    '⚡ LEGENDARY: You are literally the GOAT, Hayes!',
-    '🎯 Score 10+ in your next Click Battle!',
-    '🐾 Go pet your virtual pet buddy!',
-    '🍟 +20 FRIES! MEGA JACKPOT! 🎰',
-  ];
-  const pick = options[Math.floor(Math.random() * options.length)];
-  let bonus = 3;
-  if (pick.includes('+15')) bonus = 15;
-  else if (pick.includes('+8')) bonus = 8;
-  else if (pick.includes('+20')) bonus = 20;
-  addFries(bonus); addXP(5);
-  showPopup('🎡<br><span style="font-family:Bangers;font-size:28px;color:var(--gold)">SPIN RESULT!</span><br><br><span style="font-size:20px">' + pick + '</span>');
-}
-
-// ═══ FRY FACTS ═══
-function showFryFact() {
-  const facts = [
-    '🍟 French fries are the #1 most ordered fast food item in the USA!',
-    '🍟 Americans eat about 4.5 BILLION pounds of french fries every year!',
-    '🍟 The longest french fry ever recorded was 34 inches long!',
-    '🍟 French fries were actually invented in Belgium in the 1600s!',
-    '🍟 In the UK, french fries are called "chips"!',
-    '🍟 The world record for most fries eaten in 1 minute is 86!',
-    '🍟 Astronauts can NOT eat french fries in space — zero gravity!',
-    '🍟 Thomas Jefferson was one of the first Americans to serve french fries!',
-    '🍟 There is a French Fry museum in Bruges, Belgium!',
-    '🍟 Curly fries were invented in 1988!',
-  ];
-  showPopup(facts[Math.floor(Math.random() * facts.length)] + '<br><br>🧠 <span style="color:var(--cyan)">NOW HAYES KNOWS!</span>');
-  addFries(1); addXP(2);
-}
-
-// ═══ WOULD YOU RATHER ═══
-function showWouldYouRather() {
-  const questions = [
-    { a: 'Have unlimited french fries forever 🍟', b: 'Have unlimited V-Bucks forever 💰' },
-    { a: 'Be the #1 Fortnite player in the world 🏆', b: 'Create the #1 Roblox game ever 🎮' },
-    { a: 'Fly like a superhero ✈️', b: 'Be invisible whenever you want 👻' },
-    { a: 'Live in the Fortnite world 🏝️', b: 'Live in the Roblox world 🧊' },
-    { a: 'Have a pet dragon 🐉', b: 'Have a pet unicorn 🦄' },
-    { a: 'Eat only french fries for a week 🍟', b: 'Eat only pizza for a week 🍕' },
-    { a: 'Be super fast ⚡', b: 'Be super strong 💪' },
-    { a: 'Have a hoverboard 🛹', b: 'Have a jetpack 🚀' },
-  ];
-  const q = questions[Math.floor(Math.random() * questions.length)];
-  showPopup('🤔<br><span style="font-family:Bangers;font-size:24px;color:var(--gold)">WOULD YOU RATHER...</span><br><br>' +
-    '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px">' +
-    '<button class="calm-btn" style="border-color:var(--cyan);flex:1;min-width:120px" onclick="wyrPick()">' + q.a + '</button>' +
-    '<button class="calm-btn" style="border-color:var(--pink);flex:1;min-width:120px" onclick="wyrPick()">' + q.b + '</button></div>');
-}
-
-function wyrPick() {
-  closePopup();
-  addFries(3); addXP(3);
-  showToast('🤔', 'Great choice, Hayes! +3 fries!');
-}
-
-// ═══ TRIVIA BLAST ═══
-function showTrivia() {
-  const trivias = [
-    { q: 'What year was Fortnite Battle Royale released?', opts: ['2015', '2017', '2019', '2020'], correct: 1 },
-    { q: 'What is the main currency in Roblox?', opts: ['V-Bucks', 'Robux', 'Gems', 'Coins'], correct: 1 },
-    { q: 'Which country invented french fries?', opts: ['France', 'USA', 'Belgium', 'UK'], correct: 2 },
-    { q: 'How many players are in a Fortnite Battle Royale match?', opts: ['50', '100', '150', '200'], correct: 1 },
-    { q: 'What is the name of the Roblox character model?', opts: ['Blocky', 'Noob', 'Steve', 'R15'], correct: 1 },
-    { q: 'What are french fries called in the UK?', opts: ['Crisps', 'Chips', 'Wedges', 'Sticks'], correct: 1 },
-    { q: 'What does "GG" mean in gaming?', opts: ['Get Going', 'Good Game', 'Go Go', 'Great Guy'], correct: 1 },
-  ];
-  const t = trivias[Math.floor(Math.random() * trivias.length)];
-  let html = '🧠<br><span style="font-family:Bangers;font-size:22px;color:var(--cyan)">' + t.q + '</span><br><br>';
-  html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">';
-  t.opts.forEach((o, i) => {
-    html += '<button class="calm-btn" style="border-color:var(--blue4)" onclick="triviaAnswer(' + i + ',' + t.correct + ')">' + o + '</button>';
-  });
-  html += '</div>';
-  showPopup(html);
-}
-
-function triviaAnswer(picked, correct) {
-  if (picked === correct) {
-    addFries(5); addXP(10);
-    showPopup('✅<br><span style="font-family:Bangers;font-size:32px;color:var(--green)">CORRECT!</span><br>Hayes is a GENIUS! +5 fries +10 XP!');
-    spawnConfetti();
-  } else {
-    addFries(1); addXP(2);
-    showPopup('❌<br><span style="font-family:Bangers;font-size:28px;color:var(--pink)">NOT QUITE!</span><br>Nice try, Hayes! +1 fry for trying!');
-  }
-      }
-
-// ═══ CALM SOUNDS (Web Audio API) ═══
-let calmCtx, calmNodes = [];
-function initCalmAudio() { if (!calmCtx) calmCtx = new (window.AudioContext || window.webkitAudioContext)(); if (calmCtx.state === 'suspended') calmCtx.resume(); }
-function stopCalm() { calmNodes.forEach(n => { try { n.stop(); } catch (e) {} }); calmNodes = []; if (calmCtx) calmCtx.close().then(() => calmCtx = null); }
-
-function playRain() {
-  stopCalm(); initCalmAudio();
-  const buf = calmCtx.createBufferSource(); const sz = calmCtx.sampleRate * 10; const b = calmCtx.createBuffer(1, sz, calmCtx.sampleRate);
-  const d = b.getChannelData(0); for (let i = 0; i < sz; i++) { d[i] = (Math.random() * 2 - 1) * 0.15; if (i % 400 < 20) d[i] *= 3; }
-  buf.buffer = b; buf.loop = true; const f = calmCtx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 800;
-  buf.connect(f); f.connect(calmCtx.destination); buf.start(); calmNodes.push(buf);
-}
-
-function playOcean() {
-  stopCalm(); initCalmAudio();
-  const buf = calmCtx.createBufferSource(); const sz = calmCtx.sampleRate * 8; const b = calmCtx.createBuffer(1, sz, calmCtx.sampleRate);
-  const d = b.getChannelData(0); for (let i = 0; i < sz; i++) { const t = i / calmCtx.sampleRate; d[i] = (Math.random() * 2 - 1) * 0.08 * (0.5 + 0.5 * Math.sin(t * 0.5)); }
-  buf.buffer = b; buf.loop = true; const f = calmCtx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 400;
-  buf.connect(f); f.connect(calmCtx.destination); buf.start(); calmNodes.push(buf);
-}
-
-function playForest() {
-  stopCalm(); initCalmAudio();
-  const buf = calmCtx.createBufferSource(); const sz = calmCtx.sampleRate * 10; const b = calmCtx.createBuffer(1, sz, calmCtx.sampleRate);
-  const d = b.getChannelData(0);
-  for (let i = 0; i < sz; i++) {
-    const t = i / calmCtx.sampleRate;
-    d[i] = (Math.random() * 2 - 1) * 0.05;
-    // Bird chirps
-    if (Math.random() < 0.0005) for (let j = 0; j < 200 && i + j < sz; j++) d[i + j] += Math.sin(j * 0.3) * 0.15 * (1 - j / 200);
-    // Gentle wind
-    d[i] += Math.sin(t * 0.8) * 0.02;
-  }
-  buf.buffer = b; buf.loop = true; const f = calmCtx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 2000;
-  buf.connect(f); f.connect(calmCtx.destination); buf.start(); calmNodes.push(buf);
-}
-
-function playSpace() {
-  stopCalm(); initCalmAudio();
-  const buf = calmCtx.createBufferSource(); const sz = calmCtx.sampleRate * 12; const b = calmCtx.createBuffer(1, sz, calmCtx.sampleRate);
-  const d = b.getChannelData(0);
-  for (let i = 0; i < sz; i++) {
-    const t = i / calmCtx.sampleRate;
-    d[i] = Math.sin(t * 60) * 0.04 + Math.sin(t * 90) * 0.03 + Math.sin(t * 150) * 0.02;
-    d[i] *= 0.5 + 0.5 * Math.sin(t * 0.2);
-  }
-  buf.buffer = b; buf.loop = true; const f = calmCtx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 500;
-  buf.connect(f); f.connect(calmCtx.destination); buf.start(); calmNodes.push(buf);
-}
-
-// ═══ INIT ON LOAD ═══
-<footer>
-  <p>🍟 MADE WITH 💙 JUST FOR HAYES 🍟</p>
-  <p style="margin-top:8px;font-size:11px;color:var(--blue4)">HAYES' EPIC ZONE v2.0 — YOUR LEGENDARY SPACE</p>
-</footer>
-
-<!-- POPUP -->
-<div id="popup" onclick="closePopup()">
-  <div onclick="event.stopPropagation()">
-    <div id="popup-content"></div>
-    <button class="calm-btn" onclick="closePopup()" style="margin-top:15px">AWESOME! 👆</button>
+<!-- DAD LOVE FEATURES -->
+<div class="dad-divider">❤️ ❤️ ❤️</div>
+
+<div class="dad-section" id="secretSection">
+  <h2>🔒 Secret Message From Dad</h2>
+  <p style="color:#aaa;margin-bottom:15px;">Tap to reveal today's secret message!</p>
+  <div class="secret-msg-box" id="secretBox" onclick="revealSecret()">
+    <span class="secret-msg-text" id="secretText">🔐 TAP TO UNLOCK</span>
   </div>
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast"><span class="toast-icon" id="toast-icon"></span><span id="toast-text"></span></div>
+<div class="dad-section" id="capsuleSection">
+  <h2>🎁 Daily Surprise Capsule</h2>
+  <p style="color:#aaa;margin-bottom:15px;">Open your daily surprise from Dad!</p>
+  <button class="capsule-btn" id="capsuleBtn" onclick="openCapsule()">📦 OPEN CAPSULE</button>
+  <div class="capsule-result" id="capsuleResult">
+    <span id="capsuleIcon" style="font-size:2em;display:block;margin-bottom:10px;"></span>
+    <span id="capsuleText" style="color:#fff;font-size:1.1em;"></span>
+  </div>
+</div>
 
+<div class="dad-section" id="loveLetterSection">
+  <h2>💌 Dad's Love Letter</h2>
+  <p style="color:#aaa;margin-bottom:15px;">A special letter just for you, Hayes!</p>
+  <button class="love-letter-btn" onclick="showLoveLetter()">❤️ Read Dad's Letter</button>
+  <div class="love-letter-content" id="loveLetterContent"></div>
+</div>
+
+<div class="dad-section" id="awesomeSection">
+  <h2>⭐ Reasons Hayes Is AWESOME</h2>
+  <div class="awesome-wall" id="awesomeWall"></div>
+</div>
+
+<div class="dad-divider">❤️ ❤️ ❤️</div>
 <script>
 // ═══════════════════════════════════════
 // HAYES' EPIC ZONE v2.0 — CORE SYSTEMS
@@ -2840,292 +1682,188 @@ function playSpace() {
 
 // ═══ INIT ON LOAD ═══
 
+// ========================================
+// DAD'S LOVE FEATURES - v3.0
+// ========================================
 
-// ═══════════════════════════════════════
-// DAD'S LOVE — WOVEN THROUGHOUT
-// ═══════════════════════════════════════
-
-// ═══ DAD'S SECRET MESSAGES ═══
-const DAD_MESSAGES = [
-  "Hayes, you are the best thing that ever happened to me. I love you more than all the fries in the world. — Dad",
-  "Every single day I am proud of you, Hayes. Not because of what you do, but because of who you ARE. — Dad",
-  "Did you know? The day you were born was the happiest day of my entire life. You changed everything. — Dad",
-  "Hayes, even when things feel hard, remember: Dad believes in you. ALWAYS. No matter what. — Dad",
-  "You make me laugh, you make me smile, and you make me the proudest dad in the universe. — Dad",
-  "If I could give you one thing, it would be the ability to see yourself through my eyes. You would see how amazing you are. — Dad",
-  "Hey buddy, just a reminder: there is NOBODY in this world like you. And that is your superpower. — Dad",
-  "Hayes, you are braver than you think, kinder than you know, and more loved than you could ever imagine. — Dad",
-  "Some heroes wear capes. Mine eats french fries and plays Roblox. I love you, Hayes. — Dad",
-  "Every time you smile, my whole world lights up. Never stop being you. — Dad",
-  "Hayes, I built this place just for you because you deserve something as special as you are. — Dad",
-  "No matter how big you get, you will ALWAYS be my little buddy. I love you to the moon and back. — Dad",
-  "You know what my favorite sound is? Your laugh. It is the best sound in the whole universe. — Dad",
-  "Hayes, on your hardest days, remember: Dad is ALWAYS in your corner. Always. Forever. — Dad",
-  "I do not just love you, Hayes. I LIKE you. You are genuinely one of my favorite people on this planet. — Dad",
-  "When I see you trying hard at something, even when it is tough, I am SO proud. That is real strength. — Dad",
-  "Fun fact: Before you were born, I used to wonder what my kid would be like. You turned out better than anything I could have imagined. — Dad",
-  "Hayes, you have the biggest heart of anyone I know. The world is lucky to have you in it. — Dad",
-  "Remember: it is okay to make mistakes. It is okay to feel upset. It is okay to need help. That is what Dad is here for. — Dad",
-  "I hope when you come to this page, you feel how much love went into making it. Every pixel is a hug from me to you. — Dad",
+var DAD_MESSAGES = [
+  "Hayes, you make Dad smile every single day!",
+  "Did you know Dad thinks about you ALL the time?",
+  "Hayes, you are braver than you believe!",
+  "Dad is SO proud of the person you are becoming!",
+  "You have the BEST laugh in the whole world!",
+  "Every day with you is Dad's favorite day!",
+  "Hayes, you are Dad's #1 player in the game of life!",
+  "You make the world a better place just by being YOU!",
+  "Dad's superpower? Loving YOU!",
+  "Hayes, you light up every room you walk into!",
+  "Remember: Dad will ALWAYS be on your team!",
+  "You are cooler than any Fortnite skin ever made!",
+  "Dad would choose YOU over a million Victory Royales!",
+  "Hayes, your kindness makes Dad's heart SO happy!",
+  "You are the BEST thing that ever happened to Dad!",
+  "Hey buddy, just wanted to say: YOU ROCK!",
+  "Dad believes in you more than you will ever know!",
+  "Hayes, your smile is Dad's favorite thing in the universe!",
+  "You are stronger and smarter than you think!",
+  "Dad loves you to the moon, around all the stars, and back!"
 ];
 
-let secretRevealed = false;
+var CAPSULE_SURPRISES = [
+  {icon:"🎨", text:"CREATIVE CHALLENGE: Draw your favorite game character and show Dad!", fries:15, xp:20},
+  {icon:"🦸", text:"SUPERPOWER UNLOCKED: You have the power of KINDNESS today!", fries:10, xp:15},
+  {icon:"🍟", text:"FRIES JACKPOT! Dad loaded you up with BONUS FRIES!", fries:50, xp:10},
+  {icon:"🤗", text:"HUG COUPON: Show this to Dad for ONE FREE MEGA HUG!", fries:5, xp:5},
+  {icon:"🎮", text:"GAME TIME: Challenge Dad to play your favorite game together!", fries:10, xp:15},
+  {icon:"💪", text:"POWER UP: You are UNSTOPPABLE today! Go crush it!", fries:20, xp:25},
+  {icon:"⭐", text:"STAR MOMENT: Tell Dad about the BEST thing that happened today!", fries:10, xp:15},
+  {icon:"🌟", text:"DAD FACT: Dad was also 7 once! He wishes he was as cool as you!", fries:10, xp:10},
+  {icon:"🚀", text:"MISSION: Build something amazing today and show Dad!", fries:20, xp:20},
+  {icon:"🏆", text:"ACHIEVEMENT: Being the best kid in the world! (That is you, Hayes!)", fries:25, xp:30},
+  {icon:"🌈", text:"RAINBOW REWARD: Something awesome is going to happen today!", fries:15, xp:15},
+  {icon:"💡", text:"BRAIN BOOST: You are SO smart, Hayes! Your brain is a supercomputer!", fries:10, xp:20},
+  {icon:"🎵", text:"DANCE BREAK: Stop everything and do a silly dance for 30 seconds!", fries:10, xp:10},
+  {icon:"💙", text:"LOVE BOMB: DAD LOVES YOU x 1,000,000! That is a MILLION loves!", fries:30, xp:25}
+];
+
+var LOVE_LETTERS = [
+  "Dear Hayes,\n\nI want you to know something important: you are the most amazing kid in the entire universe. Every single day, I wake up feeling so lucky that I get to be YOUR dad.\n\nI love watching you play your games, hearing you laugh, and seeing your face light up when you discover something new. You make everything better just by being you.\n\nNever forget: no matter what happens, no matter how your day goes, Dad will ALWAYS love you more than all the fries in the world (and that is A LOT of fries!).\n\nYou are my hero, buddy.\n\nLove always and forever,\nDad",
+  "Hey Hayes!\n\nGuess what? I was thinking about you today (I do that a lot!) and I realized something: you are getting SO big and SO awesome!\n\nRemember when you were little? Now look at you - playing cool games, being brave, learning new things every day. I am SO proud of you, buddy.\n\nWhen things get tough, just remember: your Dad believes in you 100 percent. You can do ANYTHING you set your mind to. You are a champion!\n\nI love you more than words can say.\n\nYour biggest fan,\nDad",
+  "To My Favorite Person Ever - HAYES!\n\nDid you know that you are one of a kind? There is nobody else in the whole world like you, and that makes you EXTRA special!\n\nI love your creativity. I love your energy. I love how you never give up. I love your smile. I love YOUR laugh. I love everything about you!\n\nEvery time I see you, my heart does a happy dance. You are the BEST part of my life, and I would not trade being your Dad for anything in the universe.\n\nYou are loved. You are special. You are HAYES!\n\nAll my love forever,\nDad"
+];
+
+var AWESOME_REASONS = [
+  "Super Creative","Kind Heart","Brave Hero","Amazing Gamer",
+  "Fast Learner","Great Friend","Funny Guy","Smart Cookie",
+  "Hard Worker","Never Gives Up","Fry Expert","Cool Kid",
+  "Awesome Builder","Quick Thinker","Big Dreamer","True Champion",
+  "Joy Bringer","Problem Solver","Adventure Seeker","Star Player",
+  "Music Lover","Roblox Pro","Fortnite Legend","Dance Master","Dad's Pride"
+];
+
 function revealSecret() {
-  if (secretRevealed) return;
-  secretRevealed = true;
-  const today = new Date().toDateString();
-  const seed = today.split('').reduce(function(a, c) { return a + c.charCodeAt(0); }, 0);
-  const msg = DAD_MESSAGES[seed % DAD_MESSAGES.length];
-  const el = document.getElementById('secret-text');
-  el.style.transition = 'all 0.5s';
-  el.style.opacity = '0';
-  setTimeout(function() {
-    el.textContent = msg;
-    el.style.opacity = '1';
-    el.style.color = 'var(--blue6)';
-    el.style.fontSize = 'clamp(14px,2.5vw,17px)';
-    el.style.lineHeight = '1.6';
-  }, 400);
-  spawnHearts(5);
-  addXP(10);
-  addFries(5);
-  showToast('💙', 'Dad left you a message!');
+  var box = document.getElementById("secretBox");
+  var text = document.getElementById("secretText");
+  if (box.classList.contains("revealed")) return;
+  var dayIndex = Math.floor(Date.now() / 86400000) % DAD_MESSAGES.length;
+  text.textContent = DAD_MESSAGES[dayIndex];
+  box.classList.add("revealed");
+  spawnHearts(box);
+  if (typeof addFries === "function") addFries(5);
+  showToast("💙", "Secret message from Dad revealed!");
 }
-
-// ═══ HEART BURST EFFECTS ═══
-function spawnHearts(count) {
-  for (var i = 0; i < count; i++) {
-    var h = document.createElement('div');
-    h.className = 'heart-burst';
-    h.textContent = ['💙','💛','❤️','💜','🤍'][Math.floor(Math.random() * 5)];
-    h.style.left = (20 + Math.random() * 60) + '%';
-    h.style.top = (30 + Math.random() * 40) + '%';
-    h.style.animationDelay = (i * 0.15) + 's';
-    document.body.appendChild(h);
-    setTimeout(function() { h.remove(); }, 2500);
-  }
-  }
-
-// ═══ DAILY SURPRISE CAPSULE ═══
-const CAPSULE_SURPRISES = [
-  {icon:'🎨', text:'CREATIVE CHALLENGE: Draw a picture of your favorite video game character and show Dad!', fries:15, xp:20},
-  {icon:'🦸', text:'SUPERPOWER UNLOCKED: You have the power of KINDNESS today! Use it on someone and earn bonus fries!', fries:10, xp:15},
-  {icon:'🍟', text:'GOLDEN FRY JACKPOT! Dad says you deserve extra fries today just for being you!', fries:30, xp:10},
-  {icon:'📖', text:'STORY TIME: Ask Dad to tell you a story about when HE was 7 years old!', fries:10, xp:25},
-  {icon:'🎵', text:'DANCE BREAK! Put on your favorite song and dance for 1 minute! You earned it!', fries:8, xp:15},
-  {icon:'🌟', text:'GOLDEN STAR: Dad wants you to know he thought about you today and smiled. You are his star!', fries:20, xp:20},
-  {icon:'🎮', text:'GAME TIME: You have earned 30 minutes of bonus screen time! (Ask Dad to confirm!)', fries:10, xp:10},
-  {icon:'🤗', text:'HUG COUPON: This capsule contains 1 FREE giant bear hug from Dad! Redeem anytime!', fries:15, xp:15},
-  {icon:'🏆', text:'ACHIEVEMENT: You are officially the coolest kid Dad knows! That is a REAL fact!', fries:12, xp:20},
-  {icon:'💙', text:'Dad wrote this just for you: You are not just loved. You are CELEBRATED. Every single day.', fries:25, xp:25},
-  {icon:'🧑‍🍳', text:'COOKING QUEST: Ask Dad if you can help make dinner tonight! Bonus points for fries!', fries:10, xp:20},
-  {icon:'🎪', text:'SILLY CHALLENGE: Make the funniest face you can and show Dad! Whoever laughs first loses!', fries:8, xp:10},
-  {icon:'💌', text:'SECRET: Dad keeps a photo of you in his phone and looks at it when he misses you.', fries:20, xp:15},
-  {icon:'🚀', text:'MISSION: Give Dad a high-five today and tell him one thing you are grateful for!', fries:15, xp:20},
-];
 
 function openCapsule() {
-  const today = new Date().toDateString();
-  if (gameData.capsuleOpened === today) {
-    showToast('🎁', 'Come back tomorrow for a new surprise!');
+  var btn = document.getElementById("capsuleBtn");
+  var result = document.getElementById("capsuleResult");
+  var iconEl = document.getElementById("capsuleIcon");
+  var textEl = document.getElementById("capsuleText");
+  var lastOpen = localStorage.getItem("hz_capsule_date");
+  var today = new Date().toDateString();
+  if (lastOpen === today) {
+    showToast("⏰", "Come back tomorrow for a new surprise!");
     return;
   }
-  gameData.capsuleOpened = today;
-  saveData();
-  
-  var btn = document.getElementById('capsule-btn');
-  btn.classList.add('opened');
-  btn.style.transform = 'scale(1.3) rotate(20deg)';
-  
-  var seed = today.split('').reduce(function(a, c) { return a + c.charCodeAt(0); }, 0);
-  var surprise = CAPSULE_SURPRISES[seed % CAPSULE_SURPRISES.length];
-  
-  setTimeout(function() {
-    btn.textContent = surprise.icon;
-    btn.style.transform = 'scale(1)';
-    document.getElementById('capsule-result').innerHTML = '<span style="font-size:24px">' + surprise.icon + '</span><br>' + surprise.text;
-    addFries(surprise.fries);
-    addXP(surprise.xp);
-    spawnHearts(8);
-    spawnConfetti();
-    showToast('🎁', 'Daily surprise opened! +' + surprise.fries + ' fries!');
-  }, 600);
-      }
+  localStorage.setItem("hz_capsule_date", today);
+  var dayIndex = Math.floor(Date.now() / 86400000) % CAPSULE_SURPRISES.length;
+  var surprise = CAPSULE_SURPRISES[dayIndex];
+  iconEl.textContent = surprise.icon;
+  textEl.textContent = surprise.text;
+  result.classList.add("show");
+  btn.disabled = true;
+  btn.textContent = "✅ OPENED TODAY!";
+  if (typeof addFries === "function") addFries(surprise.fries);
+  if (typeof addXP === "function") addXP(surprise.xp);
+  spawnHearts(btn);
+  showToast("🎁", "Surprise from Dad! +" + surprise.fries + " fries!");
+}
 
-// ═══ DAD'S LOVE LETTER ═══
-function initLoveLetter() {
-  var letters = [
-    "Hey Hayes,\n\nI want you to know something important. You are not just my son — you are my BEST FRIEND.\n\nEvery day with you is an adventure. Whether we are laughing at something silly, playing games together, or just hanging out — those are my favorite moments in the whole world.\n\nI built this website because I wanted you to have a place that is just YOURS. A place where you can play, learn, chill, and always be reminded of how incredibly special you are.\n\nYou are kind. You are brave. You are smart. You are funny. And you are SO loved.\n\nNever forget that, buddy. Not even for one second.",
-    "Dear Hayes,\n\nDo you know what makes you so special? It is not one thing — it is EVERYTHING.\n\nIt is the way you laugh so hard your whole body shakes. It is how you never give up, even when something is really hard. It is how you care about other people. It is how creative you are.\n\nSome days might feel tough. Some days you might feel frustrated or sad or overwhelmed. And that is OKAY. Those feelings are normal, and they always pass.\n\nBut here is what never changes: Dad loves you. Today, tomorrow, and every day after that. More than you could ever know.\n\nYou are my greatest adventure, Hayes.",
-    "Hayes, my incredible boy,\n\nI was thinking today about all the things I want you to know.\n\nI want you to know that making mistakes is totally okay — that is how we learn and grow.\n\nI want you to know that asking for help is not weakness — it is one of the bravest things you can do.\n\nI want you to know that you do not have to be perfect. You just have to be YOU.\n\nAnd most of all, I want you to know that no matter what happens in life, you will always have someone who thinks you are the most amazing person in the world.\n\nThat someone is me. Your Dad.\n\nI love you more than all the stars in the sky.",
-  ];
-  var today = new Date();
-  var dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
-  var letter = letters[dayOfYear % letters.length];
-  document.getElementById('love-letter-text').textContent = letter.replace(/\\n/g, '\n');
-  
-  // Float hearts in letter section
-  var wrap = document.querySelector('.love-letter-wrap');
-  if (wrap) {
-    for (var i = 0; i < 6; i++) {
-      var h = document.createElement('div');
-      h.className = 'heart-float';
-      h.textContent = ['💙','💛','💜'][i % 3];
-      h.style.left = (10 + Math.random() * 80) + '%';
-      h.style.bottom = '-30px';
-      h.style.animationDelay = (i * 2) + 's';
-      h.style.animationDuration = (5 + Math.random() * 3) + 's';
-      wrap.appendChild(h);
+function showLoveLetter() {
+  var content = document.getElementById("loveLetterContent");
+  if (content.classList.contains("show")) {
+    content.classList.remove("show");
+    return;
+  }
+  var dayIndex = Math.floor(Date.now() / 86400000) % LOVE_LETTERS.length;
+  var letter = LOVE_LETTERS[dayIndex];
+  content.innerHTML = letter.replace(/\n/g, "<br>");
+  content.classList.add("show");
+  spawnHearts(content);
+}
+
+function spawnHearts(el) {
+  var rect = el.getBoundingClientRect();
+  var hearts = ["❤️","💙","💜","💕","✨"];
+  for (var i = 0; i < 12; i++) {
+    (function(idx) {
+      setTimeout(function() {
+        var heart = document.createElement("div");
+        heart.className = "heart-particle";
+        heart.textContent = hearts[idx % hearts.length];
+        heart.style.left = (rect.left + Math.random() * rect.width) + "px";
+        heart.style.top = (rect.top + Math.random() * rect.height) + "px";
+        document.body.appendChild(heart);
+        setTimeout(function() { heart.remove(); }, 2000);
+      }, idx * 100);
+    })(i);
+  }
+}
+
+function initAwesomeWall() {
+  var wall = document.getElementById("awesomeWall");
+  if (!wall) return;
+  wall.innerHTML = "";
+  for (var i = 0; i < AWESOME_REASONS.length; i++) {
+    var tag = document.createElement("span");
+    tag.className = "awesome-tag";
+    tag.textContent = AWESOME_REASONS[i];
+    tag.style.animationDelay = (i * 0.1) + "s";
+    wall.appendChild(tag);
+  }
+}
+
+function initCapsuleState() {
+  var lastOpen = localStorage.getItem("hz_capsule_date");
+  var today = new Date().toDateString();
+  if (lastOpen === today) {
+    var btn = document.getElementById("capsuleBtn");
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "✅ OPENED TODAY!";
     }
   }
 }
 
-// ═══ REASONS YOU'RE AWESOME WALL ═══
-const AWESOME_REASONS = [
-  "You have the BEST laugh 😄",
-  "You are incredibly creative 🎨",
-  "You never give up 💪",
-  "You are kind to others 💙",
-  "You make Dad proud every day 🏆",
-  "Your smile lights up the room ☀️",
-  "You are a great friend 🤝",
-  "You have an amazing imagination 🚀",
-  "You try your best always ⭐",
-  "You are brave even when scared 🦁",
-  "You ask great questions 🧠",
-  "You love with your whole heart ❤️",
-  "You make the world better 🌍",
-  "You are perfectly YOU 💎",
-  "Dad's favorite person 💙",
-  "You are stronger than you know 💪",
-  "You care about people's feelings 🤗",
-  "You are hilarious 😂",
-  "You are one of a kind 🌟",
-  "You are Dad's greatest joy 🎉",
-  "You have awesome taste in games 🎮",
-  "You are a fry connoisseur 🍟",
-  "Your hugs are the BEST medicine 🤗",
-  "You inspire Dad to be better 💙",
-  "You are going to do amazing things 🚀",
-];
-
-let shownReasons = 0;
-function initAwesomeWall() {
-  var wall = document.getElementById('awesome-wall');
-  if (!wall) return;
-  wall.innerHTML = '';
-  var initial = Math.min(8, AWESOME_REASONS.length);
-  for (var i = 0; i < initial; i++) {
-    addReasonTag(wall, AWESOME_REASONS[i], i);
-  }
-  shownReasons = initial;
-}
-
-function addReasonTag(wall, text, idx) {
-  var tag = document.createElement('div');
-  tag.className = 'awesome-tag';
-  tag.textContent = text;
-  tag.style.animationDelay = (idx * 0.1) + 's';
-  wall.appendChild(tag);
-}
-
-function addAwesomeReason() {
-  var wall = document.getElementById('awesome-wall');
-  if (shownReasons >= AWESOME_REASONS.length) {
-    showToast('⭐', 'You have seen them all! But there are INFINITE reasons you are awesome!');
-    shownReasons = 0;
-    wall.innerHTML = '';
-    for (var i = 0; i < 8; i++) addReasonTag(wall, AWESOME_REASONS[i], i);
-    shownReasons = 8;
-    return;
-  }
-  var next = Math.min(shownReasons + 4, AWESOME_REASONS.length);
-  for (var i = shownReasons; i < next; i++) {
-    addReasonTag(wall, AWESOME_REASONS[i], i - shownReasons);
-  }
-  shownReasons = next;
-  addXP(3);
-  addFries(2);
-  spawnHearts(3);
-  }
-
-// ═══ ENHANCED MOTIVATION WITH DAD'S LOVE ═══
-var _origShowMotivation = typeof showMotivation === 'function' ? showMotivation : null;
-
-// Override motivation to sometimes include Dad messages
-var dadMotivations = [
-  '💙🔥<br><span style="font-family:Bangers;font-size:36px;color:var(--pink)">DAD SAYS:</span><br>You are the reason I smile every single day, Hayes. NEVER forget how special you are!',
-  '💙⭐<br><span style="font-family:Bangers;font-size:36px;color:var(--gold)">DAD BELIEVES IN YOU!</span><br>There is nothing in this world you cannot do. Dad is your biggest fan. ALWAYS.',
-  '💙🏆<br><span style="font-family:Bangers;font-size:36px;color:var(--cyan)">DAD IS SO PROUD!</span><br>Not because of what you achieve, but because of the amazing person you ARE, Hayes.',
-];
-
-// Patch into existing motivation after init
-function patchMotivation() {
-  if (typeof showMotivation === 'function') {
-    var origFunc = showMotivation;
+function patchMotivationForDad() {
+  if (typeof showMotivation === "function") {
+    var origMotivation = showMotivation;
     window.showMotivation = function() {
       if (Math.random() < 0.35) {
-        var msg = dadMotivations[Math.floor(Math.random() * dadMotivations.length)];
-        showPopup(msg);
-        addFries(5);
-        addXP(8);
-        spawnHearts(5);
+        var msg = DAD_MESSAGES[Math.floor(Math.random() * DAD_MESSAGES.length)];
+        showToast("💙", msg);
       } else {
-        origFunc();
+        origMotivation();
       }
     };
   }
 }
 
-// ═══ ENHANCED DAILY QUOTE WITH DAD QUOTES ═══
-function patchQuote() {
-  var quoteEl = document.getElementById('daily-quote');
-  if (quoteEl && Math.random() < 0.4) {
-    var dadQuotes = [
-      {t: "Hayes, you are not just loved. You are CELEBRATED. Every single day.", a: "💙 Dad"},
-      {t: "The bravest thing you can do is be yourself. And Hayes, you do that beautifully.", a: "💙 Dad"},
-      {t: "I would choose you as my son a million times over. You are my greatest gift.", a: "💙 Dad"},
-      {t: "On your best days and your worst days, Dad loves you exactly the same: completely.", a: "💙 Dad"},
-      {t: "Hayes, you make ordinary moments extraordinary just by being in them.", a: "💙 Dad"},
-    ];
-    var q = dadQuotes[Math.floor(Math.random() * dadQuotes.length)];
-    quoteEl.innerHTML = '"' + q.t + '"<span>\u2014 ' + q.a + '</span>';
-    quoteEl.style.borderLeftColor = 'var(--pink)';
-  }
-}
-
-// ═══ CAPSULE STATE IN SAVE DATA ═══
-// Ensure capsuleOpened is in gameData
-function initCapsule() {
-  if (!gameData.capsuleOpened) gameData.capsuleOpened = '';
-  var today = new Date().toDateString();
-  if (gameData.capsuleOpened === today) {
-    var btn = document.getElementById('capsule-btn');
-    if (btn) { btn.classList.add('opened'); btn.textContent = '✅'; }
-    document.getElementById('capsule-result').textContent = 'Already opened today! Come back tomorrow!';
-  }
-}
-
-// ═══ ENHANCED INIT ═══
-var _origInitAll = typeof initAll === 'function' ? initAll : null;
-function initAllEnhanced() {
-  if (_origInitAll) _origInitAll();
-  initLoveLetter();
-  initAwesomeWall();
-  initCapsule();
-  patchMotivation();
-  patchQuote();
-  
-  // Welcome back message with Dad's love
+function dadWelcomeToast() {
   setTimeout(function() {
     var hour = new Date().getHours();
-    var greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
-    showToast('💙', greeting + ', Hayes! Dad loves you!');
+    var greeting = hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
+    showToast("💙", greeting + ", Hayes! Dad loves you!");
   }, 2000);
 }
 
+function initAllEnhanced() {
+  initAll();
+  initAwesomeWall();
+  initCapsuleState();
+  patchMotivationForDad();
+  dadWelcomeToast();
+}
 window.addEventListener('DOMContentLoaded', initAllEnhanced);
 </script>
 </body>
 </html>
-
