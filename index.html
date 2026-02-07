@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MY EPIC ZONE 🍟⚡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;600;700&family=Silkscreen&display=swap');
+:root{
+--blue1:#0a1628;--blue2:#0d2137;--blue3:#1a3a5c;--blue4:#2196F3;--blue5:#64B5F6;--blue6:#BBDEFB;
+--gold:#FFD700;--fry:#F4A460;--green:#39FF14;--pink:#FF6EC7;--cyan:#00F0FF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--blue1);color:#fff;font-family:'Fredoka',sans-serif;overflow-x:hidden;min-height:100vh}
+/* HEADER */
+header{background:linear-gradient(135deg,var(--blue2),var(--blue3));padding:20px;text-align:center;position:relative;overflow:hidden;border-bottom:4px solid var(--blue4)}
+header::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(33,150,243,0.05) 40px,rgba(33,150,243,0.05) 41px);pointer-events:none}
+.logo{font-family:'Bangers',cursive;font-size:clamp(32px,8vw,64px);background:linear-gradient(135deg,var(--blue4),var(--cyan),var(--blue5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(3px 3px 0 rgba(0,0,0,0.3));letter-spacing:3px}
+.subtitle{font-family:'Silkscreen',monospace;font-size:clamp(10px,2.5vw,16px);color:var(--blue5);margin-top:5px;letter-spacing:2px}
+.fry-rain{position:absolute;font-size:24px;animation:fryFall linear infinite;opacity:0.6;pointer-events:none}
+@keyframes fryFall{0%{transform:translateY(-30px) rotate(0deg)}100%{transform:translateY(100vh) rotate(360deg)}}
+/* WELCOME SECTION */
+.welcome{padding:30px 20px;text-align:center;position:relative}
+.welcome h2{font-family:'Bangers';font-size:clamp(22px,5vw,40px);color:var(--gold);margin-bottom:10px}
+.welcome p{font-size:clamp(14px,3vw,20px);color:var(--blue6);max-width:600px;margin:0 auto;line-height:1.6}
+.welcome-emoji{font-size:clamp(50px,12vw,90px);display:block;margin-bottom:10px;animation:bounce 1.5s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+/* CARDS GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;padding:20px;max-width:1200px;margin:0 auto}
+.card{background:linear-gradient(145deg,var(--blue2),var(--blue3));border:2px solid var(--blue4);border-radius:20px;padding:25px;text-align:center;cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-8px) scale(1.02);border-color:var(--cyan);box-shadow:0 15px 40px rgba(33,150,243,0.3)}
+.card:active{transform:scale(0.97)}
+.card-icon{font-size:clamp(50px,10vw,70px);display:block;margin-bottom:12px}
+.card h3{font-family:'Bangers';font-size:clamp(18px,4vw,28px);color:var(--gold);margin-bottom:8px;letter-spacing:1px}
+.card p{font-size:clamp(12px,2.5vw,16px);color:var(--blue5);line-height:1.5}
+.card-badge{position:absolute;top:12px;right:12px;background:var(--green);color:#000;font-family:'Silkscreen';font-size:10px;padding:3px 8px;border-radius:8px;font-weight:700}
+.card-glow{position:absolute;inset:0;border-radius:20px;opacity:0;transition:0.3s;pointer-events:none}
+.card:hover .card-glow{opacity:1}
+/* SECTION HEADERS */
+.section-title{font-family:'Bangers';font-size:clamp(22px,5vw,36px);text-align:center;padding:25px 20px 10px;color:var(--blue5);letter-spacing:2px}
+.section-title span{color:var(--gold)}
+/* FUN FACTS TICKER */
+.ticker-wrap{background:var(--blue2);border-top:2px solid var(--blue4);border-bottom:2px solid var(--blue4);padding:10px 0;overflow:hidden;white-space:nowrap;margin:15px 0}
+.ticker{display:inline-block;animation:tickerScroll 25s linear infinite;font-family:'Silkscreen';font-size:clamp(12px,2.5vw,16px);color:var(--cyan)}
+@keyframes tickerScroll{0%{transform:translateX(100vw)}100%{transform:translateX(-200%)}}
+/* CALM ZONE */
+.calm-zone{background:linear-gradient(135deg,#0a1a30,#0d1f3a);border-radius:20px;margin:20px;padding:30px;text-align:center;border:2px solid rgba(33,150,243,0.2)}
+.calm-zone h3{font-family:'Bangers';font-size:clamp(20px,4vw,30px);color:var(--cyan);margin-bottom:15px}
+.breath-circle{width:min(200px,50vw);height:min(200px,50vw);border-radius:50%;background:radial-gradient(circle,rgba(33,150,243,0.3),transparent);border:3px solid var(--blue4);margin:20px auto;display:flex;align-items:center;justify-content:center;font-size:clamp(16px,3vw,22px);color:var(--blue5);animation:breathe 6s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(0.8);border-color:var(--blue4)}50%{transform:scale(1.2);border-color:var(--cyan);box-shadow:0 0 40px rgba(0,240,255,0.3)}}
+.calm-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:15px}
+.calm-btn{background:var(--blue3);border:2px solid var(--blue4);border-radius:15px;padding:10px 20px;color:var(--blue5);font-family:'Fredoka';font-size:16px;cursor:pointer;transition:0.2s}
+.calm-btn:hover{background:var(--blue4);color:#fff;transform:scale(1.05)}
+/* QUOTE */
+.daily-quote{background:var(--blue2);border-left:4px solid var(--gold);border-radius:0 15px 15px 0;padding:20px;margin:20px;font-style:italic;color:var(--blue6);font-size:clamp(14px,3vw,18px);line-height:1.6}
+.daily-quote span{display:block;margin-top:8px;font-style:normal;font-size:14px;color:var(--gold)}
+/* GAME IFRAME */
+.game-frame-wrap{margin:20px;border-radius:20px;overflow:hidden;border:3px solid var(--blue4);box-shadow:0 0 30px rgba(33,150,243,0.2);display:none;position:relative}
+.game-frame-wrap.active{display:block}
+.game-frame-wrap iframe{width:100%;height:80vh;border:none}
+.close-game{position:absolute;top:10px;right:10px;background:rgba(255,0,0,0.8);color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:20px;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center}
+.close-game:hover{background:red}
+/* FOOTER */
+footer{background:var(--blue2);padding:20px;text-align:center;margin-top:30px;border-top:2px solid var(--blue4)}
+footer p{color:var(--blue5);font-size:14px;font-family:'Silkscreen'}
+/* STARS BG */
+.stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 2s infinite alternate}
+@keyframes twinkle{0%{opacity:0.3}100%{opacity:1}}
+/* FRIES COUNTER */
+.fry-counter{background:var(--blue2);border:2px solid var(--fry);border-radius:15px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;font-family:'Bangers';font-size:20px;color:var(--gold);margin-top:10px;cursor:pointer;transition:0.2s}
+.fry-counter:hover{transform:scale(1.1);box-shadow:0 0 15px rgba(244,164,96,0.3)}
+.fry-counter:active{transform:scale(0.95)}
+/* MINI GAMES SECTION */
+.mini-game-area{background:var(--blue2);border-radius:20px;margin:20px;padding:20px;border:2px solid var(--blue4);display:none}
+.mini-game-area.active{display:block}
+.mini-game-area canvas{border-radius:12px;display:block;margin:0 auto;background:#0a1628;border:2px solid var(--blue4)}
+/* RESPONSIVE */
+@media(max-width:600px){.grid{grid-template-columns:1fr;padding:10px}.card{padding:18px}header{padding:15px}}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+
+<header id="header">
+<div class="logo">MY EPIC ZONE</div>
+<div class="subtitle">🍟 YOUR PERSONAL GAMING HUB 🎮</div>
+</header>
+
+<section class="welcome">
+<div class="welcome-emoji">🍟</div>
+<h2>WELCOME BACK, LEGEND! ⚡</h2>
+<p>This is YOUR special zone — made just for you! Play games, chill out, collect fries, and have the BEST time ever. You are awesome and don't forget it! 💙</p>
+<div class="fry-counter" id="fry-counter" onclick="collectFry()">
+🍟 <span id="fry-count">0</span> FRIES COLLECTED
+</div>
+</section>
+
+<div class="ticker-wrap">
+<div class="ticker" id="ticker">
+🍟 DID YOU KNOW? French fries were actually invented in Belgium, not France! 🎮 FORTNITE TIP: Building cover is your best defense! 🧊 ROBLOX FACT: Over 40 million games have been made in Roblox! 🧠 FUN FACT: Your brain is more active when you sleep than when you watch TV! 🍟 The longest french fry ever was 34 inches long! 🎮 The first video game was made in 1958! ⚡ YOU ARE AMAZING AND CAN DO ANYTHING! 🍟
+</div>
+</div>
+
+<div class="section-title">🎮 <span>GAME ZONE</span> 🎮</div>
+
+<div class="grid" id="game-grid">
+<div class="card" onclick="openGame('brainrot')">
+<div class="card-glow" style="background:radial-gradient(circle at center,rgba(57,255,20,0.1),transparent)"></div>
+<div class="card-badge">YOUR GAME!</div>
+<div class="card-icon">🚽⚔️</div>
+<h3>BRAINROT DEFENSE</h3>
+<p>Ohio vs. Skibidi Ultimate! Your epic tower defense game with Easy Mode! Tap, shout, and destroy!</p>
+</div>
+<div class="card" onclick="openGame('frycatch')">
+<div class="card-glow" style="background:radial-gradient(circle at center,rgba(244,164,96,0.1),transparent)"></div>
+<div class="card-badge">NEW!</div>
+<div class="card-icon">🍟🧺</div>
+<h3>FRY CATCHER</h3>
+<p>Catch as many falling french fries as you can! Move left and right to fill your basket! How many can you get?</p>
+</div>
+<div class="card" onclick="openGame('clickbattle')">
+<div class="card-glow" style="background:radial-gradient(circle at center,rgba(33,150,243,0.1),transparent)"></div>
+<div class="card-icon">👆💥</div>
+<h3>CLICK BATTLE</h3>
+<p>How fast can you click? Tap as many times as you can in 10 seconds! Beat your high score!</p>
+</div>
+<div class="card" onclick="openGame('emojimatch')">
+<div class="card-glow" style="background:radial-gradient(circle at center,rgba(255,215,0,0.1),transparent)"></div>
+<div class="card-icon">🃏🧠</div>
+<h3>EMOJI MATCH</h3>
+<p>Find the matching pairs! Flip the cards and use your memory to match all the emojis!</p>
+</div>
+</div>
+<div class="game-frame-wrap" id="brainrot-frame">
+<button class="close-game" onclick="closeGame('brainrot')">✕</button>
+<iframe src="https://cxzyr9hm2t-del.github.io/brainrot-defense-ultimate/" allow="microphone"></iframe>
+</div>
+
+<div class="mini-game-area" id="frycatch-area">
+<div style="text-align:center;margin-bottom:10px">
+<span style="font-family:Bangers;font-size:28px;color:var(--gold)">🍟 FRY CATCHER 🍟</span>
+<button class="calm-btn" onclick="closeGame('frycatch')" style="margin-left:15px">✕ Close</button>
+</div>
+<canvas id="frycatch-canvas" width="400" height="500"></canvas>
+<div style="text-align:center;margin-top:10px;font-family:Silkscreen;color:var(--blue5)">⬅️ ➡️ Arrow keys or tap left/right to move!</div>
+</div>
+
+<div class="mini-game-area" id="clickbattle-area">
+<div style="text-align:center;padding:20px">
+<span style="font-family:Bangers;font-size:28px;color:var(--gold)">👆 CLICK BATTLE 👆</span>
+<button class="calm-btn" onclick="closeGame('clickbattle')" style="margin-left:15px">✕ Close</button>
+<div id="click-display" style="margin:20px 0">
+<div style="font-size:80px;cursor:pointer;user-select:none" id="click-target" onclick="clickBattleHit()">🎯</div>
+<div style="font-family:Bangers;font-size:48px;color:var(--cyan);margin:10px 0" id="click-count">0</div>
+<div style="font-family:Silkscreen;font-size:16px;color:var(--blue5)" id="click-timer">TAP THE TARGET TO START!</div>
+<div style="font-family:Bangers;font-size:20px;color:var(--gold);margin-top:10px" id="click-best">BEST: 0</div>
+</div>
+</div>
+</div>
+
+<div class="mini-game-area" id="emojimatch-area">
+<div style="text-align:center;margin-bottom:10px">
+<span style="font-family:Bangers;font-size:28px;color:var(--gold)">🃏 EMOJI MATCH 🃏</span>
+<button class="calm-btn" onclick="closeGame('emojimatch')" style="margin-left:15px">✕ Close</button>
+<span style="font-family:Silkscreen;font-size:14px;color:var(--cyan);margin-left:15px" id="match-score">PAIRS: 0/8</span>
+</div>
+<div id="emoji-grid" style="display:grid;grid-template-columns:repeat(4,70px);gap:10px;justify-content:center"></div>
+</div>
+<div class="section-title">🧘 <span>CHILL ZONE</span> 🧘</div>
+
+<div class="calm-zone">
+<h3>🌊 TAKE A BREATH 🌊</h3>
+<p style="color:var(--blue5);margin-bottom:10px">Follow the circle — breathe in as it grows, breathe out as it shrinks</p>
+<div class="breath-circle" id="breath-circle">Breathe...</div>
+<div class="calm-btns">
+<button class="calm-btn" onclick="playRain()">🌧️ Rain Sounds</button>
+<button class="calm-btn" onclick="playOcean()">🌊 Ocean Waves</button>
+<button class="calm-btn" onclick="stopCalm()">🔇 Stop Sounds</button>
+</div>
+</div>
+
+<div class="daily-quote" id="daily-quote"></div>
+
+<div class="section-title">⚡ <span>POWER-UPS</span> ⚡</div>
+<div class="grid">
+<div class="card" onclick="showMotivation()">
+<div class="card-icon">💪</div>
+<h3>MOTIVATION BOOST</h3>
+<p>Need a pick-me-up? Tap for an instant boost of awesome energy!</p>
+</div>
+<div class="card" onclick="showJoke()">
+<div class="card-icon">😂</div>
+<h3>JOKE TIME</h3>
+<p>Tap for a random joke! Warning: extreme laughter may occur!</p>
+</div>
+<div class="card" onclick="spinWheel()">
+<div class="card-icon">🎡</div>
+<h3>SPIN THE WHEEL</h3>
+<p>Spin to win a random challenge or reward! What will you get?</p>
+</div>
+<div class="card" onclick="showFryFact()">
+<div class="card-icon">🍟</div>
+<h3>FRY FACTS</h3>
+<p>Learn awesome facts about the best food ever — FRENCH FRIES!</p>
+</div>
+</div>
+
+<footer>
+<p>🍟 MADE WITH 💙 JUST FOR YOU 🍟</p>
+<p style="margin-top:8px;font-size:11px;color:var(--blue4)">MY EPIC ZONE v1.0 — YOUR PERSONAL SPACE</p>
+</footer>
+
+<!-- POPUP OVERLAY -->
+<div id="popup" style="position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:500;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px)" onclick="closePopup()">
+<div style="background:linear-gradient(145deg,var(--blue2),var(--blue3));border:3px solid var(--blue4);border-radius:25px;padding:30px;max-width:90%;max-height:80vh;text-align:center;overflow-y:auto" onclick="event.stopPropagation()">
+<div id="popup-content" style="font-size:clamp(16px,3vw,22px);line-height:1.6"></div>
+<button class="calm-btn" onclick="closePopup()" style="margin-top:15px">AWESOME! 👆</button>
+</div>
+</div>
+<script>
+// ═══ STARS BACKGROUND ═══
+(function(){const c=document.getElementById('stars');for(let i=0;i<80;i++){const s=document.createElement('div');s.className='star';s.style.width=s.style.height=(1+Math.random()*3)+'px';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.animationDelay=Math.random()*2+'s';s.style.animationDuration=(1+Math.random()*3)+'s';c.appendChild(s)}})();
+
+// ═══ FRIES RAIN IN HEADER ═══
+(function(){const h=document.getElementById('header');const emojis=['🍟','🍟','🍟','🎮','⚡','💙'];for(let i=0;i<12;i++){const f=document.createElement('div');f.className='fry-rain';f.textContent=emojis[Math.floor(Math.random()*emojis.length)];f.style.left=Math.random()*100+'%';f.style.animationDuration=(4+Math.random()*6)+'s';f.style.animationDelay=Math.random()*8+'s';f.style.fontSize=(16+Math.random()*16)+'px';h.appendChild(f)}})();
+
+// ═══ FRY COUNTER (saved in localStorage) ═══
+let fryCount=parseInt(localStorage.getItem('epiczone_fries')||'0');
+document.getElementById('fry-count').textContent=fryCount;
+function collectFry(){
+fryCount++;localStorage.setItem('epiczone_fries',fryCount);
+document.getElementById('fry-count').textContent=fryCount;
+const btn=document.getElementById('fry-counter');
+btn.style.transform='scale(1.2)';setTimeout(()=>btn.style.transform='',200);
+if(fryCount%10===0)showPopup('🍟🍟🍟<br><span style="font-family:Bangers;font-size:32px;color:var(--gold)">'+fryCount+' FRIES!</span><br>You are a fry collecting LEGEND!');
+}
+
+// ═══ DAILY QUOTE ═══
+const quotes=[
+{t:"You are braver than you believe, stronger than you seem, and smarter than you think.",a:"🐻 Winnie the Pooh"},
+{t:"Every expert was once a beginner. Keep going!",a:"⚡ Power-Up"},
+{t:"Your brain is like a muscle — the more you use it, the stronger it gets!",a:"🧠 Brain Fact"},
+{t:"It is okay to take breaks. Even superheroes need to rest!",a:"🦸 Hero Tip"},
+{t:"Mistakes are proof that you are trying. Keep being awesome!",a:"🌟 Daily Wisdom"},
+{t:"You do not have to be perfect. You just have to be YOU — and that is already amazing!",a:"💙 Truth"},
+{t:"French fries are proof that good things take time. Be patient with yourself!",a:"🍟 Fry Wisdom"},
+{t:"In Fortnite AND in life — keep building, keep moving forward!",a:"🎮 Gamer Tip"},
+{t:"Your uniqueness is your superpower. Never forget that!",a:"⚡ Power-Up"},
+{t:"Even on tough days, you are still doing great. One step at a time!",a:"🌈 Encouragement"},
+];
+const q=quotes[Math.floor(Math.random()*quotes.length)];
+document.getElementById('daily-quote').innerHTML='"'+q.t+'"<span>— '+q.a+'</span>';
+
+// ═══ BREATHING CIRCLE ═══
+let breathIn=true;
+setInterval(()=>{
+const el=document.getElementById('breath-circle');
+el.textContent=breathIn?'Breathe in...':'Breathe out...';
+breathIn=!breathIn;
+},3000);
+// ═══ GAME MANAGEMENT ═══
+function openGame(id){
+document.querySelectorAll('.game-frame-wrap,.mini-game-area').forEach(el=>el.classList.remove('active'));
+if(id==='brainrot'){document.getElementById('brainrot-frame').classList.add('active')}
+else if(id==='frycatch'){document.getElementById('frycatch-area').classList.add('active');startFryCatch()}
+else if(id==='clickbattle'){document.getElementById('clickbattle-area').classList.add('active');resetClickBattle()}
+else if(id==='emojimatch'){document.getElementById('emojimatch-area').classList.add('active');startEmojiMatch()}
+document.getElementById(id==='brainrot'?'brainrot-frame':id+'-area').scrollIntoView({behavior:'smooth'});
+}
+function closeGame(id){
+if(id==='brainrot')document.getElementById('brainrot-frame').classList.remove('active');
+else document.getElementById(id+'-area').classList.remove('active');
+}
+
+// ═══ FRY CATCHER MINI GAME ═══
+let fryGame={active:false,score:0,basket:175,fries:[],speed:2,interval:null,animFrame:null};
+function startFryCatch(){
+const c=document.getElementById('frycatch-canvas');const ctx=c.getContext('2d');
+fryGame={active:true,score:0,basket:175,fries:[],speed:2,missed:0};
+document.addEventListener('keydown',fryKeyHandler);
+c.onclick=e=>{const r=c.getBoundingClientRect();const x=e.clientX-r.left;fryGame.basket=x<c.width/2?Math.max(25,fryGame.basket-40):Math.min(c.width-25,fryGame.basket+40)};
+clearInterval(fryGame.interval);
+fryGame.interval=setInterval(()=>{if(!fryGame.active)return;
+fryGame.fries.push({x:20+Math.random()*(c.width-40),y:-20,emoji:Math.random()>0.2?'🍟':'💎',speed:1.5+Math.random()*fryGame.speed})},600);
+function draw(){
+if(!fryGame.active)return;
+ctx.clearRect(0,0,c.width,c.height);
+ctx.fillStyle='#0d2137';ctx.fillRect(0,0,c.width,c.height);
+// basket
+ctx.font='40px serif';ctx.fillText('🧺',fryGame.basket-20,c.height-20);
+// fries
+for(let i=fryGame.fries.length-1;i>=0;i--){
+const f=fryGame.fries[i];f.y+=f.speed;
+ctx.font='28px serif';ctx.fillText(f.emoji,f.x-14,f.y);
+if(Math.abs(f.x-fryGame.basket)<35&&f.y>c.height-50){
+fryGame.fries.splice(i,1);fryGame.score+=f.emoji==='💎'?5:1;fryGame.speed=2+fryGame.score*0.05;
+fryCount++;localStorage.setItem('epiczone_fries',fryCount);document.getElementById('fry-count').textContent=fryCount;
+}else if(f.y>c.height+20){fryGame.fries.splice(i,1);fryGame.missed++;if(fryGame.missed>=10){fryGame.active=false}}
+}
+ctx.fillStyle='#FFD700';ctx.font='bold 20px Bangers';ctx.fillText('🍟 '+fryGame.score,10,30);
+ctx.fillStyle='#FF6666';ctx.fillText('❌ '+fryGame.missed+'/10',c.width-90,30);
+if(!fryGame.active){ctx.fillStyle='rgba(0,0,0,0.7)';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#FFD700';ctx.font='bold 32px Bangers';ctx.fillText('GAME OVER!',c.width/2-80,c.height/2-20);ctx.fillStyle='#64B5F6';ctx.font='24px Bangers';ctx.fillText('Score: '+fryGame.score+' 🍟',c.width/2-60,c.height/2+20);ctx.fillText('Tap to play again!',c.width/2-80,c.height/2+55);
+c.onclick=()=>{c.onclick=null;startFryCatch()};return}
+fryGame.animFrame=requestAnimationFrame(draw);
+}
+draw();
+}
+function fryKeyHandler(e){if(!fryGame.active)return;if(e.key==='ArrowLeft')fryGame.basket=Math.max(25,fryGame.basket-30);if(e.key==='ArrowRight')fryGame.basket=Math.min(375,fryGame.basket+30)}
+// ═══ CLICK BATTLE ═══
+let clickState={count:0,active:false,timer:null,best:parseInt(localStorage.getItem('epiczone_clickbest')||'0'),timeLeft:10};
+document.getElementById('click-best').textContent='BEST: '+clickState.best;
+function resetClickBattle(){clickState.count=0;clickState.active=false;clearInterval(clickState.timer);clickState.timeLeft=10;
+document.getElementById('click-count').textContent='0';document.getElementById('click-timer').textContent='TAP THE TARGET TO START!'}
+function clickBattleHit(){
+if(!clickState.active){clickState.active=true;clickState.count=0;clickState.timeLeft=10;
+document.getElementById('click-timer').textContent='⏱️ 10s LEFT!';
+clickState.timer=setInterval(()=>{clickState.timeLeft--;
+document.getElementById('click-timer').textContent='⏱️ '+clickState.timeLeft+'s LEFT!';
+if(clickState.timeLeft<=0){clearInterval(clickState.timer);clickState.active=false;
+if(clickState.count>clickState.best){clickState.best=clickState.count;localStorage.setItem('epiczone_clickbest',clickState.best);document.getElementById('click-best').textContent='BEST: '+clickState.best}
+document.getElementById('click-timer').textContent='DONE! '+clickState.count+' CLICKS! TAP TO RETRY';
+fryCount+=Math.floor(clickState.count/5);localStorage.setItem('epiczone_fries',fryCount);document.getElementById('fry-count').textContent=fryCount}
+},1000)}
+if(!clickState.active)return;
+clickState.count++;document.getElementById('click-count').textContent=clickState.count;
+const t=document.getElementById('click-target');t.style.transform='scale(0.8)';setTimeout(()=>t.style.transform='scale(1)',80);
+const emojis=['🎯','💥','⚡','🔥','💎','🍟'];t.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+setTimeout(()=>t.textContent='🎯',200);
+}
+
+// ═══ EMOJI MATCH ═══
+let matchState={cards:[],flipped:[],matched:0,busy:false};
+function startEmojiMatch(){
+const emojis=['🍟','🎮','🎯','⚡','💎','🔥','🌟','💙'];
+let deck=[...emojis,...emojis];
+deck.sort(()=>Math.random()-0.5);
+matchState={cards:deck,flipped:[],matched:0,busy:false};
+const grid=document.getElementById('emoji-grid');grid.innerHTML='';
+document.getElementById('match-score').textContent='PAIRS: 0/8';
+deck.forEach((emoji,i)=>{
+const card=document.createElement('div');
+card.style.cssText='width:70px;height:70px;background:var(--blue3);border:2px solid var(--blue4);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;transition:0.3s;user-select:none';
+card.textContent='❓';card.dataset.idx=i;card.dataset.emoji=emoji;card.dataset.state='hidden';
+card.onclick=()=>flipCard(card,i);
+grid.appendChild(card);
+});
+}
+function flipCard(card,idx){
+if(matchState.busy||card.dataset.state!=='hidden')return;
+card.textContent=card.dataset.emoji;card.dataset.state='shown';card.style.background='var(--blue4)';
+matchState.flipped.push({card,idx,emoji:card.dataset.emoji});
+if(matchState.flipped.length===2){
+matchState.busy=true;
+const[a,b]=matchState.flipped;
+if(a.emoji===b.emoji){
+matchState.matched++;document.getElementById('match-score').textContent='PAIRS: '+matchState.matched+'/8';
+a.card.dataset.state='matched';b.card.dataset.state='matched';a.card.style.borderColor='var(--gold)';b.card.style.borderColor='var(--gold)';
+matchState.flipped=[];matchState.busy=false;
+fryCount++;localStorage.setItem('epiczone_fries',fryCount);document.getElementById('fry-count').textContent=fryCount;
+if(matchState.matched===8)setTimeout(()=>showPopup('🎉🎉🎉<br><span style="font-family:Bangers;font-size:32px;color:var(--gold)">YOU WON!</span><br>All pairs matched! You are a MEMORY MASTER!<br>+8 🍟'),500);
+}else{
+setTimeout(()=>{a.card.textContent='❓';a.card.dataset.state='hidden';a.card.style.background='var(--blue3)';
+b.card.textContent='❓';b.card.dataset.state='hidden';b.card.style.background='var(--blue3)';
+matchState.flipped=[];matchState.busy=false},800);
+}
+}
+  }
+// ═══ POPUP SYSTEM ═══
+function showPopup(html){document.getElementById('popup-content').innerHTML=html;document.getElementById('popup').style.display='flex'}
+function closePopup(){document.getElementById('popup').style.display='none'}
+
+// ═══ MOTIVATION ═══
+function showMotivation(){
+const msgs=[
+'💪🔥<br><span style="font-family:Bangers;font-size:36px;color:var(--gold)">YOU ARE UNSTOPPABLE!</span><br>Nothing can hold you back today!',
+'⚡🌟<br><span style="font-family:Bangers;font-size:36px;color:var(--cyan)">BELIEVE IN YOURSELF!</span><br>You have already done so many amazing things!',
+'🏆💙<br><span style="font-family:Bangers;font-size:36px;color:var(--gold)">CHAMPION ENERGY!</span><br>You are one of a kind and the world is lucky to have you!',
+'🚀🍟<br><span style="font-family:Bangers;font-size:36px;color:var(--green)">SKY IS THE LIMIT!</span><br>Just like french fries, you make everything BETTER!',
+'🎮💥<br><span style="font-family:Bangers;font-size:36px;color:var(--pink)">LEGENDARY PLAYER!</span><br>You bring joy everywhere you go. That is a real superpower!',
+];
+showPopup(msgs[Math.floor(Math.random()*msgs.length)]);fryCount+=3;localStorage.setItem('epiczone_fries',fryCount);document.getElementById('fry-count').textContent=fryCount;
+}
+
+// ═══ JOKES ═══
+function showJoke(){
+const jokes=[
+{q:'Why did the french fry go to the doctor?',a:'Because it was feeling a little CRISPY! 🍟😂'},
+{q:'What do you call a Roblox player who never loses?',a:'An OBBY-ous winner! 🎮😂'},
+{q:'Why do Fortnite players never get cold?',a:'Because they are always building WALLS! 🧱😂'},
+{q:'What did the gamer say to the french fry?',a:'You are GOLDEN! 🍟✨'},
+{q:'Why was the computer cold?',a:'It left its WINDOWS open! 💻❄️'},
+{q:'What is a potato favorite game?',a:'Mash Bros! 🥔😂'},
+{q:'Why did the Skibidi toilet go to school?',a:'To get a little FLUSHED with knowledge! 🚽📚'},
+{q:'What do you call a sleeping dinosaur?',a:'A dino-SNORE! 🦕😴'},
+];
+const j=jokes[Math.floor(Math.random()*jokes.length)];
+showPopup('😂<br><span style="font-family:Bangers;font-size:24px;color:var(--cyan)">'+j.q+'</span><br><br><span style="font-size:22px;color:var(--gold)">'+j.a+'</span>');
+fryCount++;localStorage.setItem('epiczone_fries',fryCount);document.getElementById('fry-count').textContent=fryCount;
+}
+
+// ═══ SPIN THE WHEEL ═══
+function spinWheel(){
+const options=[
+'🍟 +10 FRIES! You hit the jackpot!',
+'💪 Do 5 jumping jacks right now! GO!',
+'😂 Tell someone a joke from the Joke section!',
+'🎮 Play a round of Fry Catcher!',
+'🌟 Say something nice about yourself!',
+'💙 Give someone a high-five!',
+'🍟 +5 FRIES! Nice spin!',
+'🧘 Take 3 deep breaths. You earned it!',
+'🏃 Do a silly dance for 10 seconds!',
+'⚡ You get a LEGENDARY compliment: You are literally amazing!',
+];
+const pick=options[Math.floor(Math.random()*options.length)];
+if(pick.includes('+10')){fryCount+=10}else if(pick.includes('+5')){fryCount+=5}else{fryCount+=2}
+localStorage.setItem('epiczone_fries',fryCount);document.getElementById('fry-count').textContent=fryCount;
+showPopup('🎡<br><span style="font-family:Bangers;font-size:28px;color:var(--gold)">SPIN RESULT!</span><br><br><span style="font-size:20px">'+pick+'</span>');
+}
+
+// ═══ FRY FACTS ═══
+function showFryFact(){
+const facts=[
+'🍟 French fries are the most ordered fast food item in the USA!',
+'🍟 Americans eat about 4.5 BILLION pounds of french fries every year!',
+'🍟 The longest french fry ever recorded was 34 inches long!',
+'🍟 French fries were actually invented in Belgium in the 1600s!',
+'🍟 In the UK, french fries are called "chips"!',
+'🍟 The world record for most fries eaten in 1 minute is 86!',
+'🍟 Astronauts cannot eat french fries in space because of zero gravity!',
+'🍟 Thomas Jefferson was one of the first Americans to serve french fries!',
+];
+showPopup(facts[Math.floor(Math.random()*facts.length)]+'<br><br>🧠 <span style="color:var(--cyan)">NOW YOU KNOW!</span>');
+fryCount++;localStorage.setItem('epiczone_fries',fryCount);document.getElementById('fry-count').textContent=fryCount;
+  }
+// ═══ CALM SOUNDS (Web Audio API) ═══
+let calmCtx,calmNodes=[];
+function initCalmAudio(){if(!calmCtx)calmCtx=new(window.AudioContext||window.webkitAudioContext)();if(calmCtx.state==='suspended')calmCtx.resume()}
+function stopCalm(){calmNodes.forEach(n=>{try{n.stop()}catch(e){}});calmNodes=[];if(calmCtx)calmCtx.close().then(()=>calmCtx=null)}
+function playRain(){
+stopCalm();initCalmAudio();
+const buf=calmCtx.createBufferSource();const sz=calmCtx.sampleRate*10;const b=calmCtx.createBuffer(1,sz,calmCtx.sampleRate);
+const d=b.getChannelData(0);for(let i=0;i<sz;i++){d[i]=(Math.random()*2-1)*0.15;if(i%400<20)d[i]*=3}
+buf.buffer=b;buf.loop=true;const f=calmCtx.createBiquadFilter();f.type='lowpass';f.frequency.value=800;
+buf.connect(f);f.connect(calmCtx.destination);buf.start();calmNodes.push(buf);
+}
+function playOcean(){
+stopCalm();initCalmAudio();
+const buf=calmCtx.createBufferSource();const sz=calmCtx.sampleRate*8;const b=calmCtx.createBuffer(1,sz,calmCtx.sampleRate);
+const d=b.getChannelData(0);for(let i=0;i<sz;i++){const t=i/calmCtx.sampleRate;d[i]=(Math.random()*2-1)*0.08*(0.5+0.5*Math.sin(t*0.5))}
+buf.buffer=b;buf.loop=true;const f=calmCtx.createBiquadFilter();f.type='lowpass';f.frequency.value=400;
+buf.connect(f);f.connect(calmCtx.destination);buf.start();calmNodes.push(buf);
+}
+
+// ═══ AUTO FRY RAIN ON PAGE ═══
+setInterval(()=>{
+const f=document.createElement('div');f.className='fry-rain';f.textContent='🍟';
+f.style.position='fixed';f.style.left=Math.random()*100+'%';f.style.top='-30px';f.style.fontSize='20px';
+f.style.zIndex='0';f.style.opacity='0.3';f.style.animation='fryFall '+(3+Math.random()*4)+'s linear forwards';
+f.style.pointerEvents='none';document.body.appendChild(f);
+setTimeout(()=>{if(f.parentNode)f.parentNode.removeChild(f)},8000);
+},4000);
+</script>
+</body>
+</html>
