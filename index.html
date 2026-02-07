@@ -1,1625 +1,556 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HAYES' EPIC ZONE 🍟⚡</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;600;700&family=Silkscreen&display=swap');
-:root{
---blue1:#0a1628;--blue2:#0d2137;--blue3:#1a3a5c;--blue4:#2196F3;--blue5:#64B5F6;--blue6:#BBDEFB;
---gold:#FFD700;--fry:#F4A460;--green:#39FF14;--pink:#FF6EC7;--cyan:#00F0FF;--purple:#B388FF;--orange:#FF9100;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--blue1);color:#fff;font-family:'Fredoka',sans-serif;overflow-x:hidden;min-height:100vh}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hayes | Titan Command Deck</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <style>
+    /* --- 1. CORE VISUALS & RESET --- */
+    :root {
+      --neon-cyan: #00f2ff;
+      --neon-pink: #ff0055;
+      --neon-green: #22c55e;
+      --neon-amber: #facc15;
+      --void-bg: #050b14;
+      --glass: rgba(11, 19, 36, 0.85);
+      --font-head: 'Orbitron', sans-serif;
+      --font-body: 'Rajdhani', sans-serif;
+    }
 
-/* NAV BAR */
-.topnav{position:sticky;top:0;z-index:100;background:rgba(10,22,40,0.95);backdrop-filter:blur(12px);border-bottom:2px solid var(--blue4);display:flex;align-items:center;padding:8px 15px;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.topnav::-webkit-scrollbar{height:0}
-.nav-btn{background:var(--blue3);border:2px solid var(--blue4);border-radius:12px;padding:6px 14px;color:var(--blue5);font-family:'Fredoka',sans-serif;font-size:13px;cursor:pointer;transition:0.2s;white-space:nowrap;display:flex;align-items:center;gap:4px}
-.nav-btn:hover,.nav-btn.active{background:var(--blue4);color:#fff;transform:scale(1.05)}
-.nav-logo{font-family:'Bangers';font-size:20px;background:linear-gradient(135deg,var(--blue4),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-right:8px;white-space:nowrap}
-.streak-pill{background:linear-gradient(135deg,var(--orange),var(--gold));color:#000;font-family:'Silkscreen';font-size:11px;padding:4px 10px;border-radius:10px;font-weight:700;margin-left:auto;white-space:nowrap;display:flex;align-items:center;gap:4px}
+    * { box-sizing: border-box; cursor: none; }
 
-/* HEADER */
-header{background:linear-gradient(135deg,var(--blue2),var(--blue3));padding:25px 20px;text-align:center;position:relative;overflow:hidden;border-bottom:4px solid var(--blue4)}
-header::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(33,150,243,0.05) 40px,rgba(33,150,243,0.05) 41px);pointer-events:none}
-.logo{font-family:'Bangers',cursive;font-size:clamp(32px,8vw,64px);background:linear-gradient(135deg,var(--blue4),var(--cyan),var(--blue5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(3px 3px 0 rgba(0,0,0,0.3));letter-spacing:3px}
-.subtitle{font-family:'Silkscreen',monospace;font-size:clamp(10px,2.5vw,16px);color:var(--blue5);margin-top:5px;letter-spacing:2px}
-.fry-rain{position:absolute;font-size:24px;animation:fryFall linear infinite;opacity:0.6;pointer-events:none}
-@keyframes fryFall{0%{transform:translateY(-30px) rotate(0deg)}100%{transform:translateY(100vh) rotate(360deg)}}
+    body {
+      margin: 0;
+      background-color: var(--void-bg);
+      color: white;
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
 
-/* MOOD CHECK */
-.mood-bar{display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap}
-.mood-btn{font-size:32px;cursor:pointer;transition:0.2s;background:none;border:3px solid transparent;border-radius:50%;width:50px;height:50px;display:flex;align-items:center;justify-content:center}
-.mood-btn:hover{transform:scale(1.3);border-color:var(--cyan)}
-.mood-btn.selected{border-color:var(--gold);background:rgba(255,215,0,0.15);transform:scale(1.2)}
-.mood-msg{font-family:'Fredoka';font-size:16px;color:var(--cyan);margin-top:8px;min-height:24px;transition:0.3s}
+    /* --- 2. TACTICAL CURSOR --- */
+    #cursor {
+      width: 20px; height: 20px;
+      border: 2px solid var(--neon-cyan);
+      border-radius: 50%;
+      position: fixed; pointer-events: none; z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.05s, width 0.2s, height 0.2s;
+      box-shadow: 0 0 10px var(--neon-cyan);
+      mix-blend-mode: exclusion;
+    }
+    #cursor::after {
+      content: ''; width: 4px; height: 4px; background: var(--neon-pink);
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      border-radius: 50%;
+    }
+    body.hovering #cursor { width: 45px; height: 45px; background: rgba(0, 242, 255, 0.1); border-color: white; }
 
-/* WELCOME */
-.welcome{padding:25px 20px;text-align:center;position:relative}
-.welcome h2{font-family:'Bangers';font-size:clamp(22px,5vw,40px);color:var(--gold);margin-bottom:10px}
-.welcome p{font-size:clamp(14px,3vw,20px);color:var(--blue6);max-width:600px;margin:0 auto;line-height:1.6}
-.welcome-emoji{font-size:clamp(50px,12vw,90px);display:block;margin-bottom:10px;animation:bounce 1.5s infinite}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+    /* --- 3. BACKGROUNDS --- */
+    #star-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+    .scanline {
+      width: 100%; height: 100%; z-index: 999; background: linear-gradient(0deg, rgba(0,0,0,0) 50%, rgba(255, 255, 255, 0.02) 50%);
+      background-size: 100% 4px; position: fixed; pointer-events: none; opacity: 0.3;
+    }
 
-/* PROFILE BANNER */
-.profile-banner{background:linear-gradient(135deg,#0d2850,#1a3a6c);border:2px solid var(--blue4);border-radius:20px;margin:15px 20px;padding:20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden}
-.profile-banner::after{content:'';position:absolute;top:-50%;right:-20%;width:200px;height:200px;background:radial-gradient(circle,rgba(33,150,243,0.1),transparent);border-radius:50%}
-.avatar-area{text-align:center;min-width:100px}
-.avatar-display{font-size:64px;width:90px;height:90px;display:flex;align-items:center;justify-content:center;background:var(--blue2);border:3px solid var(--cyan);border-radius:50%;cursor:pointer;transition:0.3s;position:relative}
-.avatar-display:hover{transform:scale(1.1);box-shadow:0 0 20px rgba(0,240,255,0.3)}
-.avatar-label{font-family:'Silkscreen';font-size:10px;color:var(--blue5);margin-top:5px}
-.profile-stats{flex:1;min-width:200px}
-.profile-stats h3{font-family:'Bangers';font-size:24px;color:var(--gold);letter-spacing:1px}
-.stat-row{display:flex;gap:15px;flex-wrap:wrap;margin-top:8px}
-.stat-item{background:var(--blue2);border:1px solid var(--blue4);border-radius:10px;padding:6px 12px;font-family:'Silkscreen';font-size:11px;color:var(--blue5);display:flex;align-items:center;gap:4px}
-.xp-bar-wrap{margin-top:10px;background:var(--blue2);border-radius:10px;height:20px;border:1px solid var(--blue4);overflow:hidden;position:relative}
-.xp-bar{height:100%;background:linear-gradient(90deg,var(--blue4),var(--cyan));border-radius:10px;transition:width 0.5s;position:relative}
-.xp-bar::after{content:'';position:absolute;top:0;right:0;height:100%;width:30px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3));animation:xpShine 2s infinite}
-@keyframes xpShine{0%{transform:translateX(-30px)}100%{transform:translateX(30px)}}
-.xp-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Silkscreen';font-size:10px;color:#fff;text-shadow:1px 1px 2px rgba(0,0,0,0.5)}
+    /* --- 4. HEADER (HUD) --- */
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 30px;
+      background: rgba(5, 11, 20, 0.9);
+      border-bottom: 2px solid var(--neon-cyan);
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.15);
+    }
+    
+    .brand { font-family: var(--font-head); font-size: 1.5rem; letter-spacing: 2px; text-shadow: 0 0 10px var(--neon-cyan); }
+    .status-bar { display: flex; gap: 20px; font-weight: bold; font-size: 1.1rem; color: #94a3b8; }
+    .live-dot { width: 10px; height: 10px; background: var(--neon-green); border-radius: 50%; box-shadow: 0 0 8px var(--neon-green); animation: blink 2s infinite; display: inline-block; margin-right: 5px; }
 
-/* LEVEL BADGE */
-.level-badge{background:linear-gradient(135deg,var(--gold),var(--orange));color:#000;font-family:'Bangers';font-size:20px;padding:4px 14px;border-radius:12px;display:inline-flex;align-items:center;gap:4px}
+    /* --- 5. MAIN LAYOUT --- */
+    .main-grid {
+      display: grid; grid-template-columns: 350px 1fr; gap: 30px;
+      max-width: 1400px; margin: 40px auto; padding: 0 20px;
+    }
 
-/* CARDS GRID */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;padding:18px;max-width:1200px;margin:0 auto}
-.card{background:linear-gradient(145deg,var(--blue2),var(--blue3));border:2px solid var(--blue4);border-radius:20px;padding:22px;text-align:center;cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden}
-.card:hover{transform:translateY(-8px) scale(1.02);border-color:var(--cyan);box-shadow:0 15px 40px rgba(33,150,243,0.3)}
-.card:active{transform:scale(0.97)}
-.card-icon{font-size:clamp(45px,10vw,65px);display:block;margin-bottom:10px}
-.card h3{font-family:'Bangers';font-size:clamp(18px,4vw,26px);color:var(--gold);margin-bottom:6px;letter-spacing:1px}
-.card p{font-size:clamp(12px,2.5vw,15px);color:var(--blue5);line-height:1.5}
-.card-badge{position:absolute;top:10px;right:10px;background:var(--green);color:#000;font-family:'Silkscreen';font-size:10px;padding:3px 8px;border-radius:8px;font-weight:700}
-.card-badge.hot{background:var(--orange)}
-.card-badge.epic{background:var(--purple);color:#fff}
-.card-glow{position:absolute;inset:0;border-radius:20px;opacity:0;transition:0.3s;pointer-events:none}
-.card:hover .card-glow{opacity:1}
-.card-lock{position:absolute;inset:0;background:rgba(10,22,40,0.7);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:40px;backdrop-filter:blur(2px)}
+    /* Cards */
+    .card {
+      background: var(--glass);
+      border: 1px solid rgba(0, 242, 255, 0.3);
+      border-radius: 15px; padding: 25px;
+      position: relative; overflow: hidden;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover { transform: translateY(-3px); border-color: var(--neon-cyan); }
+    .card-title {
+      font-family: var(--font-head); color: var(--neon-cyan);
+      margin-top: 0; letter-spacing: 1px; border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;
+    }
 
-/* SECTION HEADERS */
-.section-title{font-family:'Bangers';font-size:clamp(22px,5vw,36px);text-align:center;padding:25px 20px 10px;color:var(--blue5);letter-spacing:2px}
-.section-title span{color:var(--gold)}
+    /* Profile Section */
+    .profile-pic { width: 100%; border-radius: 10px; border: 2px solid var(--neon-cyan); margin-bottom: 15px; background: rgba(0,0,0,0.3); }
+    .skill-track { background: #1e293b; height: 12px; border-radius: 6px; overflow: hidden; margin-top: 5px; margin-bottom: 15px; border: 1px solid #334155; }
+    .skill-fill { height: 100%; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink)); width: 0%; transition: width 1.5s ease-out; }
 
-/* TICKER */
-.ticker-wrap{background:var(--blue2);border-top:2px solid var(--blue4);border-bottom:2px solid var(--blue4);padding:10px 0;overflow:hidden;white-space:nowrap;margin:15px 0}
-.ticker{display:inline-block;animation:tickerScroll 30s linear infinite;font-family:'Silkscreen';font-size:clamp(12px,2.5vw,15px);color:var(--cyan)}
-@keyframes tickerScroll{0%{transform:translateX(100vw)}100%{transform:translateX(-200%)}}
+    /* Project Buttons (Holo-Deck) */
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; }
+    .holo-btn {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; padding: 20px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; overflow: hidden;
+    }
+    .holo-btn:hover { background: rgba(0,242,255,0.1); border-color: var(--neon-cyan); box-shadow: 0 0 15px rgba(0,242,255,0.2); }
+    .holo-icon { font-size: 2.5rem; display: block; margin-bottom: 10px; filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); }
 
-/* ACHIEVEMENT SYSTEM */
-.achievements-wrap{display:flex;gap:10px;overflow-x:auto;padding:10px 20px;-webkit-overflow-scrolling:touch}
-.achievements-wrap::-webkit-scrollbar{height:4px}
-.achievements-wrap::-webkit-scrollbar-thumb{background:var(--blue4);border-radius:4px}
-.ach-badge{min-width:80px;background:var(--blue2);border:2px solid var(--blue4);border-radius:14px;padding:8px;text-align:center;transition:0.3s;flex-shrink:0}
-.ach-badge.unlocked{border-color:var(--gold);background:linear-gradient(145deg,rgba(255,215,0,0.1),var(--blue2))}
-.ach-badge.locked{opacity:0.4;filter:grayscale(1)}
-.ach-badge .ach-icon{font-size:28px;display:block}
-.ach-badge .ach-name{font-family:'Silkscreen';font-size:9px;color:var(--blue5);margin-top:4px;display:block}
-.ach-badge.unlocked .ach-name{color:var(--gold)}
+    /* Journal/Log */
+    .log-input {
+      width: 100%; height: 120px; background: rgba(0,0,0,0.4); border: 1px solid #334155;
+      color: var(--neon-cyan); padding: 10px; font-family: 'Courier New', monospace;
+      border-radius: 8px; resize: none; margin-bottom: 10px;
+    }
+    .log-input:focus { outline: none; border-color: var(--neon-cyan); }
+    .save-indicator { font-size: 0.8rem; color: var(--neon-green); opacity: 0; transition: opacity 0.5s; text-align: right; }
 
-/* PET COMPANION */
-.pet-area{text-align:center;padding:10px}
-.pet-display{font-size:60px;display:inline-block;cursor:pointer;transition:0.2s;animation:petFloat 3s ease-in-out infinite}
-.pet-display:hover{transform:scale(1.2)}
-.pet-display:active{transform:scale(0.9)}
-@keyframes petFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.pet-msg{font-family:'Fredoka';font-size:14px;color:var(--cyan);margin-top:5px;min-height:20px}
-.pet-status{display:flex;gap:8px;justify-content:center;margin-top:8px}
-.pet-stat{font-family:'Silkscreen';font-size:10px;color:var(--blue5);background:var(--blue2);border:1px solid var(--blue4);border-radius:8px;padding:3px 8px}
+    /* --- 6. MODALS --- */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+      z-index: 2000; display: none; align-items: center; justify-content: center;
+    }
+    .modal-box {
+      background: #0f172a; border: 2px solid var(--neon-cyan);
+      width: 90%; max-width: 600px; padding: 30px; border-radius: 20px;
+      box-shadow: 0 0 50px rgba(0, 242, 255, 0.2);
+      position: relative; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .modal-close {
+      position: absolute; top: 15px; right: 20px; font-size: 2rem; color: #64748b;
+      cursor: pointer; transition: 0.2s;
+    }
+    .modal-close:hover { color: var(--neon-pink); transform: rotate(90deg); }
+    .modal-content-area { margin-top: 20px; font-size: 1.2rem; line-height: 1.6; color: #cbd5e1; text-align: center; }
+    .fact-box { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid var(--neon-pink); text-align: left; }
 
-/* CALM ZONE */
-.calm-zone{background:linear-gradient(135deg,#0a1a30,#0d1f3a);border-radius:20px;margin:20px;padding:30px;text-align:center;border:2px solid rgba(33,150,243,0.2)}
-.calm-zone h3{font-family:'Bangers';font-size:clamp(20px,4vw,30px);color:var(--cyan);margin-bottom:15px}
-.breath-circle{width:min(180px,45vw);height:min(180px,45vw);border-radius:50%;background:radial-gradient(circle,rgba(33,150,243,0.3),transparent);border:3px solid var(--blue4);margin:20px auto;display:flex;align-items:center;justify-content:center;font-size:clamp(16px,3vw,20px);color:var(--blue5);animation:breathe 6s ease-in-out infinite}
-@keyframes breathe{0%,100%{transform:scale(0.8);border-color:var(--blue4)}50%{transform:scale(1.2);border-color:var(--cyan);box-shadow:0 0 40px rgba(0,240,255,0.3)}}
-.calm-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:15px}
-.calm-btn{background:var(--blue3);border:2px solid var(--blue4);border-radius:15px;padding:8px 16px;color:var(--blue5);font-family:'Fredoka';font-size:15px;cursor:pointer;transition:0.2s}
-.calm-btn:hover{background:var(--blue4);color:#fff;transform:scale(1.05)}
+    /* --- 7. TITAN-OS FOOTER --- */
+    #titan-os {
+      margin-top: 60px; background: rgba(11, 17, 33, 0.95);
+      border-top: 4px solid var(--neon-cyan);
+      padding-bottom: 30px; position: relative;
+    }
+    .xp-rail { width: 100%; height: 6px; background: #000; }
+    #xp-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink)); box-shadow: 0 0 10px var(--neon-cyan); }
+    
+    .titan-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px; max-width: 1200px; margin: 25px auto; padding: 0 20px;
+    }
+    
+    .module {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 18px; display: flex; flex-direction: column;
+    }
+    .mod-header { font-size: 0.75rem; color: #94a3b8; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 12px; text-transform: uppercase; }
 
-/* DAILY CHALLENGE */
-.daily-challenge{background:linear-gradient(135deg,rgba(255,145,0,0.1),rgba(33,150,243,0.1));border:2px solid var(--orange);border-radius:20px;margin:15px 20px;padding:20px;text-align:center}
-.daily-challenge h3{font-family:'Bangers';font-size:24px;color:var(--orange);margin-bottom:8px}
-.daily-challenge p{color:var(--blue6);font-size:15px;line-height:1.5}
-.challenge-progress{margin-top:12px;background:var(--blue2);border-radius:10px;height:16px;border:1px solid var(--orange);overflow:hidden}
-.challenge-fill{height:100%;background:linear-gradient(90deg,var(--orange),var(--gold));border-radius:10px;transition:width 0.5s}
-.challenge-btn{margin-top:10px;background:var(--orange);color:#000;font-family:'Bangers';font-size:16px;border:none;border-radius:12px;padding:8px 20px;cursor:pointer;transition:0.2s}
-.challenge-btn:hover{transform:scale(1.05);box-shadow:0 5px 15px rgba(255,145,0,0.3)}
-.challenge-btn:disabled{opacity:0.5;cursor:not-allowed}
+    /* Timer & Tools */
+    .timer-display { font-family: var(--font-head); font-size: 2.2rem; text-align: center; color: white; text-shadow: 0 0 15px var(--neon-cyan); margin: 5px 0; }
+    .reactor-bar { width: 100%; height: 6px; background: #334155; border-radius: 4px; overflow: hidden; margin-bottom: 10px; }
+    #reactor-fill { height: 100%; width: 100%; background: var(--neon-cyan); }
+    
+    .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .tool-btn {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      color: #cbd5e1; padding: 10px; border-radius: 8px; font-weight: bold;
+      font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;
+    }
+    .tool-btn:hover { border-color: var(--neon-cyan); color: white; background: rgba(0, 242, 255, 0.1); }
 
-/* QUOTE */
-.daily-quote{background:var(--blue2);border-left:4px solid var(--gold);border-radius:0 15px 15px 0;padding:20px;margin:20px;font-style:italic;color:var(--blue6);font-size:clamp(14px,3vw,18px);line-height:1.6}
-.daily-quote span{display:block;margin-top:8px;font-style:normal;font-size:14px;color:var(--gold)}
+    /* Quests */
+    .quest-item { display: flex; gap: 10px; padding: 8px; cursor: pointer; background: rgba(0,0,0,0.2); border-radius: 6px; margin-bottom: 5px; transition: 0.2s; }
+    .quest-item:hover { background: rgba(255,255,255,0.05); }
+    .quest-check { accent-color: var(--neon-cyan); width: 18px; height: 18px; cursor: pointer; }
+    
+    /* Ruler & Overlay Tools */
+    #laser-ruler { position: fixed; left: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.9); border-top: 2px solid var(--neon-cyan); border-bottom: 2px solid var(--neon-cyan); pointer-events: none; display: none; z-index: 900; }
+    #zen-overlay { position: fixed; inset: 0; background: #000; z-index: 2500; display: none; flex-direction: column; align-items: center; justify-content: center; }
+    .breathing-circle { width: 100px; height: 100px; border-radius: 50%; background: var(--neon-cyan); animation: breathe 8s infinite ease-in-out; box-shadow: 0 0 50px var(--neon-cyan); }
 
-/* GAME FRAME */
-.game-frame-wrap{margin:20px;border-radius:20px;overflow:hidden;border:3px solid var(--blue4);box-shadow:0 0 30px rgba(33,150,243,0.2);display:none;position:relative}
-.game-frame-wrap.active{display:block}
-.game-frame-wrap iframe{width:100%;height:80vh;border:none}
-.close-game{position:absolute;top:10px;right:10px;background:rgba(255,0,0,0.8);color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:20px;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center}
-.close-game:hover{background:red}
-
-/* MINI GAME AREA */
-.mini-game-area{background:var(--blue2);border-radius:20px;margin:20px;padding:20px;border:2px solid var(--blue4);display:none}
-.mini-game-area.active{display:block}
-.mini-game-area canvas{border-radius:12px;display:block;margin:0 auto;background:#0a1628;border:2px solid var(--blue4);max-width:100%}
-
-/* FOOTER */
-footer{background:var(--blue2);padding:20px;text-align:center;margin-top:30px;border-top:2px solid var(--blue4)}
-footer p{color:var(--blue5);font-size:14px;font-family:'Silkscreen'}
-
-/* STARS */
-.stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none}
-.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 2s infinite alternate}
-@keyframes twinkle{0%{opacity:0.3}100%{opacity:1}}
-
-/* FRY COUNTER */
-.fry-counter{background:var(--blue2);border:2px solid var(--fry);border-radius:15px;padding:8px 16px;display:inline-flex;align-items:center;gap:8px;font-family:'Bangers';font-size:20px;color:var(--gold);margin-top:10px;cursor:pointer;transition:0.2s}
-.fry-counter:hover{transform:scale(1.1);box-shadow:0 0 15px rgba(244,164,96,0.3)}
-.fry-counter:active{transform:scale(0.95)}
-
-/* TOAST NOTIFICATIONS */
-.toast{position:fixed;top:80px;right:20px;background:linear-gradient(135deg,var(--blue2),var(--blue3));border:2px solid var(--cyan);border-radius:15px;padding:12px 20px;color:#fff;font-family:'Fredoka';font-size:14px;z-index:1000;transform:translateX(120%);transition:transform 0.4s;box-shadow:0 8px 25px rgba(0,0,0,0.4);max-width:300px}
-.toast.show{transform:translateX(0)}
-.toast-icon{font-size:24px;margin-right:8px}
-
-/* CONFETTI */
-.confetti-piece{position:fixed;width:8px;height:8px;z-index:999;pointer-events:none;animation:confettiFall 3s linear forwards}
-@keyframes confettiFall{0%{transform:translateY(-10px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
-
-/* POPUP */
-#popup{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:500;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
-#popup>div{background:linear-gradient(145deg,var(--blue2),var(--blue3));border:3px solid var(--blue4);border-radius:25px;padding:30px;max-width:90%;max-height:80vh;text-align:center;overflow-y:auto}
-#popup-content{font-size:clamp(16px,3vw,22px);line-height:1.6}
-
-/* AVATAR PICKER */
-.avatar-picker{display:grid;grid-template-columns:repeat(5,50px);gap:8px;justify-content:center;margin:15px 0}
-.avatar-option{font-size:30px;width:50px;height:50px;display:flex;align-items:center;justify-content:center;background:var(--blue3);border:2px solid var(--blue4);border-radius:50%;cursor:pointer;transition:0.2s}
-.avatar-option:hover{transform:scale(1.15);border-color:var(--cyan)}
-.avatar-option.selected{border-color:var(--gold);background:rgba(255,215,0,0.15)}
-
-/* RESPONSIVE */
-@media(max-width:600px){.grid{grid-template-columns:1fr;padding:10px}.card{padding:16px}header{padding:15px}.profile-banner{flex-direction:column;text-align:center;align-items:center}.stat-row{justify-content:center}}
-</style>
+    /* Animations */
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    @keyframes breathe { 0%, 100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(3); opacity: 1; } }
+    
+    /* Mobile Fix */
+    @media (max-width: 800px) { .main-grid { grid-template-columns: 1fr; } .status-bar { display: none; } }
+  </style>
 </head>
 <body>
-<div class="stars" id="stars"></div>
 
-<!-- NAV BAR -->
-<nav class="topnav" id="topnav">
-  <span class="nav-logo">H·E·Z</span>
-  <button class="nav-btn active" onclick="scrollToSection('top')">🏠 Home</button>
-  <button class="nav-btn" onclick="scrollToSection('games')">🎮 Games</button>
-  <button class="nav-btn" onclick="scrollToSection('chill')">🧘 Chill</button>
-  <button class="nav-btn" onclick="scrollToSection('powerups')">⚡ Power</button>
-  <button class="nav-btn" onclick="scrollToSection('pet')">🐾 Pet</button>
-  <button class="nav-btn" onclick="scrollToSection('achievements')">🏆 Badges</button>
-  <div class="streak-pill" id="streak-pill">🔥 <span id="streak-count">0</span> Day Streak</div>
-</nav>
+  <canvas id="star-canvas"></canvas>
+  <div class="scanline"></div>
+  <div id="cursor"></div>
+  <div id="laser-ruler"></div>
 
-<!-- HEADER -->
-<header id="header">
-  <div class="logo">HAYES' EPIC ZONE</div>
-  <div class="subtitle">🍟 YOUR LEGENDARY GAMING HUB 🎮</div>
-  <div style="margin-top:10px">
-    <span style="font-family:Silkscreen;font-size:12px;color:var(--blue5)">HOW ARE YOU FEELING TODAY, HAYES?</span>
-    <div class="mood-bar" id="mood-bar">
-      <button class="mood-btn" onclick="setMood('happy','😄')" title="Happy">😄</button>
-      <button class="mood-btn" onclick="setMood('excited','🤩')" title="Excited">🤩</button>
-      <button class="mood-btn" onclick="setMood('chill','😎')" title="Chill">😎</button>
-      <button class="mood-btn" onclick="setMood('tired','😴')" title="Tired">😴</button>
-      <button class="mood-btn" onclick="setMood('sad','😢')" title="Sad">😢</button>
-      <button class="mood-btn" onclick="setMood('angry','😤')" title="Frustrated">😤</button>
-    </div>
-    <div class="mood-msg" id="mood-msg"></div>
+  <div id="zen-overlay" onclick="toggleZen()">
+    <div class="breathing-circle"></div>
+    <h2 style="margin-top:50px; color:white; font-family:var(--font-head)">BREATHE IN... BREATHE OUT...</h2>
+    <p style="color:#94a3b8">Click anywhere to return</p>
   </div>
-</header>
 
-<!-- PROFILE BANNER -->
-<div class="profile-banner" id="profile-banner">
-  <div class="avatar-area">
-    <div class="avatar-display" id="avatar-display" onclick="openAvatarPicker()">🎮</div>
-    <div class="avatar-label">TAP TO CHANGE</div>
-  </div>
-  <div class="profile-stats">
-    <h3>⚡ HAYES <span class="level-badge" id="level-badge">LVL 1</span></h3>
-    <div class="stat-row">
-      <div class="stat-item">🍟 <span id="stat-fries">0</span> Fries</div>
-      <div class="stat-item">🎮 <span id="stat-games">0</span> Played</div>
-      <div class="stat-item">🏆 <span id="stat-badges">0</span> Badges</div>
-      <div class="stat-item">⭐ <span id="stat-stars">0</span> Stars</div>
-    </div>
-    <div class="xp-bar-wrap">
-      <div class="xp-bar" id="xp-bar" style="width:0%"></div>
-      <div class="xp-text" id="xp-text">0 / 100 XP</div>
+  <div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this) closeModal()">
+    <div class="modal-box">
+      <div class="modal-close" onclick="closeModal()">&times;</div>
+      <h2 id="modal-title" style="color:var(--neon-cyan); font-family:var(--font-head); margin-top:0;">DATA</h2>
+      <div id="modal-content" class="modal-content-area">Loading...</div>
+      <button class="tool-btn interactable" onclick="closeModal()" style="width:100%; margin-top:20px; font-size:1rem;">ACKNOWLEDGE</button>
     </div>
   </div>
-</div>
 
-<!-- WELCOME -->
-<section class="welcome" id="top">
-  <div class="welcome-emoji">🍟</div>
-  <h2>WELCOME BACK, HAYES! ⚡</h2>
-  <p>This is YOUR legendary zone — built with 💙 just for you! Play epic games, earn fries, level up, take care of your pet, and become the ultimate champion! You are amazing! 🏆</p>
-  <div class="fry-counter" id="fry-counter" onclick="collectFry()">
-    🍟 <span id="fry-count">0</span> FRIES COLLECTED
-  </div>
-</section>
+  <header>
+    <div class="brand">TITAN-OS <span style="font-size:0.5em; color:var(--neon-pink)">OMEGA</span></div>
+    <div class="status-bar">
+      <div><span class="live-dot"></span>SYSTEM ONLINE</div>
+      <div>&#x1F4CD; KINGSTON: <span id="top-weather">--&deg;C</span></div>
+      <div>&#x1F552; <span id="top-clock">00:00</span></div>
+    </div>
+  </header>
 
-<!-- DAILY CHALLENGE -->
-<div class="daily-challenge" id="daily-challenge">
-  <h3>🎯 DAILY CHALLENGE 🎯</h3>
-  <p id="challenge-text">Loading today's challenge...</p>
-  <div class="challenge-progress">
-    <div class="challenge-fill" id="challenge-fill" style="width:0%"></div>
-  </div>
-  <button class="challenge-btn" id="challenge-btn" onclick="completeChallenge()">COMPLETE ✅</button>
-</div>
+  <div class="main-grid">
+    
+    <aside class="card">
+      <h2 class="card-title">CMDR. HAYES <button class="tool-btn" onclick="cycleTheme()" title="Paint Ship">&#x1F3A8;</button></h2>
+      <img src="https://api.dicebear.com/9.x/bottts-neutral/svg?seed=HayesMega&backgroundColor=00f2ff" class="profile-pic" alt="Avatar">
+      
+      <div style="display:flex; justify-content:space-between; font-weight:bold; margin-bottom:5px;">
+        <span>LEVEL 7</span>
+        <span style="color:var(--neon-cyan)">NEXT: LEVEL 8</span>
+      </div>
+      <div class="skill-track"><div class="skill-fill" id="age-bar" style="width: 0%"></div></div>
+      <div style="text-align:right; font-size:0.8rem; color:#94a3b8; margin-top:-10px;">Goal: June 2026</div>
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker" id="ticker">
-    🍟 YO HAYES! French fries were invented in Belgium, not France! 🎮 FORTNITE TIP: Building gives you high ground advantage — use it! 🧊 ROBLOX FACT: Over 40 million games have been created on Roblox! 🧠 YOUR BRAIN: Gets stronger every time you learn something new! 🍟 The longest french fry EVER was 34 inches! ⚡ HAYES IS A LEGEND! Never forget that! 🎮 The first video game was made in 1958! 💙 HAYES' EPIC ZONE is the coolest place on the internet! 🍟
-  </div>
-</div>
+      <h3 style="font-size:0.9rem; color:#64748b; margin-top:25px; border-top:1px solid rgba(255,255,255,0.1); padding-top:15px;">CAPTAIN'S LOG</h3>
+      <textarea id="captain-log" class="log-input" placeholder="Mission notes..." oninput="saveLog()"></textarea>
+      <div id="log-status" class="save-indicator">SAVED</div>
+    </aside>
 
-<!-- ACHIEVEMENTS -->
-<div id="achievements">
-  <div class="section-title">🏆 <span>BADGES & ACHIEVEMENTS</span> 🏆</div>
-  <div class="achievements-wrap" id="ach-wrap"></div>
-</div>
+    <main>
+      <div class="card" style="margin-bottom:30px; text-align:center;">
+        <h1 style="font-family:var(--font-head); margin:0; text-shadow:0 0 20px var(--neon-cyan); font-size: 2.5rem;">WELCOME TO THE ZONE</h1>
+        <p style="color:#cbd5e1; font-size:1.1rem; max-width: 600px; margin: 10px auto;">"I build things, I play games, and I explore the universe."</p>
+        <div style="display:flex; justify-content:center; gap:10px; margin-top:20px;">
+          <button class="holo-btn interactable" onclick="playVoice()" style="padding:10px 20px; font-weight:bold;">&#x1F50A; BRIEFING</button>
+          <button class="holo-btn interactable" onclick="toggleZen()" style="padding:10px 20px; font-weight:bold; color:var(--neon-green); border-color:var(--neon-green)">&#x1F33F; ZEN MODE</button>
+        </div>
+      </div>
 
-<!-- GAME ZONE -->
-<div id="games">
-  <div class="section-title">🎮 <span>GAME ZONE</span> 🎮</div>
-  <div class="grid" id="game-grid">
-    <div class="card" onclick="openGame('brainrot')">
-      <div class="card-glow" style="background:radial-gradient(circle at center,rgba(57,255,20,0.1),transparent)"></div>
-      <div class="card-badge">HAYES' GAME!</div>
-      <div class="card-icon">🚽⚔️</div>
-      <h3>BRAINROT DEFENSE</h3>
-      <p>Ohio vs. Skibidi Ultimate! YOUR epic tower defense with Easy Mode! Tap, shout, and destroy!</p>
-    </div>
-    <div class="card" onclick="openGame('frycatch')">
-      <div class="card-glow" style="background:radial-gradient(circle at center,rgba(244,164,96,0.1),transparent)"></div>
-      <div class="card-badge hot">🔥 HOT</div>
-      <div class="card-icon">🍟🧺</div>
-      <h3>FRY CATCHER</h3>
-      <p>Catch falling french fries! Move your basket and collect as many golden fries as possible!</p>
-    </div>
-    <div class="card" onclick="openGame('fortnitebuild')">
-      <div class="card-glow" style="background:radial-gradient(circle at center,rgba(179,136,255,0.1),transparent)"></div>
-      <div class="card-badge epic">⚡ NEW</div>
-      <div class="card-icon">🏗️🎯</div>
-      <h3>BUILD BATTLE</h3>
-      <p>Fortnite-inspired building! Stack blocks, build walls, and reach the sky before time runs out!</p>
-    </div>
-    <div class="card" onclick="openGame('obbyrunner')">
-      <div class="card-glow" style="background:radial-gradient(circle at center,rgba(255,110,199,0.1),transparent)"></div>
-      <div class="card-badge epic">⚡ NEW</div>
-      <div class="card-icon">🏃💨</div>
-      <h3>OBBY RUNNER</h3>
-      <p>Roblox-style obstacle course! Jump over blocks, dodge hazards, and race to the finish line!</p>
-    </div>
-    <div class="card" onclick="openGame('fryfactory')">
-      <div class="card-glow" style="background:radial-gradient(circle at center,rgba(255,145,0,0.1),transparent)"></div>
-      <div class="card-badge hot">🔥 HOT</div>
-      <div class="card-icon">🏭🍟</div>
-      <h3>FRY FACTORY</h3>
-      <p>Run your own fry empire! Click to cook fries, buy upgrades, and become a fry tycoon!</p>
-    </div>
-    <div class="card" onclick="openGame('clickbattle')">
-      <div class="card-glow" style="background:radial-gradient(circle at center,rgba(33,150,243,0.1),transparent)"></div>
-      <div class="card-icon">👆💥</div>
-      <h3>CLICK BATTLE</h3>
-      <p>How fast can you click? Tap the target as many times as you can in 10 seconds!</p>
-    </div>
-    <div class="card" onclick="openGame('emojimatch')">
-      <div class="card-glow" style="background:radial-gradient(circle at center,rgba(255,215,0,0.1),transparent)"></div>
-      <div class="card-icon">🃏🧠</div>
-      <h3>EMOJI MATCH</h3>
-      <p>Find matching pairs! Flip the cards and use your memory to match all the emojis!</p>
-    </div>
-    <div class="card" onclick="openGame('colorsmash')">
-      <div class="card-glow" style="background:radial-gradient(circle at center,rgba(0,240,255,0.1),transparent)"></div>
-      <div class="card-badge">FUN!</div>
-      <div class="card-icon">🎨💥</div>
-      <h3>COLOR SMASH</h3>
-      <p>Tap the color that matches the word — but watch out, the colors try to trick you!</p>
-    </div>
+      <div class="card">
+        <h2 class="card-title">PROJECT HOLO-DECK</h2>
+        <div class="project-grid">
+          <div class="holo-btn interactable" onclick="openModal('dino')">
+            <span class="holo-icon">&#x1F996;</span>
+            <h3>DINOS</h3>
+          </div>
+          <div class="holo-btn interactable" onclick="openModal('space')">
+            <span class="holo-icon">&#x1F680;</span>
+            <h3>SPACE</h3>
+          </div>
+          <div class="holo-btn interactable" onclick="openModal('lego')">
+            <span class="holo-icon">&#x1F9F1;</span>
+            <h3>LEGO</h3>
+          </div>
+          <div class="holo-btn interactable" onclick="openModal('games')">
+            <span class="holo-icon">&#x1F3AE;</span>
+            <h3>GAMES</h3>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
-</div>
 
-<!-- GAME FRAMES -->
-<div class="game-frame-wrap" id="brainrot-frame">
-  <button class="close-game" onclick="closeGame('brainrot')">✕</button>
-  <iframe src="https://cxzyr9hm2t-del.github.io/brainrot-defense-ultimate/" allow="microphone"></iframe>
-</div>
-<div class="mini-game-area" id="frycatch-area">
-  <div style="text-align:center;margin-bottom:10px">
-    <span style="font-family:Bangers;font-size:28px;color:var(--gold)">🍟 FRY CATCHER 🍟</span>
-    <button class="calm-btn" onclick="closeGame('frycatch')" style="margin-left:15px">✕ Close</button>
-  </div>
-  <canvas id="frycatch-canvas" width="400" height="500"></canvas>
-  <div style="text-align:center;margin-top:10px;font-family:Silkscreen;color:var(--blue5)">⬅️ ➡️ Arrow keys or tap left/right!</div>
-</div>
-<div class="mini-game-area" id="fortnitebuild-area">
-  <div style="text-align:center;margin-bottom:10px">
-    <span style="font-family:Bangers;font-size:28px;color:var(--purple)">🏗️ BUILD BATTLE 🏗️</span>
-    <button class="calm-btn" onclick="closeGame('fortnitebuild')" style="margin-left:15px">✕ Close</button>
-  </div>
-  <canvas id="build-canvas" width="400" height="500"></canvas>
-  <div style="text-align:center;margin-top:10px;font-family:Silkscreen;color:var(--blue5)">TAP / CLICK to place blocks! Build HIGH!</div>
-</div>
-<div class="mini-game-area" id="obbyrunner-area">
-  <div style="text-align:center;margin-bottom:10px">
-    <span style="font-family:Bangers;font-size:28px;color:var(--pink)">🏃 OBBY RUNNER 🏃</span>
-    <button class="calm-btn" onclick="closeGame('obbyrunner')" style="margin-left:15px">✕ Close</button>
-  </div>
-  <canvas id="obby-canvas" width="400" height="300"></canvas>
-  <div style="text-align:center;margin-top:10px;font-family:Silkscreen;color:var(--blue5)">SPACE / TAP to jump! Avoid obstacles!</div>
-</div>
-<div class="mini-game-area" id="fryfactory-area">
-  <div style="text-align:center;margin-bottom:10px">
-    <span style="font-family:Bangers;font-size:28px;color:var(--orange)">🏭 FRY FACTORY 🏭</span>
-    <button class="calm-btn" onclick="closeGame('fryfactory')" style="margin-left:15px">✕ Close</button>
-  </div>
-  <div id="fry-factory-ui" style="text-align:center;padding:10px"></div>
-</div>
-<div class="mini-game-area" id="clickbattle-area">
-  <div style="text-align:center;padding:20px">
-    <span style="font-family:Bangers;font-size:28px;color:var(--gold)">👆 CLICK BATTLE 👆</span>
-    <button class="calm-btn" onclick="closeGame('clickbattle')" style="margin-left:15px">✕ Close</button>
-    <div id="click-display" style="margin:20px 0">
-      <div style="font-size:80px;cursor:pointer;user-select:none" id="click-target" onclick="clickBattleHit()">🎯</div>
-      <div style="font-family:Bangers;font-size:48px;color:var(--cyan);margin:10px 0" id="click-count">0</div>
-      <div style="font-family:Silkscreen;font-size:16px;color:var(--blue5)" id="click-timer">TAP THE TARGET TO START!</div>
-      <div style="font-family:Bangers;font-size:20px;color:var(--gold);margin-top:10px" id="click-best">BEST: 0</div>
-    </div>
-  </div>
-</div>
-<div class="mini-game-area" id="emojimatch-area">
-  <div style="text-align:center;margin-bottom:10px">
-    <span style="font-family:Bangers;font-size:28px;color:var(--gold)">🃏 EMOJI MATCH 🃏</span>
-    <button class="calm-btn" onclick="closeGame('emojimatch')" style="margin-left:15px">✕ Close</button>
-    <span style="font-family:Silkscreen;font-size:14px;color:var(--cyan);margin-left:15px" id="match-score">PAIRS: 0/8</span>
-  </div>
-  <div id="emoji-grid" style="display:grid;grid-template-columns:repeat(4,70px);gap:10px;justify-content:center"></div>
-</div>
-<div class="mini-game-area" id="colorsmash-area">
-  <div style="text-align:center;margin-bottom:10px">
-    <span style="font-family:Bangers;font-size:28px;color:var(--cyan)">🎨 COLOR SMASH 🎨</span>
-    <button class="calm-btn" onclick="closeGame('colorsmash')" style="margin-left:15px">✕ Close</button>
-    <span style="font-family:Silkscreen;font-size:14px;color:var(--gold);margin-left:15px" id="color-score">SCORE: 0</span>
-  </div>
-  <div id="color-game-ui" style="text-align:center;padding:20px"></div>
-</div>
+  <footer id="titan-os">
+    <div class="xp-rail" title="Scroll Progress"><div id="xp-bar"></div></div>
+    
+    <div class="titan-grid">
+      <div class="module">
+        <div class="mod-header">RESOURCES</div>
+        <div style="font-size:1.8rem; font-weight:bold; color:white;">&#x1F48E; <span id="shard-count" style="color:var(--neon-cyan)">0</span></div>
+        <div style="font-size:0.75rem; color:#64748b; margin-top:5px;">Complete bounties to earn shards.</div>
+      </div>
 
-<!-- PET COMPANION SECTION -->
-<div id="pet">
-  <div class="section-title">🐾 <span>YOUR PET BUDDY</span> 🐾</div>
-  <div class="calm-zone" style="border-color:var(--purple)">
-    <h3 style="color:var(--purple)">MEET YOUR PET!</h3>
-    <p style="color:var(--blue5);margin-bottom:10px;font-size:14px">Take care of your pet! Feed it fries, play with it, and watch it grow happy! 💙</p>
-    <div class="pet-area">
-      <div class="pet-display" id="pet-display" onclick="petPat()">🐶</div>
-      <div class="pet-msg" id="pet-msg">Tap your pet to give it love!</div>
-      <div class="pet-status">
-        <div class="pet-stat">❤️ Happy: <span id="pet-happy">100</span>%</div>
-        <div class="pet-stat">🍟 Fed: <span id="pet-fed">100</span>%</div>
-        <div class="pet-stat">⭐ Level: <span id="pet-level">1</span></div>
+      <div class="module">
+        <div class="mod-header">&#x23F3; FOCUS REACTOR</div>
+        <div class="timer-display" id="timer-display">15:00</div>
+        <div class="reactor-bar"><div id="reactor-fill"></div></div>
+        <div style="display:flex; gap:10px;">
+          <button class="tool-btn interactable" onclick="toggleTimer()" id="timer-btn" style="flex:1;">INITIATE</button>
+          <button class="tool-btn interactable" onclick="resetTimer()">&#x21BB;</button>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="mod-header">&#x1F4DD; DAILY BOUNTIES</div>
+        <div class="quest-item"><input type="checkbox" class="quest-check" onchange="checkQuest(this)"> <span>Read 5 Minutes</span></div>
+        <div class="quest-item"><input type="checkbox" class="quest-check" onchange="checkQuest(this)"> <span>Do 1 Math Problem</span></div>
+        <div class="quest-item"><input type="checkbox" class="quest-check" onchange="checkQuest(this)"> <span>Write in Log</span></div>
+      </div>
+
+      <div class="module">
+        <div class="mod-header">&#x2699;&#xFE0F; SUIT TOOLS</div>
+        <div class="tool-grid">
+          <button class="tool-btn interactable" onclick="toggleStealth()">&#x1F47B; STEALTH</button>
+          <button class="tool-btn interactable" onclick="toggleRuler()">&#x1F4CF; RULER</button>
+          <button class="tool-btn interactable" onclick="toggleMute()" id="mute-btn">&#x1F50A; SOUND</button>
+          <button class="tool-btn interactable" onclick="playNoise()">&#x1F30A; NOISE</button>
+        </div>
       </div>
     </div>
-    <div class="calm-btns" style="margin-top:12px">
-      <button class="calm-btn" onclick="petFeed()" style="border-color:var(--fry)">🍟 Feed (5 Fries)</button>
-      <button class="calm-btn" onclick="petPlay()" style="border-color:var(--green)">🎮 Play</button>
-      <button class="calm-btn" onclick="openPetPicker()" style="border-color:var(--purple)">🔄 Change Pet</button>
+    
+    <div style="text-align:center; font-size:0.7rem; color:#475569; margin-top:20px;">
+      TITAN-OS v5.0 (OMEGA) &bull; SECURE CONNECTION &bull; <a href="https://github.com/cxzyr9hm2t-del/my-epic-zone" style="color:#475569">SOURCE</a>
     </div>
-  </div>
-</div>
+  </footer>
 
-<!-- CHILL ZONE -->
-<div id="chill">
-  <div class="section-title">🧘 <span>CHILL ZONE</span> 🧘</div>
-  <div class="calm-zone">
-    <h3>🌊 TAKE A BREATH, HAYES 🌊</h3>
-    <p style="color:var(--blue5);margin-bottom:10px">Follow the circle — breathe in as it grows, breathe out as it shrinks</p>
-    <div class="breath-circle" id="breath-circle">Breathe...</div>
-    <div class="calm-btns">
-      <button class="calm-btn" onclick="playRain()">🌧️ Rain</button>
-      <button class="calm-btn" onclick="playOcean()">🌊 Waves</button>
-      <button class="calm-btn" onclick="playForest()">🌲 Forest</button>
-      <button class="calm-btn" onclick="playSpace()">🚀 Space</button>
-      <button class="calm-btn" onclick="stopCalm()">🔇 Stop</button>
-    </div>
-  </div>
-</div>
+  <script>
+    // --- 1. SYSTEM AUDIO (With Mute) ---
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    let isMuted = false;
 
-<div class="daily-quote" id="daily-quote"></div>
+    function playSfx(type) {
+      if (isMuted || audioCtx.state === 'suspended') { if(!isMuted) audioCtx.resume(); else return; }
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain); gain.connect(audioCtx.destination);
+      
+      const now = audioCtx.currentTime;
+      if (type === 'hover') {
+        osc.type = 'sine'; osc.frequency.setValueAtTime(400, now);
+        osc.frequency.exponentialRampToValueAtTime(600, now + 0.1);
+        gain.gain.setValueAtTime(0.02, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+        osc.start(now); osc.stop(now + 0.1);
+      } else if (type === 'click') {
+        osc.type = 'triangle'; osc.frequency.setValueAtTime(200, now);
+        osc.frequency.exponentialRampToValueAtTime(100, now + 0.1);
+        gain.gain.setValueAtTime(0.05, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+        osc.start(now); osc.stop(now + 0.15);
+      }
+    }
 
-<!-- POWER-UPS -->
-<div id="powerups">
-  <div class="section-title">⚡ <span>POWER-UPS</span> ⚡</div>
-  <div class="grid">
-    <div class="card" onclick="showMotivation()">
-      <div class="card-icon">💪</div>
-      <h3>MOTIVATION BOOST</h3>
-      <p>Need a pick-me-up? Tap for instant awesome energy, Hayes!</p>
-    </div>
-    <div class="card" onclick="showJoke()">
-      <div class="card-icon">😂</div>
-      <h3>JOKE TIME</h3>
-      <p>Tap for a random joke! Warning: extreme laughter incoming!</p>
-    </div>
-    <div class="card" onclick="spinWheel()">
-      <div class="card-icon">🎡</div>
-      <h3>SPIN THE WHEEL</h3>
-      <p>Spin to win a challenge or reward! What will Hayes get?</p>
-    </div>
-    <div class="card" onclick="showFryFact()">
-      <div class="card-icon">🍟</div>
-      <h3>FRY FACTS</h3>
-      <p>Learn awesome facts about the BEST food ever — FRENCH FRIES!</p>
-    </div>
-    <div class="card" onclick="showWouldYouRather()">
-      <div class="card-icon">🤔</div>
-      <h3>WOULD YOU RATHER</h3>
-      <p>Fun questions to think about! Pick your answer and earn fries!</p>
-    </div>
-    <div class="card" onclick="showTrivia()">
-      <div class="card-icon">🧠</div>
-      <h3>TRIVIA BLAST</h3>
-      <p>Test your knowledge about Roblox, Fortnite, fries, and more!</p>
-    </div>
-  </div>
-</div>
+    function toggleMute() {
+      isMuted = !isMuted;
+      document.getElementById('mute-btn').innerText = isMuted ? "\u{1F507} MUTED" : "\u{1F50A} SOUND";
+    }
 
-<footer>
-  <p>🍟 MADE WITH 💙 JUST FOR HAYES 🍟</p>
-  <p style="margin-top:8px;font-size:11px;color:var(--blue4)">HAYES' EPIC ZONE v2.0 — YOUR LEGENDARY SPACE</p>
-</footer>
-
-<!-- POPUP -->
-<div id="popup" onclick="closePopup()">
-  <div onclick="event.stopPropagation()">
-    <div id="popup-content"></div>
-    <button class="calm-btn" onclick="closePopup()" style="margin-top:15px">AWESOME! 👆</button>
-  </div>
-</div>
-
-<!-- TOAST -->
-<div class="toast" id="toast"><span class="toast-icon" id="toast-icon"></span><span id="toast-text"></span></div>
-
-<script>
-// ═══════════════════════════════════════
-// HAYES' EPIC ZONE v2.0 — CORE SYSTEMS
-// ═══════════════════════════════════════
-
-// ═══ SAVE/LOAD SYSTEM ═══
-const SAVE_KEY = 'hayesEpicZone';
-let gameData = loadData();
-
-function loadData() {
-  try {
-    const d = JSON.parse(localStorage.getItem(SAVE_KEY));
-    if (d && d.version === 2) return d;
-  } catch(e) {}
-  return {
-    version: 2,
-    fries: parseInt(localStorage.getItem('epiczone_fries') || '0'),
-    xp: 0, level: 1,
-    avatar: '🎮',
-    pet: '🐶', petHappy: 100, petFed: 100, petLevel: 1, petXP: 0,
-    gamesPlayed: 0, totalClicks: 0,
-    streak: 0, lastVisit: '',
-    mood: '', moodTime: '',
-    achievements: {},
-    challengeDone: '',
-    clickBest: parseInt(localStorage.getItem('epiczone_clickbest') || '0'),
-    stars: 0,
-    factoryFries: 0, factoryRate: 1, factoryUpgrades: 0
-  };
-}
-
-function saveData() {
-  localStorage.setItem(SAVE_KEY, JSON.stringify(gameData));
-  localStorage.setItem('epiczone_fries', gameData.fries);
-}
-
-// ═══ INIT ═══
-function initAll() {
-  updateStreak();
-  updateUI();
-  initStars();
-  initFryRain();
-  initBreathing();
-  initDailyQuote();
-  initDailyChallenge();
-  initAchievements();
-  initPet();
-  // Restore mood
-  const today = new Date().toDateString();
-  if (gameData.moodTime === today && gameData.mood) {
-    document.querySelectorAll('.mood-btn').forEach(b => {
-      if (b.textContent === gameData.mood) b.classList.add('selected');
+    document.querySelectorAll('button, .interactable, .quest-check').forEach(function(el) {
+      el.addEventListener('mouseenter', function() { playSfx('hover'); document.body.classList.add('hovering'); });
+      el.addEventListener('mouseleave', function() { document.body.classList.remove('hovering'); });
+      el.addEventListener('click', function() { playSfx('click'); });
     });
-  }
-  // Pet decay over time
-  setInterval(() => {
-    gameData.petHappy = Math.max(0, gameData.petHappy - 1);
-    gameData.petFed = Math.max(0, gameData.petFed - 1);
-    updatePetUI();
-    saveData();
-  }, 60000);
-  // Auto fry rain
-  setInterval(spawnPageFry, 5000);
-}
 
-// ═══ STREAK SYSTEM ═══
-function updateStreak() {
-  const today = new Date().toDateString();
-  if (gameData.lastVisit === today) {
-    // Already visited today
-  } else {
-    const yesterday = new Date(Date.now() - 86400000).toDateString();
-    if (gameData.lastVisit === yesterday) {
-      gameData.streak++;
-      showToast('🔥', 'Day ' + gameData.streak + ' streak! Keep it up, Hayes!');
-      addXP(gameData.streak * 5);
-      gameData.stars += gameData.streak;
-    } else if (gameData.lastVisit) {
-      gameData.streak = 1;
-      showToast('🔥', 'New streak started! Come back tomorrow!');
-    } else {
-      gameData.streak = 1;
-    }
-    gameData.lastVisit = today;
-    saveData();
-  }
-  document.getElementById('streak-count').textContent = gameData.streak;
-}
-
-// ═══ XP & LEVEL SYSTEM ═══
-function addXP(amount) {
-  gameData.xp += amount;
-  const needed = gameData.level * 100;
-  while (gameData.xp >= needed) {
-    gameData.xp -= needed;
-    gameData.level++;
-    showToast('⭐', 'LEVEL UP! You are now Level ' + gameData.level + '!');
-    spawnConfetti();
-    gameData.fries += gameData.level * 10;
-    gameData.stars += 5;
-  }
-  saveData();
-  updateUI();
-}
-
-function addFries(n) {
-  gameData.fries += n;
-  saveData();
-  updateUI();
-}
-
-// ═══ UPDATE ALL UI ═══
-function updateUI() {
-  document.getElementById('fry-count').textContent = gameData.fries;
-  document.getElementById('stat-fries').textContent = gameData.fries;
-  document.getElementById('stat-games').textContent = gameData.gamesPlayed;
-  document.getElementById('stat-stars').textContent = gameData.stars;
-  document.getElementById('level-badge').textContent = 'LVL ' + gameData.level;
-  const needed = gameData.level * 100;
-  const pct = Math.min(100, Math.floor((gameData.xp / needed) * 100));
-  document.getElementById('xp-bar').style.width = pct + '%';
-  document.getElementById('xp-text').textContent = gameData.xp + ' / ' + needed + ' XP';
-  document.getElementById('avatar-display').textContent = gameData.avatar;
-  // Count unlocked achievements
-  const unlocked = Object.values(gameData.achievements).filter(v => v).length;
-  document.getElementById('stat-badges').textContent = unlocked;
-}
-
-// ═══ MOOD SYSTEM ═══
-const MOOD_MSGS = {
-  happy: ["That's amazing, Hayes! 😄 Your happiness makes the world brighter!", "YESSS! Happy Hayes = Best Hayes! Let's have an awesome time!"],
-  excited: ["LET'S GOOO! 🤩 Hayes is PUMPED! Time for some epic gaming!", "That energy is LEGENDARY! Channel it into some games!"],
-  chill: ["Vibing mode activated 😎 Hayes is just being cool today!", "Nice and relaxed! Perfect time to play some chill games!"],
-  tired: ["It's okay to be tired, Hayes 😴 Maybe try the Chill Zone? You can rest AND earn fries!", "Hey champ, even legends need rest! The breathing circle might help!"],
-  sad: ["Hey Hayes, it's okay to feel sad sometimes 💙 You are SO loved and SO important! Try the Motivation Boost!", "Sending you a big virtual hug, Hayes! 🤗 Remember: tough times don't last, but tough kids DO!"],
-  angry: ["Take a deep breath, Hayes 💙 Your feelings are valid! Try the breathing circle — it really helps!", "It's okay to feel frustrated! Maybe smash some clicks in Click Battle to let it out? 💪"]
-};
-
-function setMood(mood, emoji) {
-  gameData.mood = emoji;
-  gameData.moodTime = new Date().toDateString();
-  saveData();
-  document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
-  event.target.classList.add('selected');
-  const msgs = MOOD_MSGS[mood];
-  document.getElementById('mood-msg').textContent = msgs[Math.floor(Math.random() * msgs.length)];
-  addXP(5);
-  addFries(2);
-  checkAchievement('mood_master');
-}
-
-// ═══ TOAST NOTIFICATIONS ═══
-let toastTimeout;
-function showToast(icon, text) {
-  const t = document.getElementById('toast');
-  document.getElementById('toast-icon').textContent = icon;
-  document.getElementById('toast-text').textContent = text;
-  t.classList.add('show');
-  clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => t.classList.remove('show'), 3500);
-}
-
-// ═══ CONFETTI ═══
-function spawnConfetti() {
-  const colors = ['#FFD700','#2196F3','#39FF14','#FF6EC7','#00F0FF','#FF9100','#B388FF'];
-  for (let i = 0; i < 40; i++) {
-    const c = document.createElement('div');
-    c.className = 'confetti-piece';
-    c.style.left = Math.random() * 100 + '%';
-    c.style.top = '-10px';
-    c.style.background = colors[Math.floor(Math.random() * colors.length)];
-    c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-    c.style.width = (5 + Math.random() * 8) + 'px';
-    c.style.height = (5 + Math.random() * 8) + 'px';
-    c.style.animationDuration = (2 + Math.random() * 2) + 's';
-    c.style.animationDelay = Math.random() * 0.5 + 's';
-    document.body.appendChild(c);
-    setTimeout(() => c.remove(), 4000);
-  }
-}
-
-// ═══ FRY COUNTER ═══
-function collectFry() {
-  addFries(1);
-  addXP(1);
-  const btn = document.getElementById('fry-counter');
-  btn.style.transform = 'scale(1.2)'; setTimeout(() => btn.style.transform = '', 200);
-  if (gameData.fries % 50 === 0) {
-    showPopup('🍟🍟🍟<br><span style="font-family:Bangers;font-size:32px;color:var(--gold)">' + gameData.fries + ' FRIES!</span><br>Hayes is a fry collecting LEGEND!');
-    spawnConfetti();
-    checkAchievement('fry_100');
-    checkAchievement('fry_500');
-  }
-}
-
-// ═══ STARS BACKGROUND ═══
-function initStars() {
-  const c = document.getElementById('stars');
-  for (let i = 0; i < 80; i++) {
-    const s = document.createElement('div');
-    s.className = 'star';
-    s.style.width = s.style.height = (1 + Math.random() * 3) + 'px';
-    s.style.left = Math.random() * 100 + '%';
-    s.style.top = Math.random() * 100 + '%';
-    s.style.animationDelay = Math.random() * 2 + 's';
-    s.style.animationDuration = (1 + Math.random() * 3) + 's';
-    c.appendChild(s);
-  }
-}
-
-// ═══ FRY RAIN ═══
-function initFryRain() {
-  const h = document.getElementById('header');
-  const emojis = ['🍟','🍟','🍟','🎮','⚡','💙','🏆'];
-  for (let i = 0; i < 12; i++) {
-    const f = document.createElement('div');
-    f.className = 'fry-rain';
-    f.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    f.style.left = Math.random() * 100 + '%';
-    f.style.animationDuration = (4 + Math.random() * 6) + 's';
-    f.style.animationDelay = Math.random() * 8 + 's';
-    f.style.fontSize = (16 + Math.random() * 16) + 'px';
-    h.appendChild(f);
-  }
-}
-
-function spawnPageFry() {
-  const f = document.createElement('div');
-  f.className = 'fry-rain';
-  f.textContent = '🍟';
-  f.style.position = 'fixed'; f.style.left = Math.random() * 100 + '%';
-  f.style.top = '-30px'; f.style.fontSize = '20px'; f.style.zIndex = '0';
-  f.style.opacity = '0.25';
-  f.style.animation = 'fryFall ' + (3 + Math.random() * 4) + 's linear forwards';
-  f.style.pointerEvents = 'none';
-  document.body.appendChild(f);
-  setTimeout(() => { if (f.parentNode) f.remove(); }, 8000);
-}
-
-// ═══ NAVIGATION ═══
-function scrollToSection(id) {
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// ═══ AVATAR PICKER ═══
-const AVATARS = ['🎮','🍟','🚀','⚡','🔥','💎','🦸','🐶','🎯','🏆','👾','🤖','🦊','🐉','🌟','🎨','🧊','💙','🎪','🥊'];
-function openAvatarPicker() {
-  let html = '<span style="font-family:Bangers;font-size:28px;color:var(--gold)">CHOOSE YOUR AVATAR</span><br><br>';
-  html += '<div class="avatar-picker">';
-  AVATARS.forEach(a => {
-    const sel = a === gameData.avatar ? ' selected' : '';
-    html += '<div class="avatar-option' + sel + '" onclick="pickAvatar(\'' + a + '\')">' + a + '</div>';
-  });
-  html += '</div>';
-  showPopup(html);
-}
-function pickAvatar(a) {
-  gameData.avatar = a;
-  saveData();
-  updateUI();
-  closePopup();
-  showToast('✨', 'New avatar: ' + a + '! Looking legendary, Hayes!');
-  }
-
-// ═══ PET SYSTEM ═══
-const PETS = ['🐶','🐱','🐰','🐼','🦊','🐸','🐲','🦄','🐧','🐵'];
-const PET_MSGS_PAT = ['Woof! Hayes is the best!','*happy noises*','Your pet loves you!','*tail wagging*','SO much love!','Best friends forever!'];
-const PET_MSGS_PLAY = ['WHEEE! That was fun!','Again again!','Your pet had a BLAST!','*zooming around*','Best playtime EVER!'];
-const PET_MSGS_FEED = ['NOM NOM NOM! Yummy fries!','*happy munching*','Those fries were DELICIOUS!','More fries please!','Your pet is well fed!'];
-
-function initPet() {
-  document.getElementById('pet-display').textContent = gameData.pet;
-  updatePetUI();
-}
-
-function updatePetUI() {
-  document.getElementById('pet-happy').textContent = Math.round(gameData.petHappy);
-  document.getElementById('pet-fed').textContent = Math.round(gameData.petFed);
-  document.getElementById('pet-level').textContent = gameData.petLevel;
-}
-
-function petPat() {
-  gameData.petHappy = Math.min(100, gameData.petHappy + 5);
-  gameData.petXP += 2;
-  checkPetLevelUp();
-  const msg = PET_MSGS_PAT[Math.floor(Math.random() * PET_MSGS_PAT.length)];
-  document.getElementById('pet-msg').textContent = msg;
-  const el = document.getElementById('pet-display');
-  el.style.transform = 'scale(1.3)'; setTimeout(() => el.style.transform = '', 300);
-  addXP(1);
-  saveData();
-  updatePetUI();
-  checkAchievement('pet_lover');
-}
-
-function petFeed() {
-  if (gameData.fries < 5) { showToast('🍟', 'Need 5 fries to feed your pet!'); return; }
-  gameData.fries -= 5;
-  gameData.petFed = Math.min(100, gameData.petFed + 25);
-  gameData.petHappy = Math.min(100, gameData.petHappy + 10);
-  gameData.petXP += 5;
-  checkPetLevelUp();
-  const msg = PET_MSGS_FEED[Math.floor(Math.random() * PET_MSGS_FEED.length)];
-  document.getElementById('pet-msg').textContent = msg;
-  addXP(3);
-  saveData();
-  updatePetUI();
-  updateUI();
-}
-
-function petPlay() {
-  gameData.petHappy = Math.min(100, gameData.petHappy + 15);
-  gameData.petXP += 3;
-  checkPetLevelUp();
-  const msg = PET_MSGS_PLAY[Math.floor(Math.random() * PET_MSGS_PLAY.length)];
-  document.getElementById('pet-msg').textContent = msg;
-  addXP(2);
-  addFries(1);
-  saveData();
-  updatePetUI();
-}
-
-function checkPetLevelUp() {
-  const needed = gameData.petLevel * 20;
-  if (gameData.petXP >= needed) {
-    gameData.petXP -= needed;
-    gameData.petLevel++;
-    showToast('🐾', 'Pet leveled up to ' + gameData.petLevel + '! Amazing!');
-    spawnConfetti();
-    checkAchievement('pet_lvl5');
-  }
-}
-
-function openPetPicker() {
-  let html = '<span style="font-family:Bangers;font-size:28px;color:var(--purple)">CHOOSE YOUR PET</span><br><br>';
-  html += '<div class="avatar-picker">';
-  PETS.forEach(p => {
-    const sel = p === gameData.pet ? ' selected' : '';
-    html += '<div class="avatar-option' + sel + '" onclick="pickPet(\'' + p + '\')">' + p + '</div>';
-  });
-  html += '</div>';
-  showPopup(html);
-}
-
-function pickPet(p) {
-  gameData.pet = p;
-  document.getElementById('pet-display').textContent = p;
-  saveData();
-  closePopup();
-  showToast('🐾', 'New pet: ' + p + '! Say hi!');
-}
-
-// ═══ ACHIEVEMENT SYSTEM ═══
-const ACHIEVEMENTS = [
-  {id:'first_visit', name:'First Visit', icon:'🌟', desc:'Visit Hayes\' Epic Zone'},
-  {id:'fry_100', name:'Fry Fan', icon:'🍟', desc:'Collect 100 fries'},
-  {id:'fry_500', name:'Fry Lord', icon:'👑', desc:'Collect 500 fries'},
-  {id:'mood_master', name:'Mood Check', icon:'😄', desc:'Set your mood'},
-  {id:'play_3', name:'Gamer', icon:'🎮', desc:'Play 3 games'},
-  {id:'play_10', name:'Pro Gamer', icon:'🏆', desc:'Play 10 games'},
-  {id:'pet_lover', name:'Pet Lover', icon:'🐾', desc:'Pat your pet'},
-  {id:'pet_lvl5', name:'Pet Master', icon:'⭐', desc:'Pet reaches level 5'},
-  {id:'streak_3', name:'On Fire', icon:'🔥', desc:'3 day streak'},
-  {id:'streak_7', name:'Unstoppable', icon:'💎', desc:'7 day streak'},
-  {id:'click_50', name:'Speed Demon', icon:'👆', desc:'50 clicks in 10 seconds'},
-  {id:'lvl_5', name:'Rising Star', icon:'🌟', desc:'Reach level 5'},
-  {id:'challenger', name:'Challenger', icon:'🎯', desc:'Complete a daily challenge'},
-  {id:'builder', name:'Architect', icon:'🏗️', desc:'Score 20 in Build Battle'},
-  {id:'runner', name:'Speedster', icon:'🏃', desc:'Score 500 in Obby Runner'},
-  {id:'tycoon', name:'Fry Tycoon', icon:'🏭', desc:'Own 5 factory upgrades'},
-];
-
-function initAchievements() {
-  if (!gameData.achievements.first_visit) {
-    gameData.achievements.first_visit = true;
-    saveData();
-  }
-  if (gameData.streak >= 3) checkAchievement('streak_3');
-  if (gameData.streak >= 7) checkAchievement('streak_7');
-  if (gameData.fries >= 100) checkAchievement('fry_100');
-  if (gameData.fries >= 500) checkAchievement('fry_500');
-  if (gameData.gamesPlayed >= 3) checkAchievement('play_3');
-  if (gameData.gamesPlayed >= 10) checkAchievement('play_10');
-  if (gameData.level >= 5) checkAchievement('lvl_5');
-  renderAchievements();
-}
-
-function checkAchievement(id) {
-  if (gameData.achievements[id]) return;
-  const ach = ACHIEVEMENTS.find(a => a.id === id);
-  if (!ach) return;
-  // Check conditions
-  if (id === 'fry_100' && gameData.fries < 100) return;
-  if (id === 'fry_500' && gameData.fries < 500) return;
-  if (id === 'play_3' && gameData.gamesPlayed < 3) return;
-  if (id === 'play_10' && gameData.gamesPlayed < 10) return;
-  if (id === 'streak_3' && gameData.streak < 3) return;
-  if (id === 'streak_7' && gameData.streak < 7) return;
-  if (id === 'lvl_5' && gameData.level < 5) return;
-  gameData.achievements[id] = true;
-  gameData.stars += 10;
-  saveData();
-  showToast('🏆', 'Badge unlocked: ' + ach.name + '!');
-  spawnConfetti();
-  renderAchievements();
-  updateUI();
-}
-
-function renderAchievements() {
-  const wrap = document.getElementById('ach-wrap');
-  wrap.innerHTML = '';
-  ACHIEVEMENTS.forEach(a => {
-    const unlocked = gameData.achievements[a.id];
-    const div = document.createElement('div');
-    div.className = 'ach-badge ' + (unlocked ? 'unlocked' : 'locked');
-    div.innerHTML = '<span class="ach-icon">' + (unlocked ? a.icon : '🔒') + '</span><span class="ach-name">' + a.name + '</span>';
-    div.title = a.desc;
-    div.onclick = () => showPopup('<span style="font-size:50px">' + (unlocked ? a.icon : '🔒') + '</span><br><span style="font-family:Bangers;font-size:24px;color:' + (unlocked ? 'var(--gold)' : 'var(--blue5)') + '">' + a.name + '</span><br><span style="color:var(--blue6)">' + a.desc + '</span><br><span style="color:' + (unlocked ? 'var(--green)' : 'var(--blue4)') + ';font-family:Silkscreen;font-size:12px">' + (unlocked ? '✅ UNLOCKED!' : '🔒 Keep going, Hayes!') + '</span>');
-    wrap.appendChild(div);
-  });
-  }
-
-// ═══ DAILY CHALLENGE ═══
-const CHALLENGES = [
-  {text:'Click the fry counter 20 times!', goal:20, type:'fryclick'},
-  {text:'Play 2 different games!', goal:2, type:'playgames'},
-  {text:'Pat your pet 5 times!', goal:5, type:'petpat'},
-  {text:'Collect 30 fries from any game!', goal:30, type:'earnfries'},
-  {text:'Set your mood and get a motivation boost!', goal:2, type:'mood_motiv'},
-  {text:'Score 15+ in Click Battle!', goal:15, type:'clickscore'},
-  {text:'Feed your pet twice!', goal:2, type:'petfeed'},
-  {text:'Spin the wheel 3 times!', goal:3, type:'spins'},
-];
-let challengeProgress = 0;
-let todayChallenge;
-
-function initDailyChallenge() {
-  const today = new Date().toDateString();
-  const seed = today.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-  todayChallenge = CHALLENGES[seed % CHALLENGES.length];
-  document.getElementById('challenge-text').textContent = todayChallenge.text;
-  if (gameData.challengeDone === today) {
-    document.getElementById('challenge-fill').style.width = '100%';
-    document.getElementById('challenge-btn').disabled = true;
-    document.getElementById('challenge-btn').textContent = 'COMPLETED! ✅';
-  }
-}
-
-function completeChallenge() {
-  const today = new Date().toDateString();
-  if (gameData.challengeDone === today) return;
-  gameData.challengeDone = today;
-  document.getElementById('challenge-fill').style.width = '100%';
-  document.getElementById('challenge-btn').disabled = true;
-  document.getElementById('challenge-btn').textContent = 'COMPLETED! ✅';
-  addFries(25);
-  addXP(30);
-  gameData.stars += 5;
-  saveData();
-  showToast('🎯', 'Daily challenge complete! +25 fries, +30 XP!');
-  spawnConfetti();
-  checkAchievement('challenger');
-}
-
-// ═══ GAME MANAGEMENT ═══
-function openGame(id) {
-  document.querySelectorAll('.game-frame-wrap,.mini-game-area').forEach(el => el.classList.remove('active'));
-  gameData.gamesPlayed++;
-  saveData();
-  updateUI();
-  checkAchievement('play_3');
-  checkAchievement('play_10');
-  addXP(5);
-
-  if (id === 'brainrot') { document.getElementById('brainrot-frame').classList.add('active'); }
-  else if (id === 'frycatch') { document.getElementById('frycatch-area').classList.add('active'); startFryCatch(); }
-  else if (id === 'fortnitebuild') { document.getElementById('fortnitebuild-area').classList.add('active'); startBuildBattle(); }
-  else if (id === 'obbyrunner') { document.getElementById('obbyrunner-area').classList.add('active'); startObbyRunner(); }
-  else if (id === 'fryfactory') { document.getElementById('fryfactory-area').classList.add('active'); startFryFactory(); }
-  else if (id === 'clickbattle') { document.getElementById('clickbattle-area').classList.add('active'); resetClickBattle(); }
-  else if (id === 'emojimatch') { document.getElementById('emojimatch-area').classList.add('active'); startEmojiMatch(); }
-  else if (id === 'colorsmash') { document.getElementById('colorsmash-area').classList.add('active'); startColorSmash(); }
-
-  const frameId = id === 'brainrot' ? 'brainrot-frame' : id + '-area';
-  document.getElementById(frameId).scrollIntoView({ behavior: 'smooth' });
-}
-
-function closeGame(id) {
-  if (id === 'brainrot') document.getElementById('brainrot-frame').classList.remove('active');
-  else document.getElementById(id + '-area').classList.remove('active');
-}
-
-// ═══ FRY CATCHER ═══
-let fryGame = { active: false };
-function startFryCatch() {
-  const c = document.getElementById('frycatch-canvas'); const ctx = c.getContext('2d');
-  fryGame = { active: true, score: 0, basket: 175, fries: [], speed: 2, missed: 0 };
-  document.addEventListener('keydown', fryKeyHandler);
-  c.onclick = e => { const r = c.getBoundingClientRect(); const x = e.clientX - r.left; fryGame.basket = x < c.width / 2 ? Math.max(25, fryGame.basket - 40) : Math.min(c.width - 25, fryGame.basket + 40); };
-  clearInterval(fryGame.interval);
-  fryGame.interval = setInterval(() => { if (!fryGame.active) return;
-    fryGame.fries.push({ x: 20 + Math.random() * (c.width - 40), y: -20, emoji: Math.random() > 0.15 ? '🍟' : '💎', speed: 1.5 + Math.random() * fryGame.speed });
-  }, 600);
-  function draw() {
-    if (!fryGame.active) return;
-    ctx.clearRect(0, 0, c.width, c.height);
-    ctx.fillStyle = '#0d2137'; ctx.fillRect(0, 0, c.width, c.height);
-    ctx.font = '40px serif'; ctx.fillText('🧺', fryGame.basket - 20, c.height - 20);
-    for (let i = fryGame.fries.length - 1; i >= 0; i--) {
-      const f = fryGame.fries[i]; f.y += f.speed;
-      ctx.font = '28px serif'; ctx.fillText(f.emoji, f.x - 14, f.y);
-      if (Math.abs(f.x - fryGame.basket) < 35 && f.y > c.height - 50) {
-        fryGame.fries.splice(i, 1); fryGame.score += f.emoji === '💎' ? 5 : 1;
-        fryGame.speed = 2 + fryGame.score * 0.04;
-        addFries(f.emoji === '💎' ? 3 : 1); addXP(1);
-      } else if (f.y > c.height + 20) { fryGame.fries.splice(i, 1); fryGame.missed++; if (fryGame.missed >= 10) fryGame.active = false; }
-    }
-    ctx.fillStyle = '#FFD700'; ctx.font = 'bold 20px Bangers'; ctx.fillText('🍟 ' + fryGame.score, 10, 30);
-    ctx.fillStyle = '#FF6666'; ctx.fillText('❌ ' + fryGame.missed + '/10', c.width - 90, 30);
-    if (!fryGame.active) {
-      ctx.fillStyle = 'rgba(0,0,0,0.7)'; ctx.fillRect(0, 0, c.width, c.height);
-      ctx.fillStyle = '#FFD700'; ctx.font = 'bold 32px Bangers'; ctx.fillText('GAME OVER!', c.width / 2 - 80, c.height / 2 - 20);
-      ctx.fillStyle = '#64B5F6'; ctx.font = '24px Bangers'; ctx.fillText('Score: ' + fryGame.score + ' 🍟', c.width / 2 - 60, c.height / 2 + 20);
-      ctx.fillText('Tap to retry!', c.width / 2 - 55, c.height / 2 + 55);
-      c.onclick = () => { c.onclick = null; startFryCatch(); }; return;
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
-}
-function fryKeyHandler(e) {
-  if (!fryGame.active) return;
-  if (e.key === 'ArrowLeft') fryGame.basket = Math.max(25, fryGame.basket - 30);
-  if (e.key === 'ArrowRight') fryGame.basket = Math.min(375, fryGame.basket + 30);
-  }
-
-// ═══ BUILD BATTLE (Fortnite-inspired) ═══
-let buildGame = { active: false };
-function startBuildBattle() {
-  const c = document.getElementById('build-canvas'); const ctx = c.getContext('2d');
-  buildGame = { active: true, blocks: [], score: 0, time: 30, swingX: 0, swingDir: 1, speed: 2, baseY: c.height - 40 };
-  // First block
-  buildGame.blocks.push({ x: c.width / 2 - 40, y: buildGame.baseY, w: 80, h: 30 });
-  
-  const timer = setInterval(() => {
-    if (!buildGame.active) { clearInterval(timer); return; }
-    buildGame.time--;
-    if (buildGame.time <= 0) {
-      buildGame.active = false;
-      clearInterval(timer);
-      addFries(buildGame.score * 2); addXP(buildGame.score * 3);
-      if (buildGame.score >= 20) checkAchievement('builder');
-    }
-  }, 1000);
-
-  c.onclick = () => {
-    if (!buildGame.active) { startBuildBattle(); return; }
-    const top = buildGame.blocks[buildGame.blocks.length - 1];
-    const newX = buildGame.swingX;
-    const newY = top.y - 30;
-    // Check overlap with top block
-    const overlap = Math.min(newX + 70, top.x + top.w) - Math.max(newX, top.x);
-    if (overlap > 5) {
-      buildGame.blocks.push({ x: Math.max(newX, top.x), y: newY, w: Math.max(overlap, 20), h: 30 });
-      buildGame.score++;
-      buildGame.speed = Math.min(6, 2 + buildGame.score * 0.15);
-      addFries(1); addXP(2);
-      // Scroll view up
-      if (newY < 150) {
-        buildGame.blocks.forEach(b => b.y += 30);
-        buildGame.baseY += 30;
+    // --- 2. MODAL DATA BANKS ---
+    var DATA_BANKS = {
+      dino: {
+        title: "DINO DATABASE",
+        content: '<div class="fact-box"><strong>\u{1F996} RANDOM FACT:</strong><br>Did you know the T-Rex could eat up to 500 pounds of meat in one bite? That is about the size of a piano!</div><p>Scan complete. No live specimens detected in this sector.</p>'
+      },
+      space: {
+        title: "NASA UPLINK",
+        content: '<div class="fact-box"><strong>\u{1F680} MISSION STATUS:</strong><br>The International Space Station (ISS) travels at 17,500 miles per hour. It orbits Earth every 90 minutes!</div><p>Tracking enabled. Deep space telemetry active.</p>'
+      },
+      lego: {
+        title: "MASTER BUILDER",
+        content: '<div class="fact-box"><strong>\u{1F9F1} BUILD CHALLENGE:</strong><br>Can you build a spaceship using only BLUE and GREY pieces today?</div><p>Inventory check: 100% Awesome.</p>'
+      },
+      games: {
+        title: "ARCADE CORE",
+        content: '<div class="fact-box"><strong>\u{1F3AE} GAMER TIP:</strong><br>If a level is too hard, try looking for a secret path on the left side of the screen.</div><p>Systems optimized for Minecraft and Roblox.</p>'
       }
-    } else {
-      // Missed! Block falls
-      buildGame.active = false;
-      addFries(buildGame.score); addXP(buildGame.score * 2);
-      if (buildGame.score >= 20) checkAchievement('builder');
+    };
+
+    function openModal(type) {
+      document.getElementById('modal-title').innerText = DATA_BANKS[type].title;
+      document.getElementById('modal-content').innerHTML = DATA_BANKS[type].content;
+      document.getElementById('modal-overlay').style.display = 'flex';
+      if(window.confetti && type === 'games') confetti({ particleCount: 50, spread: 40 });
     }
-  };
-
-  function draw() {
-    ctx.clearRect(0, 0, c.width, c.height);
-    // Sky gradient
-    const grad = ctx.createLinearGradient(0, 0, 0, c.height);
-    grad.addColorStop(0, '#0a1628'); grad.addColorStop(1, '#1a3a5c');
-    ctx.fillStyle = grad; ctx.fillRect(0, 0, c.width, c.height);
-    // Ground
-    ctx.fillStyle = '#2d5a27'; ctx.fillRect(0, c.height - 40, c.width, 40);
-    // Blocks
-    const colors = ['#2196F3', '#1976D2', '#1565C0', '#0D47A1', '#64B5F6'];
-    buildGame.blocks.forEach((b, i) => {
-      ctx.fillStyle = colors[i % colors.length];
-      ctx.fillRect(b.x, b.y, b.w, b.h);
-      ctx.strokeStyle = '#0a1628'; ctx.lineWidth = 2; ctx.strokeRect(b.x, b.y, b.w, b.h);
-    });
-    // Swinging block
-    if (buildGame.active) {
-      buildGame.swingX += buildGame.swingDir * buildGame.speed;
-      if (buildGame.swingX > c.width - 70) buildGame.swingDir = -1;
-      if (buildGame.swingX < 0) buildGame.swingDir = 1;
-      const top = buildGame.blocks[buildGame.blocks.length - 1];
-      ctx.fillStyle = 'rgba(255,145,0,0.8)';
-      ctx.fillRect(buildGame.swingX, top.y - 30, 70, 30);
-      ctx.strokeStyle = '#FF9100'; ctx.lineWidth = 2;
-      ctx.strokeRect(buildGame.swingX, top.y - 30, 70, 30);
+    function closeModal() {
+      document.getElementById('modal-overlay').style.display = 'none';
     }
-    // HUD
-    ctx.fillStyle = '#FFD700'; ctx.font = 'bold 20px Bangers';
-    ctx.fillText('🏗️ ' + buildGame.score, 10, 30);
-    ctx.fillStyle = '#64B5F6';
-    ctx.fillText('⏱️ ' + buildGame.time + 's', c.width - 90, 30);
-    if (!buildGame.active) {
-      ctx.fillStyle = 'rgba(0,0,0,0.7)'; ctx.fillRect(0, 0, c.width, c.height);
-      ctx.fillStyle = '#FFD700'; ctx.font = 'bold 28px Bangers';
-      ctx.fillText('HEIGHT: ' + buildGame.score + ' BLOCKS!', c.width / 2 - 110, c.height / 2 - 10);
-      ctx.fillStyle = '#64B5F6'; ctx.font = '20px Bangers';
-      ctx.fillText('+' + (buildGame.score * 2) + ' fries earned!', c.width / 2 - 70, c.height / 2 + 25);
-      ctx.fillText('Tap to play again!', c.width / 2 - 70, c.height / 2 + 55);
-      return;
+
+    // --- 3. JOURNAL / LOG ---
+    var logEl = document.getElementById('captain-log');
+    logEl.value = localStorage.getItem('titan_log') || "";
+    function saveLog() {
+      localStorage.setItem('titan_log', logEl.value);
+      var stat = document.getElementById('log-status');
+      stat.style.opacity = 1;
+      setTimeout(function() { stat.style.opacity = 0; }, 2000);
     }
-    requestAnimationFrame(draw);
-  }
-  draw();
-}
 
-// ═══ OBBY RUNNER (Roblox-inspired) ═══
-let obbyGame = { active: false };
-function startObbyRunner() {
-  const c = document.getElementById('obby-canvas'); const ctx = c.getContext('2d');
-  obbyGame = { active: true, x: 60, y: 220, vy: 0, score: 0, obstacles: [], frame: 0, speed: 3, jump: false, grounded: true };
-  
-  document.addEventListener('keydown', obbyKeyHandler);
-  c.onclick = () => { if (obbyGame.active && obbyGame.grounded) { obbyGame.vy = -10; obbyGame.grounded = false; } else if (!obbyGame.active) { startObbyRunner(); } };
+    // --- 4. BACKGROUND STARS ---
+    var canvas = document.getElementById('star-canvas');
+    var ctx = canvas.getContext('2d');
+    var stars = [];
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize); resize();
+    
+    function Star() {
+      this.reset = function() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.z = Math.random() * 2 + 0.5;
+      };
+      this.update = function() {
+        this.y += this.z / 2;
+        if (this.y > canvas.height) { this.y = 0; this.x = Math.random() * canvas.width; }
+      };
+      this.draw = function() {
+        ctx.fillStyle = 'rgba(255,255,255,' + (this.z / 3) + ')';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.z / 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      };
+      this.reset();
+    }
+    for (var i = 0; i < 100; i++) stars.push(new Star());
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(function(s) { s.update(); s.draw(); });
+      requestAnimationFrame(animate);
+    }
+    animate();
 
-  function draw() {
-    ctx.clearRect(0, 0, c.width, c.height);
-    // Background
-    const grad = ctx.createLinearGradient(0, 0, 0, c.height);
-    grad.addColorStop(0, '#1a0a28'); grad.addColorStop(1, '#0d2137');
-    ctx.fillStyle = grad; ctx.fillRect(0, 0, c.width, c.height);
-    // Ground
-    ctx.fillStyle = '#39FF14'; ctx.fillRect(0, 260, c.width, 40);
-    ctx.fillStyle = '#2d8a10'; ctx.fillRect(0, 265, c.width, 35);
+    // --- 5. TITAN-OS LOGIC ---
+    // User Stats
+    var OS = {
+      shards: parseInt(localStorage.getItem('shards')) || 0,
+      bounties: JSON.parse(localStorage.getItem('bounties')) || [false, false, false]
+    };
+    document.getElementById('shard-count').innerText = OS.shards;
 
-    if (obbyGame.active) {
-      obbyGame.frame++;
-      obbyGame.score = Math.floor(obbyGame.frame / 5);
-      obbyGame.speed = 3 + obbyGame.score * 0.005;
-
-      // Spawn obstacles
-      if (obbyGame.frame % Math.max(30, 60 - obbyGame.score) === 0) {
-        const type = Math.random();
-        if (type < 0.5) obbyGame.obstacles.push({ x: c.width, y: 230, w: 25 + Math.random() * 20, h: 30, color: '#FF6EC7' });
-        else obbyGame.obstacles.push({ x: c.width, y: 200 + Math.random() * 30, w: 30, h: 20 + Math.random() * 20, color: '#B388FF' });
+    // Timer
+    var tInt, tLeft = 900, tRun = false;
+    function toggleTimer() {
+      if (tRun) {
+        clearInterval(tInt);
+        document.getElementById('timer-btn').innerText = "RESUME";
+      } else {
+        tInt = setInterval(function() {
+          if (tLeft > 0) { tLeft--; updateT(); }
+          else {
+            clearInterval(tInt);
+            OS.shards += 20; save();
+            if (window.confetti) confetti();
+            document.getElementById('timer-display').innerText = "DONE";
+          }
+        }, 1000);
+        document.getElementById('timer-btn').innerText = "PAUSE";
       }
+      tRun = !tRun;
+    }
+    function updateT() {
+      var m = Math.floor(tLeft / 60).toString().padStart(2, '0');
+      var s = (tLeft % 60).toString().padStart(2, '0');
+      document.getElementById('timer-display').innerText = m + ':' + s;
+      document.getElementById('reactor-fill').style.width = ((tLeft / 900) * 100) + "%";
+    }
+    function resetTimer() {
+      clearInterval(tInt); tRun = false; tLeft = 900;
+      document.getElementById('timer-btn').innerText = "INITIATE";
+      updateT();
+    }
 
-      // Physics
-      obbyGame.vy += 0.6; // gravity
-      obbyGame.y += obbyGame.vy;
-      if (obbyGame.y >= 220) { obbyGame.y = 220; obbyGame.vy = 0; obbyGame.grounded = true; }
-
-      // Obstacles
-      for (let i = obbyGame.obstacles.length - 1; i >= 0; i--) {
-        const o = obbyGame.obstacles[i];
-        o.x -= obbyGame.speed;
-        // Draw obstacle
-        ctx.fillStyle = o.color;
-        ctx.fillRect(o.x, o.y, o.w, o.h);
-        ctx.strokeStyle = '#fff'; ctx.lineWidth = 1; ctx.strokeRect(o.x, o.y, o.w, o.h);
-        // Collision
-        if (obbyGame.x + 25 > o.x && obbyGame.x < o.x + o.w && obbyGame.y + 35 > o.y && obbyGame.y < o.y + o.h) {
-          obbyGame.active = false;
-          addFries(Math.floor(obbyGame.score / 10)); addXP(Math.floor(obbyGame.score / 5));
-          if (obbyGame.score >= 500) checkAchievement('runner');
+    // Bounties
+    document.querySelectorAll('.quest-check').forEach(function(b, i) { b.checked = OS.bounties[i]; });
+    function checkQuest(el) {
+      var checks = document.querySelectorAll('.quest-check');
+      var idx = Array.from(checks).indexOf(el);
+      OS.bounties[idx] = el.checked;
+      OS.shards += el.checked ? 5 : -5;
+      save();
+      if (el.checked && window.confetti) confetti({ particleCount: 30, origin: { y: 0.8 } });
+    }
+    function save() {
+      localStorage.setItem('shards', OS.shards);
+      localStorage.setItem('bounties', JSON.stringify(OS.bounties));
+      document.getElementById('shard-count').innerText = OS.shards;
         }
-        if (o.x + o.w < 0) obbyGame.obstacles.splice(i, 1);
-      }
-    }
 
-    // Player (Roblox-style character)
-    ctx.fillStyle = '#2196F3'; ctx.fillRect(obbyGame.x, obbyGame.y, 25, 35); // body
-    ctx.fillStyle = '#FFD700'; ctx.fillRect(obbyGame.x + 2, obbyGame.y - 12, 21, 15); // head
-    ctx.fillStyle = '#000'; ctx.fillRect(obbyGame.x + 6, obbyGame.y - 7, 4, 4); ctx.fillRect(obbyGame.x + 15, obbyGame.y - 7, 4, 4); // eyes
-    ctx.fillStyle = '#FF6EC7'; ctx.fillRect(obbyGame.x + 8, obbyGame.y - 2, 9, 2); // smile
-
-    // HUD
-    ctx.fillStyle = '#FFD700'; ctx.font = 'bold 18px Bangers';
-    ctx.fillText('🏃 ' + obbyGame.score + 'm', 10, 25);
-
-    if (!obbyGame.active) {
-      ctx.fillStyle = 'rgba(0,0,0,0.7)'; ctx.fillRect(0, 0, c.width, c.height);
-      ctx.fillStyle = '#FFD700'; ctx.font = 'bold 26px Bangers';
-      ctx.fillText('RAN ' + obbyGame.score + ' METERS!', c.width / 2 - 100, c.height / 2 - 10);
-      ctx.fillStyle = '#64B5F6'; ctx.font = '18px Bangers';
-      ctx.fillText('Tap to run again!', c.width / 2 - 65, c.height / 2 + 25);
-      return;
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
-}
-function obbyKeyHandler(e) {
-  if (e.code === 'Space' && obbyGame.active && obbyGame.grounded) { obbyGame.vy = -10; obbyGame.grounded = false; e.preventDefault(); }
-  }
-
-// ═══ FRY FACTORY (Idle Tycoon) ═══
-function startFryFactory() {
-  const ui = document.getElementById('fry-factory-ui');
-  renderFactory(ui);
-}
-
-function renderFactory(ui) {
-  const rate = gameData.factoryRate;
-  const upgCost = (gameData.factoryUpgrades + 1) * 25;
-  ui.innerHTML = '<div style="font-size:80px;cursor:pointer;user-select:none;transition:0.1s" id="factory-clicker" onclick="factoryClick()">🍟</div>' +
-    '<div style="font-family:Bangers;font-size:36px;color:var(--gold);margin:10px 0">🍟 ' + gameData.factoryFries + '</div>' +
-    '<div style="font-family:Silkscreen;font-size:12px;color:var(--blue5);margin-bottom:10px">+' + rate + ' fries per click | Upgrades: ' + gameData.factoryUpgrades + '</div>' +
-    '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">' +
-    '<button class="calm-btn" onclick="factoryUpgrade()" style="border-color:var(--orange)">⬆️ Upgrade (+1/click) — ' + upgCost + ' factory fries</button>' +
-    '<button class="calm-btn" onclick="factoryCashOut()" style="border-color:var(--gold)">💰 Cash Out (' + Math.floor(gameData.factoryFries / 2) + ' real fries)</button>' +
-    '</div>' +
-    '<div style="font-family:Silkscreen;font-size:10px;color:var(--blue4);margin-top:10px">Click the fry to cook! Upgrade to cook faster!</div>';
-}
-
-function factoryClick() {
-  gameData.factoryFries += gameData.factoryRate;
-  saveData();
-  const el = document.getElementById('factory-clicker');
-  if (el) { el.style.transform = 'scale(1.3) rotate(10deg)'; setTimeout(() => { if (el) el.style.transform = ''; }, 100); }
-  renderFactory(document.getElementById('fry-factory-ui'));
-  addXP(1);
-}
-
-function factoryUpgrade() {
-  const cost = (gameData.factoryUpgrades + 1) * 25;
-  if (gameData.factoryFries < cost) { showToast('🏭', 'Need ' + cost + ' factory fries for upgrade!'); return; }
-  gameData.factoryFries -= cost;
-  gameData.factoryUpgrades++;
-  gameData.factoryRate++;
-  saveData();
-  renderFactory(document.getElementById('fry-factory-ui'));
-  showToast('⬆️', 'Factory upgraded! +' + gameData.factoryRate + ' per click!');
-  if (gameData.factoryUpgrades >= 5) checkAchievement('tycoon');
-}
-
-function factoryCashOut() {
-  const cashout = Math.floor(gameData.factoryFries / 2);
-  if (cashout < 1) { showToast('🏭', 'Cook more fries first!'); return; }
-  addFries(cashout);
-  gameData.factoryFries = 0;
-  saveData();
-  renderFactory(document.getElementById('fry-factory-ui'));
-  showToast('💰', 'Cashed out ' + cashout + ' fries! Ka-ching!');
-}
-
-// ═══ CLICK BATTLE ═══
-let clickState = { count: 0, active: false, timer: null, best: 0, timeLeft: 10 };
-function resetClickBattle() {
-  clickState = { count: 0, active: false, timer: null, best: gameData.clickBest, timeLeft: 10 };
-  document.getElementById('click-count').textContent = '0';
-  document.getElementById('click-timer').textContent = 'TAP THE TARGET TO START!';
-  document.getElementById('click-best').textContent = 'BEST: ' + clickState.best;
-}
-
-function clickBattleHit() {
-  if (!clickState.active) {
-    clickState.active = true; clickState.count = 0; clickState.timeLeft = 10;
-    document.getElementById('click-timer').textContent = '⏱️ 10s LEFT!';
-    clickState.timer = setInterval(() => {
-      clickState.timeLeft--;
-      document.getElementById('click-timer').textContent = '⏱️ ' + clickState.timeLeft + 's LEFT!';
-      if (clickState.timeLeft <= 0) {
-        clearInterval(clickState.timer); clickState.active = false;
-        if (clickState.count > clickState.best) {
-          clickState.best = clickState.count; gameData.clickBest = clickState.count; saveData();
-          document.getElementById('click-best').textContent = 'BEST: ' + clickState.best;
-        }
-        document.getElementById('click-timer').textContent = 'DONE! ' + clickState.count + ' CLICKS! TAP TO RETRY';
-        addFries(Math.floor(clickState.count / 5)); addXP(Math.floor(clickState.count / 3));
-        if (clickState.count >= 50) checkAchievement('click_50');
-      }
+    // Weather & Clock
+    setInterval(function() {
+      document.getElementById('top-clock').innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     }, 1000);
-  }
-  if (!clickState.active) return;
-  clickState.count++;
-  document.getElementById('click-count').textContent = clickState.count;
-  const t = document.getElementById('click-target');
-  t.style.transform = 'scale(0.8)'; setTimeout(() => t.style.transform = 'scale(1)', 80);
-  const emojis = ['🎯', '💥', '⚡', '🔥', '💎', '🍟'];
-  t.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-  setTimeout(() => t.textContent = '🎯', 200);
-}
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=44.23&longitude=-76.48&current_weather=true')
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        document.getElementById('top-weather').innerText = Math.round(d.current_weather.temperature) + "\u00B0C";
+      })
+      .catch(function(e) {});
 
-// ═══ EMOJI MATCH ═══
-let matchState = { cards: [], flipped: [], matched: 0, busy: false };
-function startEmojiMatch() {
-  const emojis = ['🍟', '🎮', '🎯', '⚡', '💎', '🔥', '🌟', '💙'];
-  let deck = [...emojis, ...emojis];
-  deck.sort(() => Math.random() - 0.5);
-  matchState = { cards: deck, flipped: [], matched: 0, busy: false };
-  const grid = document.getElementById('emoji-grid'); grid.innerHTML = '';
-  document.getElementById('match-score').textContent = 'PAIRS: 0/8';
-  deck.forEach((emoji, i) => {
-    const card = document.createElement('div');
-    card.style.cssText = 'width:70px;height:70px;background:var(--blue3);border:2px solid var(--blue4);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;transition:0.3s;user-select:none';
-    card.textContent = '❓'; card.dataset.idx = i; card.dataset.emoji = emoji; card.dataset.state = 'hidden';
-    card.onclick = () => flipCard(card, i);
-    grid.appendChild(card);
-  });
-}
+    // Age Level 7 -> 8
+    var nowD = new Date();
+    var bday = new Date(nowD.getFullYear(), 5, 1);
+    if (nowD > bday) bday.setFullYear(nowD.getFullYear() + 1);
+    var pct = Math.max(0, 100 - ((bday - nowD) / (365 * 86400000) * 100));
+    document.getElementById('age-bar').style.width = pct + "%";
 
-function flipCard(card, idx) {
-  if (matchState.busy || card.dataset.state !== 'hidden') return;
-  card.textContent = card.dataset.emoji; card.dataset.state = 'shown'; card.style.background = 'var(--blue4)';
-  matchState.flipped.push({ card, idx, emoji: card.dataset.emoji });
-  if (matchState.flipped.length === 2) {
-    matchState.busy = true;
-    const [a, b] = matchState.flipped;
-    if (a.emoji === b.emoji) {
-      matchState.matched++;
-      document.getElementById('match-score').textContent = 'PAIRS: ' + matchState.matched + '/8';
-      a.card.dataset.state = 'matched'; b.card.dataset.state = 'matched';
-      a.card.style.borderColor = 'var(--gold)'; b.card.style.borderColor = 'var(--gold)';
-      matchState.flipped = []; matchState.busy = false;
-      addFries(1); addXP(2);
-      if (matchState.matched === 8) setTimeout(() => { showPopup('🎉🎉🎉<br><span style="font-family:Bangers;font-size:32px;color:var(--gold)">YOU WON!</span><br>Hayes is a MEMORY MASTER!<br>+8 🍟'); addFries(7); addXP(15); spawnConfetti(); }, 500);
-    } else {
-      setTimeout(() => {
-        a.card.textContent = '❓'; a.card.dataset.state = 'hidden'; a.card.style.background = 'var(--blue3)';
-        b.card.textContent = '❓'; b.card.dataset.state = 'hidden'; b.card.style.background = 'var(--blue3)';
-        matchState.flipped = []; matchState.busy = false;
-      }, 800);
+    // Tools
+    var rulerActive = false;
+    function toggleRuler() {
+      rulerActive = !rulerActive;
+      document.getElementById('laser-ruler').style.display = rulerActive ? 'block' : 'none';
     }
-  }
-  }
-
-// ═══ COLOR SMASH (Stroop Game) ═══
-let colorGame = { score: 0, active: false, timer: null, timeLeft: 20 };
-const COLOR_LIST = [
-  { name: 'RED', hex: '#FF4444' },
-  { name: 'BLUE', hex: '#2196F3' },
-  { name: 'GREEN', hex: '#39FF14' },
-  { name: 'YELLOW', hex: '#FFD700' },
-  { name: 'PINK', hex: '#FF6EC7' },
-  { name: 'CYAN', hex: '#00F0FF' },
-];
-
-function startColorSmash() {
-  colorGame = { score: 0, active: true, timeLeft: 20 };
-  document.getElementById('color-score').textContent = 'SCORE: 0';
-  clearInterval(colorGame.timer);
-  colorGame.timer = setInterval(() => {
-    colorGame.timeLeft--;
-    if (colorGame.timeLeft <= 0) {
-      clearInterval(colorGame.timer);
-      colorGame.active = false;
-      addFries(colorGame.score * 2); addXP(colorGame.score * 3);
-      renderColorRound();
+    function toggleStealth() {
+      document.body.style.filter = document.body.style.filter ? "" : "grayscale(100%) invert(1)";
     }
-  }, 1000);
-  renderColorRound();
-}
-
-function renderColorRound() {
-  const ui = document.getElementById('color-game-ui');
-  if (!colorGame.active) {
-    ui.innerHTML = '<div style="font-family:Bangers;font-size:36px;color:var(--gold);margin:20px 0">SCORE: ' + colorGame.score + '</div>' +
-      '<div style="font-family:Fredoka;color:var(--blue5)">+' + (colorGame.score * 2) + ' fries earned!</div>' +
-      '<button class="calm-btn" onclick="startColorSmash()" style="margin-top:15px">PLAY AGAIN!</button>';
-    return;
-  }
-  // Pick a random word and a random display color (different from word)
-  const wordColor = COLOR_LIST[Math.floor(Math.random() * COLOR_LIST.length)];
-  let displayColor;
-  do { displayColor = COLOR_LIST[Math.floor(Math.random() * COLOR_LIST.length)]; } while (displayColor.name === wordColor.name);
-  const correct = displayColor; // Player must tap the color the text IS displayed in
-
-  // Create answer buttons (3 options including correct)
-  let options = [correct];
-  while (options.length < 3) {
-    const opt = COLOR_LIST[Math.floor(Math.random() * COLOR_LIST.length)];
-    if (!options.find(o => o.name === opt.name)) options.push(opt);
-  }
-  options.sort(() => Math.random() - 0.5);
-
-  ui.innerHTML = '<div style="font-family:Silkscreen;font-size:12px;color:var(--blue5);margin-bottom:5px">⏱️ ' + colorGame.timeLeft + 's | Tap the COLOR of the text (not the word!)</div>' +
-    '<div style="font-family:Bangers;font-size:clamp(40px,10vw,60px);color:' + displayColor.hex + ';margin:15px 0">' + wordColor.name + '</div>' +
-    '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">' +
-    options.map(o => '<button style="background:' + o.hex + ';color:#000;font-family:Bangers;font-size:20px;border:3px solid transparent;border-radius:15px;padding:12px 24px;cursor:pointer;min-width:90px;transition:0.2s" onmouseover="this.style.transform=\'scale(1.1)\'" onmouseout="this.style.transform=\'\'" onclick="colorSmashAnswer(\'' + o.name + '\',\'' + correct.name + '\')">' + o.name + '</button>').join('') +
-    '</div>';
-}
-
-function colorSmashAnswer(picked, correct) {
-  if (!colorGame.active) return;
-  if (picked === correct) {
-    colorGame.score++;
-    document.getElementById('color-score').textContent = 'SCORE: ' + colorGame.score;
-    addXP(1);
-  } else {
-    // Wrong! Flash red
-    document.getElementById('color-game-ui').style.background = 'rgba(255,0,0,0.1)';
-    setTimeout(() => document.getElementById('color-game-ui').style.background = '', 300);
-  }
-  renderColorRound();
-}
-
-// ═══ POPUP SYSTEM ═══
-function showPopup(html) { document.getElementById('popup-content').innerHTML = html; document.getElementById('popup').style.display = 'flex'; }
-function closePopup() { document.getElementById('popup').style.display = 'none'; }
-
-// ═══ BREATHING ═══
-function initBreathing() {
-  let breathIn = true;
-  setInterval(() => {
-    document.getElementById('breath-circle').textContent = breathIn ? 'Breathe in...' : 'Breathe out...';
-    breathIn = !breathIn;
-  }, 3000);
-}
-
-// ═══ DAILY QUOTE ═══
-function initDailyQuote() {
-  const quotes = [
-    { t: "Hayes, you are braver than you believe, stronger than you seem, and smarter than you think.", a: "🐻 Winnie the Pooh" },
-    { t: "Every expert was once a beginner. Keep going, Hayes!", a: "⚡ Power-Up" },
-    { t: "Your brain is like a muscle — the more you use it, the stronger it gets!", a: "🧠 Brain Fact" },
-    { t: "It is okay to take breaks. Even superheroes need to rest!", a: "🦸 Hero Tip" },
-    { t: "Mistakes are proof that Hayes is trying. Keep being awesome!", a: "🌟 Daily Wisdom" },
-    { t: "You do not have to be perfect. Just be YOU — and that is already amazing!", a: "💙 Truth" },
-    { t: "French fries are proof that good things take time. Be patient with yourself!", a: "🍟 Fry Wisdom" },
-    { t: "In Fortnite AND in life — keep building, keep moving forward!", a: "🎮 Gamer Tip" },
-    { t: "Hayes, your uniqueness is your superpower. Never forget that!", a: "⚡ Power-Up" },
-    { t: "Even on tough days, you are still doing great. One step at a time, champ!", a: "🌈 Encouragement" },
-    { t: "The more you practice, the luckier you get. Just like in Roblox!", a: "🎮 Roblox Wisdom" },
-    { t: "Hayes, you make the world better just by being in it!", a: "💙 Fact" },
-  ];
-  const q = quotes[Math.floor(Math.random() * quotes.length)];
-  document.getElementById('daily-quote').innerHTML = '"' + q.t + '"<span>— ' + q.a + '</span>';
-  }
-
-// ═══ MOTIVATION ═══
-function showMotivation() {
-  const msgs = [
-    '💪🔥<br><span style="font-family:Bangers;font-size:36px;color:var(--gold)">HAYES IS UNSTOPPABLE!</span><br>Nothing can hold you back today!',
-    '⚡🌟<br><span style="font-family:Bangers;font-size:36px;color:var(--cyan)">BELIEVE IN YOURSELF!</span><br>You have already done so many amazing things, Hayes!',
-    '🏆💙<br><span style="font-family:Bangers;font-size:36px;color:var(--gold)">CHAMPION ENERGY!</span><br>Hayes is one of a kind and the world is lucky to have you!',
-    '🚀🍟<br><span style="font-family:Bangers;font-size:36px;color:var(--green)">SKY IS THE LIMIT!</span><br>Just like french fries, Hayes makes everything BETTER!',
-    '🎮💥<br><span style="font-family:Bangers;font-size:36px;color:var(--pink)">LEGENDARY PLAYER!</span><br>Hayes brings joy everywhere he goes. That is a real superpower!',
-    '🔥💎<br><span style="font-family:Bangers;font-size:36px;color:var(--purple)">SIGMA ENERGY!</span><br>Hayes is built different! Absolute LEGEND!',
-    '🏗️⚡<br><span style="font-family:Bangers;font-size:36px;color:var(--cyan)">CRANKING 90s IN LIFE!</span><br>Hayes is building his future and it is EPIC!',
-  ];
-  showPopup(msgs[Math.floor(Math.random() * msgs.length)]);
-  addFries(3); addXP(5);
-}
-
-// ═══ JOKES ═══
-function showJoke() {
-  const jokes = [
-    { q: 'Why did the french fry go to the doctor?', a: 'Because it was feeling a little CRISPY! 🍟😂' },
-    { q: 'What do you call a Roblox player who never loses?', a: 'An OBBY-ous winner! 🎮😂' },
-    { q: 'Why do Fortnite players never get cold?', a: 'Because they are always building WALLS! 🧱😂' },
-    { q: 'What did the gamer say to the french fry?', a: 'You are GOLDEN! 🍟✨' },
-    { q: 'Why was the computer cold?', a: 'It left its WINDOWS open! 💻❄️' },
-    { q: 'What is a potato\'s favorite game?', a: 'Mash Bros! 🥔😂' },
-    { q: 'Why did the Skibidi toilet go to school?', a: 'To get a little FLUSHED with knowledge! 🚽📚' },
-    { q: 'What do you call a sleeping dinosaur?', a: 'A dino-SNORE! 🦕😴' },
-    { q: 'Why did Hayes bring a ladder to the game?', a: 'Because he wanted to reach the NEXT LEVEL! 🪜🎮' },
-    { q: 'What is Fortnite\'s favorite snack?', a: 'Victory ROYALE with cheese fries! 🍟👑' },
-    { q: 'Why did the french fry win the race?', a: 'Because it was on a ROLL! 🍟🏃' },
-    { q: 'What do you call a noob in the kitchen?', a: 'A FRIER! 🍟🔥' },
-  ];
-  const j = jokes[Math.floor(Math.random() * jokes.length)];
-  showPopup('😂<br><span style="font-family:Bangers;font-size:24px;color:var(--cyan)">' + j.q + '</span><br><br><span style="font-size:22px;color:var(--gold)">' + j.a + '</span>');
-  addFries(1); addXP(2);
-}
-
-// ═══ SPIN THE WHEEL ═══
-function spinWheel() {
-  const options = [
-    '🍟 +15 FRIES! Hayes hit the JACKPOT!',
-    '💪 Do 5 jumping jacks right now! GO!',
-    '😂 Tell someone a joke from the Joke section!',
-    '🎮 Play a round of Build Battle!',
-    '🌟 Say 3 nice things about yourself, Hayes!',
-    '💙 Give someone a high-five!',
-    '🍟 +8 FRIES! Nice spin, Hayes!',
-    '🧘 Take 3 deep breaths. You earned it!',
-    '🏃 Do a silly dance for 10 seconds!',
-    '⚡ LEGENDARY: You are literally the GOAT, Hayes!',
-    '🎯 Score 10+ in your next Click Battle!',
-    '🐾 Go pet your virtual pet buddy!',
-    '🍟 +20 FRIES! MEGA JACKPOT! 🎰',
-  ];
-  const pick = options[Math.floor(Math.random() * options.length)];
-  let bonus = 3;
-  if (pick.includes('+15')) bonus = 15;
-  else if (pick.includes('+8')) bonus = 8;
-  else if (pick.includes('+20')) bonus = 20;
-  addFries(bonus); addXP(5);
-  showPopup('🎡<br><span style="font-family:Bangers;font-size:28px;color:var(--gold)">SPIN RESULT!</span><br><br><span style="font-size:20px">' + pick + '</span>');
-}
-
-// ═══ FRY FACTS ═══
-function showFryFact() {
-  const facts = [
-    '🍟 French fries are the #1 most ordered fast food item in the USA!',
-    '🍟 Americans eat about 4.5 BILLION pounds of french fries every year!',
-    '🍟 The longest french fry ever recorded was 34 inches long!',
-    '🍟 French fries were actually invented in Belgium in the 1600s!',
-    '🍟 In the UK, french fries are called "chips"!',
-    '🍟 The world record for most fries eaten in 1 minute is 86!',
-    '🍟 Astronauts can NOT eat french fries in space — zero gravity!',
-    '🍟 Thomas Jefferson was one of the first Americans to serve french fries!',
-    '🍟 There is a French Fry museum in Bruges, Belgium!',
-    '🍟 Curly fries were invented in 1988!',
-  ];
-  showPopup(facts[Math.floor(Math.random() * facts.length)] + '<br><br>🧠 <span style="color:var(--cyan)">NOW HAYES KNOWS!</span>');
-  addFries(1); addXP(2);
-}
-
-// ═══ WOULD YOU RATHER ═══
-function showWouldYouRather() {
-  const questions = [
-    { a: 'Have unlimited french fries forever 🍟', b: 'Have unlimited V-Bucks forever 💰' },
-    { a: 'Be the #1 Fortnite player in the world 🏆', b: 'Create the #1 Roblox game ever 🎮' },
-    { a: 'Fly like a superhero ✈️', b: 'Be invisible whenever you want 👻' },
-    { a: 'Live in the Fortnite world 🏝️', b: 'Live in the Roblox world 🧊' },
-    { a: 'Have a pet dragon 🐉', b: 'Have a pet unicorn 🦄' },
-    { a: 'Eat only french fries for a week 🍟', b: 'Eat only pizza for a week 🍕' },
-    { a: 'Be super fast ⚡', b: 'Be super strong 💪' },
-    { a: 'Have a hoverboard 🛹', b: 'Have a jetpack 🚀' },
-  ];
-  const q = questions[Math.floor(Math.random() * questions.length)];
-  showPopup('🤔<br><span style="font-family:Bangers;font-size:24px;color:var(--gold)">WOULD YOU RATHER...</span><br><br>' +
-    '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px">' +
-    '<button class="calm-btn" style="border-color:var(--cyan);flex:1;min-width:120px" onclick="wyrPick()">' + q.a + '</button>' +
-    '<button class="calm-btn" style="border-color:var(--pink);flex:1;min-width:120px" onclick="wyrPick()">' + q.b + '</button></div>');
-}
-
-function wyrPick() {
-  closePopup();
-  addFries(3); addXP(3);
-  showToast('🤔', 'Great choice, Hayes! +3 fries!');
-}
-
-// ═══ TRIVIA BLAST ═══
-function showTrivia() {
-  const trivias = [
-    { q: 'What year was Fortnite Battle Royale released?', opts: ['2015', '2017', '2019', '2020'], correct: 1 },
-    { q: 'What is the main currency in Roblox?', opts: ['V-Bucks', 'Robux', 'Gems', 'Coins'], correct: 1 },
-    { q: 'Which country invented french fries?', opts: ['France', 'USA', 'Belgium', 'UK'], correct: 2 },
-    { q: 'How many players are in a Fortnite Battle Royale match?', opts: ['50', '100', '150', '200'], correct: 1 },
-    { q: 'What is the name of the Roblox character model?', opts: ['Blocky', 'Noob', 'Steve', 'R15'], correct: 1 },
-    { q: 'What are french fries called in the UK?', opts: ['Crisps', 'Chips', 'Wedges', 'Sticks'], correct: 1 },
-    { q: 'What does "GG" mean in gaming?', opts: ['Get Going', 'Good Game', 'Go Go', 'Great Guy'], correct: 1 },
-  ];
-  const t = trivias[Math.floor(Math.random() * trivias.length)];
-  let html = '🧠<br><span style="font-family:Bangers;font-size:22px;color:var(--cyan)">' + t.q + '</span><br><br>';
-  html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">';
-  t.opts.forEach((o, i) => {
-    html += '<button class="calm-btn" style="border-color:var(--blue4)" onclick="triviaAnswer(' + i + ',' + t.correct + ')">' + o + '</button>';
-  });
-  html += '</div>';
-  showPopup(html);
-}
-
-function triviaAnswer(picked, correct) {
-  if (picked === correct) {
-    addFries(5); addXP(10);
-    showPopup('✅<br><span style="font-family:Bangers;font-size:32px;color:var(--green)">CORRECT!</span><br>Hayes is a GENIUS! +5 fries +10 XP!');
-    spawnConfetti();
-  } else {
-    addFries(1); addXP(2);
-    showPopup('❌<br><span style="font-family:Bangers;font-size:28px;color:var(--pink)">NOT QUITE!</span><br>Nice try, Hayes! +1 fry for trying!');
-  }
+    function playVoice() {
+      speechSynthesis.speak(new SpeechSynthesisUtterance("Welcome Commander Hayes. Systems Online."));
+    }
+    function toggleZen() {
+      var z = document.getElementById('zen-overlay');
+      z.style.display = z.style.display === 'flex' ? 'none' : 'flex';
+    }
+    
+    // Noise Generator
+    var nCtx, nOsc;
+    function playNoise() {
+      if (!nCtx) nCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (nOsc) { nOsc.stop(); nOsc = null; }
+      else {
+        var b = nCtx.createBuffer(1, 44100, 44100);
+        var d = b.getChannelData(0);
+        for (var i = 0; i < 44100; i++) d[i] = Math.random() * 2 - 1;
+        nOsc = nCtx.createBufferSource(); nOsc.buffer = b; nOsc.loop = true;
+        var g = nCtx.createGain(); g.gain.value = 0.03;
+        nOsc.connect(g); g.connect(nCtx.destination); nOsc.start();
       }
+    }
 
-// ═══ CALM SOUNDS (Web Audio API) ═══
-let calmCtx, calmNodes = [];
-function initCalmAudio() { if (!calmCtx) calmCtx = new (window.AudioContext || window.webkitAudioContext)(); if (calmCtx.state === 'suspended') calmCtx.resume(); }
-function stopCalm() { calmNodes.forEach(n => { try { n.stop(); } catch (e) {} }); calmNodes = []; if (calmCtx) calmCtx.close().then(() => calmCtx = null); }
+    // Cursor Follow
+    var cursorEl = document.getElementById('cursor');
+    document.addEventListener('mousemove', function(e) {
+      cursorEl.style.left = e.clientX + 'px';
+      cursorEl.style.top = e.clientY + 'px';
+      if (rulerActive) document.getElementById('laser-ruler').style.top = (e.clientY - 30) + 'px';
+    });
+    
+    // Scroll XP
+    window.onscroll = function() {
+      var scrollPct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+      document.getElementById("xp-bar").style.width = scrollPct + "%";
+    };
 
-function playRain() {
-  stopCalm(); initCalmAudio();
-  const buf = calmCtx.createBufferSource(); const sz = calmCtx.sampleRate * 10; const b = calmCtx.createBuffer(1, sz, calmCtx.sampleRate);
-  const d = b.getChannelData(0); for (let i = 0; i < sz; i++) { d[i] = (Math.random() * 2 - 1) * 0.15; if (i % 400 < 20) d[i] *= 3; }
-  buf.buffer = b; buf.loop = true; const f = calmCtx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 800;
-  buf.connect(f); f.connect(calmCtx.destination); buf.start(); calmNodes.push(buf);
-}
-
-function playOcean() {
-  stopCalm(); initCalmAudio();
-  const buf = calmCtx.createBufferSource(); const sz = calmCtx.sampleRate * 8; const b = calmCtx.createBuffer(1, sz, calmCtx.sampleRate);
-  const d = b.getChannelData(0); for (let i = 0; i < sz; i++) { const t = i / calmCtx.sampleRate; d[i] = (Math.random() * 2 - 1) * 0.08 * (0.5 + 0.5 * Math.sin(t * 0.5)); }
-  buf.buffer = b; buf.loop = true; const f = calmCtx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 400;
-  buf.connect(f); f.connect(calmCtx.destination); buf.start(); calmNodes.push(buf);
-}
-
-function playForest() {
-  stopCalm(); initCalmAudio();
-  const buf = calmCtx.createBufferSource(); const sz = calmCtx.sampleRate * 10; const b = calmCtx.createBuffer(1, sz, calmCtx.sampleRate);
-  const d = b.getChannelData(0);
-  for (let i = 0; i < sz; i++) {
-    const t = i / calmCtx.sampleRate;
-    d[i] = (Math.random() * 2 - 1) * 0.05;
-    // Bird chirps
-    if (Math.random() < 0.0005) for (let j = 0; j < 200 && i + j < sz; j++) d[i + j] += Math.sin(j * 0.3) * 0.15 * (1 - j / 200);
-    // Gentle wind
-    d[i] += Math.sin(t * 0.8) * 0.02;
-  }
-  buf.buffer = b; buf.loop = true; const f = calmCtx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 2000;
-  buf.connect(f); f.connect(calmCtx.destination); buf.start(); calmNodes.push(buf);
-}
-
-function playSpace() {
-  stopCalm(); initCalmAudio();
-  const buf = calmCtx.createBufferSource(); const sz = calmCtx.sampleRate * 12; const b = calmCtx.createBuffer(1, sz, calmCtx.sampleRate);
-  const d = b.getChannelData(0);
-  for (let i = 0; i < sz; i++) {
-    const t = i / calmCtx.sampleRate;
-    d[i] = Math.sin(t * 60) * 0.04 + Math.sin(t * 90) * 0.03 + Math.sin(t * 150) * 0.02;
-    d[i] *= 0.5 + 0.5 * Math.sin(t * 0.2);
-  }
-  buf.buffer = b; buf.loop = true; const f = calmCtx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 500;
-  buf.connect(f); f.connect(calmCtx.destination); buf.start(); calmNodes.push(buf);
-}
-
-// ═══ INIT ON LOAD ═══
-window.addEventListener('DOMContentLoaded', initAll);
-</script>
+    // Theme Cycler
+    var colors = ['#00f2ff', '#22c55e', '#ff0055', '#facc15'];
+    var cIdx = 0;
+    function cycleTheme() {
+      cIdx = (cIdx + 1) % colors.length;
+      document.documentElement.style.setProperty('--neon-cyan', colors[cIdx]);
+    }
+  <\/script>
 </body>
 </html>
